@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState} from "react";
 import { useNavigate } from "react-router-dom";
 import "./Register.css"; // Import the CSS file you created
 
@@ -7,7 +7,7 @@ const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLogin, setIsLogin] = useState(false);
-
+  const [token, setToken] = useState("");
   const navigate = useNavigate();
   const handleSlide = (e) => {
     console.log("Before toggle:", isLogin);
@@ -30,24 +30,25 @@ const Register = () => {
         "http://localhost:3500/api/auth" + (isLogin ? "/login" : "/register"),
         {
           method: "POST",
-          
           headers: {
             "Content-Type": "application/json",
+            // Add your access token if needed
+            Authorization: `Bearer ${token}`,
           },
-           withCredentials: 'include' ,
+          withCredentials: true, // Use this for cross-origin requests with credentials
           body: JSON.stringify(userData),
         }
       );
 
-      console.log(
-        "http://localhost:8080/api/auth" + (isLogin ? "/login" : "/register")
-      );
       console.log("line 45", userData);
       // Handle the response based on success or failure
       if (response.ok) {
         // Registration or login successful, you can redirect or show a success message
         const data = await response.json();
         console.log(data);
+        setToken(data.accessToken)
+        localStorage.setItem( "user", data.accessToken);
+        console.log('like 53 ',data.accessToken);
           // If the user is logged in successfully, redirect to the profile page
       if (isLogin) {
         navigate("/user");
@@ -63,7 +64,7 @@ const Register = () => {
     } catch (error) {
       console.error("Error occurred:", error);
     }
-  };
+  }
 
   return (
     <div className={`wrapper ${isLogin ? "login" : "signup"}`}>

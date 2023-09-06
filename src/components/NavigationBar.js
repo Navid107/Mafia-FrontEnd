@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import './NavigationBar.css';
 
 const NavigationBar = ({ loggedIn, handleLogout }) => {
+  
   return (
     <nav className="navbar">
       <ul className="navbar-list">
@@ -29,7 +30,7 @@ const NavigationBar = ({ loggedIn, handleLogout }) => {
               <Link to="/user">Profile</Link>
             </li>
             <li>
-              <button onClick={handleLogout}>Logout</button>
+              <Link onClick={handleLogout}>Logout</Link>
             </li>
           </>
         )}

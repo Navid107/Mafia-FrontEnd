@@ -1,24 +1,27 @@
 import { useState } from 'react';
+import jwt_decode from 'jwt-decode';
 import './Profile.css'
-import axios from "axios";
-const Profile = (props) => {
+const Profile = () => {
 
+const token =localStorage.getItem('user')
+
+const userInfo = jwt_decode(token)
+
+console.log('line 7 info', userInfo)
 const gameData = {
   totalGames: 19,
    mafiaWins:10,
     citizenWins: 9
 
 }
-const userInfo = () => {
-  return
-}
+
   return (
     <div className="profile-container">
       <div className="profile-header">
         <div className="avatar">
         
         </div>
-        <div className="user-name">{}</div>
+        <div className="user-name">username: {userInfo.user}</div>
       </div>
       <div className="profile-stats">
         <div className="stat">
