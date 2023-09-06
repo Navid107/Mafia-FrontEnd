@@ -30,9 +30,11 @@ const Register = () => {
         "http://localhost:3500/api/auth" + (isLogin ? "/login" : "/register"),
         {
           method: "POST",
+          
           headers: {
             "Content-Type": "application/json",
           },
+           withCredentials: 'include' ,
           body: JSON.stringify(userData),
         }
       );
