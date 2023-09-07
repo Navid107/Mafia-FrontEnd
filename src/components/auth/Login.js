@@ -1,6 +1,6 @@
-import React, { useState} from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
+import './Login.css'
 import AuthService from "./AuthService";
 const Register = () => {
   const [email, setEmail] = useState("");
@@ -19,55 +19,49 @@ const Register = () => {
         window.location.reload();
       },
       (error) => {
-          setMessage("Invalid Email and Password");
+        setMessage("Invalid Email and Password");
       }
     );
-  } 
-  
+  }
+
   return (
-      <div className="form-container">
-        <div className="slide-controls">
-          <div className="slider-tab"></div>
-        </div>
-        <div className="form-inner">
-            <form className="login" onSubmit={handleSubmit}>
-              {/* Add the name field */}
-              <div className="field">
-                <input
-                  type="text"
-                  placeholder="Email Address"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  required
-                />
-              </div>
-              <div className="field">
-                <input
-                  type="password"
-                  placeholder="Password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  required
-                />
-              </div>
-              <div className="field btn">
-                <div className="btn-layer"></div>
-                <input type="submit" value="Login" />
-              </div>
-              <div className="signup-link">
-                Create an account <a href="/signup">Signup now</a>
-              </div>
-            </form>
-            {message && (
-            <div className="form-group">
-              <div className="alert alert-danger" role="alert">
-                {message}
-              </div>
-            </div>
-          )}
-        </div>
+    <div className="form-container">
+      <div className="form-inner">
+        <form className="login" onSubmit={handleSubmit}>
+          {/* Add the name field */}
+          <div className="field">
+            <input
+              type="text"
+              placeholder="Email Address"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </div>
+          <div className="field">
+            <input
+              type="password"
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </div>
+          <div className="field btn"> Login
+            <input type="submit" value="Login" />
+          </div>
+          <div className="signup-link">
+            Create an account <a href="/signup">Signup now</a>
+          </div>
+        </form>
+        {message && (
+          <div className="alert alert-danger" role="alert">
+            {message}
+          </div>
+        )}
       </div>
-  
+    </div>
+
   );
 };
 

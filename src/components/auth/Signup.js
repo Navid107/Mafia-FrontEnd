@@ -1,6 +1,5 @@
 import React, { useState} from "react";
 import { useNavigate } from "react-router-dom";
-
 import AuthService from "./AuthService";
 const Register = () => {
   const [name, setName] = useState("");
@@ -27,9 +26,6 @@ const Register = () => {
   
   return (
       <div className="form-container">
-        <div className="slide-controls">
-          <div className="slider-tab"></div>
-        </div>
         <div className="form-inner">
             <form className="signup" onSubmit={handleSubmit}>
               <div className="field">
@@ -66,8 +62,7 @@ const Register = () => {
                   required
                 />
               </div>
-              <div className="field btn">
-                <div className="btn-layer"></div>
+              <div className="field btn">SignUp
                 <input type="submit" value="Signup" />
               </div>
               <div className="signup-link">
@@ -75,11 +70,9 @@ const Register = () => {
               </div>
             </form>
             {message && (
-            <div className="form-group">
               <div className="alert alert-danger" role="alert">
                 {message}
               </div>
-            </div>
           )}
         </div>
       </div>

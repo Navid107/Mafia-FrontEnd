@@ -1,0 +1,101 @@
+/* CSS for the login form */
+.form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .form-inner {
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3);
+    width: 320px;
+    padding: 30px;
+    text-align: center;
+  }
+  
+  .form-inner form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .field {
+    margin: 15px 0;
+    position: relative;
+  }
+  
+  .field input {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-bottom: 2px solid #007bff;
+    background: transparent;
+    font-size: 16px;
+    transition: border-color 0.3s;
+  }
+  
+  .field input:focus {
+    outline: none;
+    border-color: #ff6b6b;
+  }
+  
+  .field.btn {
+    text-align: center;
+  }
+  
+  .btn-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, #ff6b6b, #ff6b6b);
+    clip-path: circle(0% at 100% 0%);
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .field input[type="submit"] {
+    opacity: 0;
+    z-index: 2;
+    cursor: pointer;
+    background: none;
+    border: 2px solid #007bff;
+    padding: 10px 20px;
+    font-size: 18px;
+    color: #007bff;
+    border-radius: 25px;
+    transition: background 0.3s, color 0.3s;
+  }
+  
+  .field.btn:hover .btn-layer {
+    clip-path: circle(150% at 100% 0%);
+  }
+  
+  .field.btn:hover input[type="submit"] {
+    background: #007bff;
+    color: #fff;
+  }
+  
+  .signup-link {
+    margin-top: 20px;
+    font-size: 14px;
+    color: #555;
+  }
+  
+  .signup-link a {
+    color: #ff6b6b;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .alert.alert-danger {
+    margin-top: 20px;
+    background-color: #ff6b6b;
+    color: #fff;
+    padding: 12px;
+    border-radius: 5px;
+    font-size: 14px;
+  }
+  
