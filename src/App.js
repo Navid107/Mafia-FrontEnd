@@ -9,8 +9,9 @@ import Profile from "./components/profilePage/Profile";
 import Login from "./components/auth/Login";
 import SignUp from "./components/auth/Signup";
 import PrivateRoute from "./components/privateRoute/PrivateRoute";
-
+import Character from "../src/components/game/GameCard"
 import AuthService from "./components/auth/AuthService";
+import './App.css';
 const App = () => {
   const [message, setMessage] = useState('');
   const user = AuthService.getCurrentUser();
@@ -38,6 +39,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/rules" element={<Rules />} />
+        <Route path="/character" element={<Character/>}/>
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
     

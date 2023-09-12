@@ -32,6 +32,10 @@ const logout = () => {
     return response.data;
   });
 };
+const getChars = () => {
+  return axios.get(API_URL + "characters", {
+  });
+};
 
 const getCurrentUser = () => {
   return JSON.parse(localStorage.getItem("user"));
@@ -41,6 +45,7 @@ const AuthService = {
   register,
   login,
   logout,
+  getChars,
   getCurrentUser,
 }
 

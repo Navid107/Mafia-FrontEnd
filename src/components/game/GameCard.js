@@ -1,31 +1,53 @@
-import React from 'react';
-import './GameCards.css';
-const GameCard = ({ playerRole }) => {
-  // Define the actions based on player roles
-  const actions = {
-    Mafia: ['Kill', 'Silent Kill'],
-    Civilian: ['Vote'],
-    // Add more actions for other roles as needed
-  };
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import './GameCard.css'; // Make sure you have a CSS file for styling
+
+function CharacterList() {
+  const [characters, setCharacters] = useState([]);
+
+  useEffect(() => {
+    // Make an API request to retrieve character data
+    axios.get('http://localhost:3500/api/characters')
+      .then((response) => {
+        setCharacters(response.data);
+      })
+      .catch((error) => {
+        console.error('Error fetching characters:', error);
+      });
+  }, []);
 
   return (
     <div>
-      <h3>Player Card</h3>
-      {playerRole ? (
-        <>
-          <p>Role: {playerRole}</p>
-          <p>Actions:</p>
-          <ul>
-            {actions[playerRole].map((action) => (
-              <li key={action}>{action}</li>
-            ))}
-          </ul>
-        </>
-      ) : (
-        <p>Waiting for game to start...</p>
-      )}
+      <h2>Character List</h2>
+      <ul className="character-card-container"> {/* Add a container for the character cards */}
+        {characters.map((character) => (
+          <li key={character._id}>
+            <div className="character-card"> {/* Wrap each character card in a div */}
+              <img
+                className="character-image"
+                src={`data:${character.image.contentType};base64,${arrayBufferToBase64(character.image.data.data)}`}
+                alt={character.name}
+              />
+              <div className="character-info">
+                <h3 className="character-name">{character.name}</h3>
+                <p className="character-ability">Ability: {character.ability}</p>
+              </div>
+            </div>
+          </li>
+        ))}
+      </ul>
     </div>
   );
-};
+}
 
-export default GameCard;
+// Function to convert an ArrayBuffer to base64
+function arrayBufferToBase64(arrayBuffer) {
+  const binary = new Uint8Array(arrayBuffer);
+  const bytes = [];
+  for (let i = 0; i < binary.length; i++) {
+    bytes.push(String.fromCharCode(binary[i]));
+  }
+  return btoa(bytes.join(''));
+}
+
+export default CharacterList;

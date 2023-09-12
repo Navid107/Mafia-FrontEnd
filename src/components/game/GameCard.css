@@ -1,13 +1,55 @@
+/* Updated CSS for Character Cards */
+.character-card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  height: 450px;
+  gap: 5px; /* Adjust the gap between character cards */
+}
 
+.character-card {
+  width:320px; /* Set the width of each character card */
+  height: auto; /* Set the height of each character card */
+  background-color: black;
+  border: 1px solid #ccc; /* Add a border to the card */
+  border-radius: 10px; /* Round the corners of the card */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+  text-align: center; /* Center card content */
+  padding: 5px;
   
-.container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .actions-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
+}
+
+.character-image {
+  width: 100%; /* Make the image fill the card width */
+  height: 400px; /* Set the height of the image */
+  object-fit: cover; /* Maintain aspect ratio and cover the card */
+  border-top-left-radius: 10px; /* Round the top-left corner of the image */
+  border-top-right-radius: 10px; /* Round the top-right corner of the image */
+}
+
+.character-info {
+  background-color: #f34747f9;
+  border-top-left-radius: 10px; /* Round the top-left corner of the image */
+  border-top-right-radius: 10px;
+  border-bottom-left-radius: 10px; /* Round the top-left corner of the image */
+  border-bottom-right-radius: 10px; /* Round the top-right corner of the image */
+  padding: 1px;
+
+}
+
+.character-name {
+  font-weight: bold;
+  color: rgb(6, 6, 6);
+}
+
+.character-ability {
+  margin-top: 1px;
+  color:#000000
+}
+
+/* Additional Styles for Hover Effect */
+.character-card:hover {
+  transform: translateY(-5px); /* Lift the card slightly on hover */
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2); /* Add a stronger shadow on hover */
+  transition: transform 0.2s, box-shadow 0.2s; /* Smooth transition effect */
+}
