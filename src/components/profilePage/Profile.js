@@ -19,9 +19,9 @@ const gameData = {
     <div className="profile-container">
       <div className="profile-header">
         <div className="avatar">
-        
+        <img src="https://cdn.wallpapersafari.com/97/93/ZyLAgn.jpg" alt="User Avatar" />
         </div>
-        <div className="user-name">username: {userInfo.user}</div>
+        <div className="user-name">Name: {userInfo.user}</div>
       </div>
       <div className="profile-stats">
         <div className="stat">
