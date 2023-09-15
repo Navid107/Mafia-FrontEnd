@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import jwt_decode from 'jwt-decode';
 
-function JoinGame() {
+
+function JoinGame({ props }) {
   const [gameKey, setGameKey] = useState('');
   const token =localStorage.getItem('user')
   const user = jwt_decode(token)
@@ -17,7 +18,7 @@ function JoinGame() {
       });
       console.log(response.data.message);
     } catch (err) {
-      console.error('Error joining the game:', err.response.data.message);
+      console.error('Error joining the game:', err);
     }
   };
 

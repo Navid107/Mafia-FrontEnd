@@ -24,10 +24,7 @@ const NavigationBar = ({ loggedIn, handleLogout }) => {
         {loggedIn && (
           <>
             <li>
-              <Link to="/join-game">Join Game</Link>
-            </li>
-            <li>
-              <Link to="/host-game">Host Game</Link>
+              <Link to="/Gameroom">GameRoom</Link>
             </li>
             <li>
               <Link to="/user">Profile</Link>

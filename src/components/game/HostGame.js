@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-
+import Join from './JoinGame';
 function HostGame() {
   const [gameKey, setGameKey] = useState('');
 
@@ -24,6 +24,9 @@ function HostGame() {
           <p>{gameKey}</p>
         </div>
       )}
+
+      <Join props={gameKey} />
+     
     </div>
   );
 }

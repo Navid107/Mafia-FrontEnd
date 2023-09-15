@@ -15,23 +15,18 @@ import './App.css';
 const App = () => {
   const [message, setMessage] = useState('');
   const user = AuthService.getCurrentUser();
-  
-
 
   const handleLogout = () => {
     setMessage('')
     AuthService.logout().then(
       () => {
-        window.location.reload();
         setMessage("User logged out")
-        
       },
       (error) => {
-          setMessage("something with wrong");
+        setMessage("something with wrong");
       }
     );
-  } 
- 
+  }
 
   return (
     <Router>
@@ -39,18 +34,18 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/rules" element={<Rules />} />
-        <Route path="/character" element={<Character/>}/>
+        <Route path="/character" element={<Character />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
-    
-        <Route element={<PrivateRoute />}> 
-        <Route path="/" element={<Home />} />
-        <Route path="/rules" element={<Rules />} />
-         <Route path="/join-game" element={<Join />} />
-        <Route path="/host-game" element={<Host />}  />
-        <Route path="/user" element={<Profile />}  />
 
-      </Route>
+        <Route element={<PrivateRoute />}>
+          <Route path="/" element={<Home />} />
+          <Route path="/rules" element={<Rules />} />
+          <Route path="/join-game" element={<Join />} />
+          <Route path="/gameroom" element={<Host />} />
+          <Route path="/user" element={<Profile />} />
+
+        </Route>
       </Routes>
     </Router>
   );
