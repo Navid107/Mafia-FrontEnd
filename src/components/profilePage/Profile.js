@@ -1,4 +1,4 @@
-import { useState } from 'react';
+
 import jwt_decode from 'jwt-decode';
 import './Profile.css';
 import Lobbies from '../game/Lobby'
@@ -39,6 +39,7 @@ const gameData = {
         </div>
         
       </div>
+    
       <Lobbies userId={userInfo.userId} />
     </div>
   );

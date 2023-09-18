@@ -1,34 +1,41 @@
-// components/Game.js
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-
-const Game = () => {
+import { Link } from 'react-router-dom';
+import jwt_decode from 'jwt-decode';
+function Game({ userId }) {
   const [players, setPlayers] = useState([]);
+  const token = localStorage.getItem('user')
 
-  // Fetch the list of players from the backend when the component mounts
+  const userInfo = jwt_decode(token)
+  userId = userInfo.userId
   useEffect(() => {
-    axios.get('/api/game/players')
+    // Make an API request to retrieve the user's created lobbies
+    axios.get(`http://localhost:3500/api/game/lobby?userId=${userId}`)
       .then((response) => {
-        setPlayers(response.data);
+        setPlayers(response.data[0].players);
       })
       .catch((error) => {
-        console.error('Error fetching players:', error);
+        console.error('Error fetching user lobbies:', error);
       });
-  }, []);
-
+  }, [userId]);
+console.log('players', players)
   return (
     <div>
-      <h1>Mafia Game</h1>
-      <div>
-        <h2>Players:</h2>
-        <ul>
-          {players.map((player) => (
-            <li key={player._id}>{player.name}</li>
-          ))}
-        </ul>
-      </div>
+      <h2>Your Created Lobbies</h2>
+      <ul>
+        <p>PLayer Name </p>
+      {players.length > 0 ? (
+        players.map((player, e) =>(
+        <li keys={e}>
+          <p>{player.name}</p>
+          </li>
+        )))
+      :(
+        "no players available"
+      )}
+      </ul>
     </div>
   );
-};
+}
 
 export default Game;

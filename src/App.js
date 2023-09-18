@@ -13,6 +13,7 @@ import Character from "../src/components/game/GameCard"
 import Lobby from "../src/components/game/Lobby"
 import AuthService from "./components/auth/AuthService";
 import './App.css';
+import Play from "./components/game/Game";
 const App = () => {
   const [message, setMessage] = useState('');
   const user = AuthService.getCurrentUser();
@@ -46,6 +47,7 @@ const App = () => {
           <Route path="/gameroom" element={<Host />} />
           <Route path="/user" element={<Profile />} />
           <Route path="/lobby" element={<Lobby />} />
+          <Route path="/play" element={<Play />} />
 
         </Route>
       </Routes>

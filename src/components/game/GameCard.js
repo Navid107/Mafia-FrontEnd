@@ -7,7 +7,7 @@ function CharacterList() {
 
   useEffect(() => {
     // Make an API request to retrieve character data
-    axios.get('http://localhost:3500/api/characters')
+    axios.get('http://localhost:3500/api/game/character')
       .then((response) => {
         setCharacters(response.data);
       })
