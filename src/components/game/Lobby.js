@@ -1,52 +1,38 @@
-
-import './Lobby.css'; // Import the CSS file
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
-const Lobby = () => {
-  const [playerName, setPlayerName] = useState('');
-  const [playerList, setPlayerList] = useState([]);
+function UserLobbies({ userId }) {
+  const [userLobbies, setUserLobbies] = useState([]);
 
-  const handlePlayerNameChange = (event) => {
-    setPlayerName(event.target.value);
-  };
-
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-
-    try {
-      const response = await axios.post('/api/players', {
-        name: playerName,
+  useEffect(() => {
+    // Make an API request to retrieve the user's created lobbies
+    axios.get(`http://localhost:3500/api/game/lobby?userId=${userId}`)
+      .then((response) => {
+        setUserLobbies(response.data);
+      })
+      .catch((error) => {
+        console.error('Error fetching user lobbies:', error);
       });
-
-      // Player successfully joined, update the player list
-      setPlayerList([...playerList, response.data]);
-      setPlayerName('');
-    } catch (error) {
-      // Handle any errors, e.g., player name is already taken
-    }
-  };
+  }, [userId]);
 
   return (
     <div>
-      <h2>Lobby</h2>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          value={playerName}
-          onChange={handlePlayerNameChange}
-          placeholder="Enter your name"
-        />
-        <button type="submit">Join Game</button>
-      </form>
-      <h3>Players in the Lobby:</h3>
+      <h2>Your Created Lobbies</h2>
       <ul>
-        {playerList.map((player) => (
-          <li key={player._id}>{player.name}</li>
-        ))}
+        {userLobbies.length > 0 ? (
+          userLobbies.map((lobby, index) => (
+            <li key={index}>
+             <p>Name: {lobby.lobbyName}  Game Key: {lobby.gameKey}
+             player: {lobby.players.length}</p>
+              
+            </li>
+          ))
+        ) : (
+          <p>No lobbies found.</p>
+        )}
       </ul>
     </div>
   );
-};
+}
 
-export default Lobby;
+export default UserLobbies;

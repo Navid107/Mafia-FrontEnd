@@ -10,6 +10,7 @@ import Login from "./components/auth/Login";
 import SignUp from "./components/auth/Signup";
 import PrivateRoute from "./components/privateRoute/PrivateRoute";
 import Character from "../src/components/game/GameCard"
+import Lobby from "../src/components/game/Lobby"
 import AuthService from "./components/auth/AuthService";
 import './App.css';
 const App = () => {
@@ -44,6 +45,7 @@ const App = () => {
           <Route path="/join-game" element={<Join />} />
           <Route path="/gameroom" element={<Host />} />
           <Route path="/user" element={<Profile />} />
+          <Route path="/lobby" element={<Lobby />} />
 
         </Route>
       </Routes>

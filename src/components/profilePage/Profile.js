@@ -1,13 +1,14 @@
 import { useState } from 'react';
 import jwt_decode from 'jwt-decode';
-import './Profile.css'
+import './Profile.css';
+import Lobbies from '../game/Lobby'
 const Profile = () => {
 
 const token =localStorage.getItem('user')
 
 const userInfo = jwt_decode(token)
 
-console.log('line 7 info', userInfo)
+console.log('line 7 info', userInfo.userId)
 const gameData = {
   totalGames: 19,
    mafiaWins:10,
@@ -36,7 +37,9 @@ const gameData = {
           <div className="stat-label">Citizen Wins:</div>
           <div className="stat-value">{gameData.citizenWins}</div>
         </div>
+        
       </div>
+      <Lobbies userId={userInfo.userId} />
     </div>
   );
 };

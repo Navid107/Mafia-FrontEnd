@@ -5,7 +5,7 @@ import jwt_decode from 'jwt-decode';
 
 function JoinGame({ props }) {
   const [gameKey, setGameKey] = useState('');
-  const token =localStorage.getItem('user')
+  const token = localStorage.getItem('user')
   const user = jwt_decode(token)
 
   const joinGame = async () => {
