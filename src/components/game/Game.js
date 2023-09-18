@@ -25,11 +25,11 @@ console.log('players', players)
       <ul>
         <p>PLayer Name </p>
       {players.length > 0 ? (
-        players.map((player, e) =>(
-        <li keys={e}>
+        players.map(player  =>
+        <li key={player._id}>
           <p>{player.name}</p>
           </li>
-        )))
+        ))
       :(
         "no players available"
       )}
