@@ -11,6 +11,7 @@ import SignUp from "./components/auth/Signup";
 import PrivateRoute from "./components/privateRoute/PrivateRoute";
 import Character from "../src/components/game/GameCard"
 import Lobby from "../src/components/game/Lobby"
+import Table from "./components/game/Table";
 import AuthService from "./components/auth/AuthService";
 import './App.css';
 import Play from "./components/game/Game";
@@ -47,7 +48,8 @@ const App = () => {
           <Route path="/gameroom" element={<Host />} />
           <Route path="/user" element={<Profile />} />
           <Route path="/lobby" element={<Lobby />} />
-          <Route path="/play" element={<Play />} />
+          <Route path="/play/:gameKey" element={<Play />} />
+          <Route path="/table/:gameKey" element={<Table />} />
 
         </Route>
       </Routes>

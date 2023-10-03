@@ -40,7 +40,7 @@ const gameData = {
         
       </div>
     
-      <Lobbies userId={userInfo.userId} />
+      <Lobbies  />
     </div>
   );
 };

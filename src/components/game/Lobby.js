@@ -2,37 +2,57 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import jwt_decode from 'jwt-decode';
-function UserLobbies({ userId }) {
-  const [userLobbies, setUserLobbies] = useState([]);
-  const token = localStorage.getItem('user')
+import Game from './Game';
 
+function UserLobbies() {
+  const [userLobbies, setUserLobbies] = useState([]);
+  const [urLobbies, setUrLobbies] = useState([]);
+
+  const token = localStorage.getItem('user')
   const userInfo = jwt_decode(token)
-  userId = userInfo.userId
+  const userId = userInfo.userId
   useEffect(() => {
     // Make an API request to retrieve the user's created lobbies
-    axios.get(`http://localhost:3500/api/game/lobby?userId=${userId}`)
+    axios.post(`http://localhost:3500/api/game/lobbies`,{
+      userId
+    })
       .then((response) => {
-        setUserLobbies(response.data);
+        setUserLobbies(response.data.player);
+        setUrLobbies(response.data.lobbies);
       })
       .catch((error) => {
         console.error('Error fetching user lobbies:', error);
       });
-  }, [userId]);
+  }, []);
+  console.log('userLobbies ', userLobbies);
+  console.log('UrLobbies ', urLobbies);
 
   return (
     <div>
       <h2>Your Created Lobbies</h2>
       <ul>
+  {urLobbies.length > 0 ? (
+    urLobbies.map((lobby, index) => (
+      <li key={index}>
+        <Link to={{ pathname: `/play/${lobby.gameKey}` }}>
+          <p>Name: {lobby.lobbyName}  Game Key: {lobby.gameKey}</p>
+        </Link>
+      </li>
+    ))
+  ) : (
+    <p>No lobbies found.</p>
+  )}
+</ul>
+      <h2>Joined Lobbies</h2>
+      <ul>
         {userLobbies.length > 0 ? (
           userLobbies.map((lobby, index) => (
             <li key={index}>
-              <Link to="/play">
+               <Link to={{ pathname: `/play/${lobby.gameKey}` }}>
                 <p>Name: {lobby.lobbyName}  Game Key: {lobby.gameKey}
-                  player: {lobby.players.length}</p>
+                  </p>
 
               </Link>
-
-
             </li>
           ))
         ) : (
