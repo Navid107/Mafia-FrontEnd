@@ -7,9 +7,9 @@
   }
   
   .form-inner {
-    background-color: rgba(255, 255, 255, 0.9);
+    background-color: rgba(0, 0, 0, 0.727);
     border-radius: 10px;
-    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.566);
     width: 320px;
     padding: 30px;
     text-align: center;
@@ -27,22 +27,28 @@
   }
   
   .field input {
+    color: antiquewhite;
     width: 100%;
     padding: 12px;
     border: none;
-    border-bottom: 2px solid #007bff;
+    border-bottom: 2px solid #ff0000;
     background: transparent;
     font-size: 16px;
     transition: border-color 0.3s;
   }
   
   .field input:focus {
+    color: antiquewhite;
     outline: none;
-    border-color: #ff6b6b;
+    border-color: #0516ff;
   }
   
   .field.btn {
+    font-family: serif;
+    font-weight: bold;
+    font-size: 30px;
     text-align: center;
+    color: rgb(64, 0, 255);
   }
   
   .btn-layer {
@@ -81,12 +87,13 @@
   .signup-link {
     margin-top: 20px;
     font-size: 14px;
-    color: #555;
+    color: #90fb0587;
   }
   
   .signup-link a {
     color: #ff6b6b;
     text-decoration: none;
+    font-family: serif;
     font-weight: bold;
   }
   

@@ -7,10 +7,13 @@ nav {
   padding: 60px 0;
  
 }
+.navbar-list {
+  background-color: transparent;
+}
 
 nav ul {
   text-align: center; 
-  box-shadow: 0 0 25px rgba(0, 0, 0, 0.1), inset 0 0 1px rgba(255, 255, 255, 0.6);
+  box-shadow: 0 0 35px rgba(253, 3, 3, 0.689)
 }
 
 nav ul li {
@@ -18,17 +21,20 @@ nav ul li {
 }
 
 nav ul li a {
+  box-shadow: inset 0 0 3px rgba(0, 8, 7, 0.6);
   padding: 18px;
   font-family: "Open Sans";
+  font-weight: bold;
   text-transform: uppercase;
-  color: rgba(0, 35, 122, 0.5);
+  color: rgba(253, 253, 254, 0.5);
   font-size: 18px;
   text-decoration: none;
   display: block;
+  background-color: black;
 }
 
 nav ul li a:hover {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1), inset 0 0 1px rgba(255, 255, 255, 0.6);
-  background: rgba(255, 255, 255, 0.1);
-  color: rgba(0, 35, 122, 0.7);
+  background: rgba(250, 2, 2, 0.576);
+  color: rgba(5, 217, 250, 0.535);
 }
