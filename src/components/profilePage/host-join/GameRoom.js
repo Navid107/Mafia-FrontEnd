@@ -47,7 +47,7 @@ function GameRoom() {
           value={lobbyName}
           onChange={(e) => setLobbyName(e.target.value)}
         />
-        <button onClick={handleHostGame}>Host Game</button>
+        <button className="host-btn" onClick={handleHostGame}>Host Game</button>
       </div>
       {lobbyInfo && (
         <div className="gameKey">
@@ -63,7 +63,7 @@ function GameRoom() {
           value={gameKey}
           onChange={(e) => setGameKey(e.target.value)}
         />
-      <button onClick={joinGame}>Join Game</button>
+      <button className="host-btn" onClick={joinGame}>Join Game</button>
       </div>
     </div>
   );

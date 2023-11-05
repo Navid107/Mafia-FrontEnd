@@ -1,30 +1,89 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import React, { useState } from 'react';
+
 import './CharCard.css';
-import CharacterCard from './CharCard';
+import City from './pictures/City.jpg';
+import Dr from './pictures/DrWatson.jpg';
+import GodFather from './pictures/GodFather.jpg';
+import Detective from './pictures/Kin.jpg';
+import Sniper from './pictures/Leon.jpg';
+import Mafia from './pictures/mafia.jpeg';
+import Matador from './pictures/Matador.jpg';
+import Nostradamoos from './pictures/Nostradamoos.jpg';
+import S6Constantine from './pictures/S6Constantine.jpg';
+import SaulGoodMan from './pictures/SaulGoodman.jpg';
 
 function GameCard({ playerChar }) {
-    const [characters, setCharacters] = useState([]);
-    useEffect(() => {
-        // Make an API request to retrieve character data
-        axios.get('http://localhost:3500/api/game/character')
-            .then((response) => {
-                setCharacters(response.data);
-            })
-            .catch((error) => {
-                console.error('Error fetching characters:', error);
-            });
-    }, [playerChar]);
-    //console.log('playerchar line 18', playerChar);
-    return (
-        <div>
-            {characters
-                .filter((character) => character.name === playerChar)
-                .map((character) => (
-                    <CharacterCard character={character} />
-                ))}
+  const characters = [
+    {
+      name: 'The GodFather',
+      side: 'mafia',
+      ability: 'Identity false',
+      image: GodFather
+    },
+    {
+      name: 'Matador',
+      side: 'mafia',
+      ability: 'Can block someone ability',
+      image: Matador
+    },
+    {
+      name: 'SaulGoodMan',
+      side: 'mafia',
+      ability: 'Can buy a citizen who has no ability',
+      image: SaulGoodMan
+    },
+    {
+      name: 'Regular Mafia',
+      side: 'mafia',
+      ability: 'none',
+      image: Mafia
+    },
+    {
+      name: 'Leon',
+      side: 'citizen',
+      ability: 'can shoot at night',
+      image: Sniper
+    },
+    {
+      name: 'Detective',
+      side: 'citizen',
+      ability: 'Can get the identity of a player',
+      image: Detective
+    },
+    {
+      name: 'Doctor',
+      side: 'citizen',
+      ability: 'Can save someone',
+      image: Dr
+    },
+    {
+      name: 'Regular Citizen',
+      side: 'citizen',
+      ability: 'none',
+      image: City
+    },
+  ];
+
+  // Find the character based on playerChar
+  const character = characters.find((char) => char.name === playerChar);
+  console.log('cjarjaja', playerChar);
+  return (
+    <div>
+      {character ? (
+        <div className="character-card">
+          <img className="character-image" src={character.image} alt={character.name} />
+          <div className="character-info">
+            <h3 className="character-name">{character.name}</h3>
+            <p className="character-ability">Ability: {character.ability}</p>
+          </div>
         </div>
-    );
+      ) : (
+        <div className="character-card">
+          <p className="character-name">Character not found</p>
+        </div>
+      )}
+    </div>
+  );
 }
 
 export default GameCard;
