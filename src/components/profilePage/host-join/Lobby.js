@@ -26,79 +26,82 @@ function UserLobbies() {
         console.error('Error fetching user lobbies:', error);
       });
   }, [userId]);
-
   return (
     <div className="container">
-  {urLobbies.length > 0 ? (
-    <div>
-      <h2>Your Lobbies</h2>
-      <table className="profile-lobby">
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Game Key</th>
-          </tr>
-        </thead>
-        <tbody>
-          {urLobbies.map((lobby, index) => (
-            <tr key={index} className="border-line">
-              <td>
-                <Link
-                  to={
-                    lobby.gameState === 'started'
-                      ? `/table/${lobby.gameKey}`
-                      : `/play/${lobby.gameKey}`
-                  }
-                  className="link"
-                >
-                  {lobby.lobbyName}
-                </Link>
-              </td>
-              <td>{lobby.gameKey}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
-  ) : (
-    <p>No lobbies found.</p>
-  )}
 
-  {userLobbies.length > 0 ? (
-    <div>
-      <h2>Joined Lobbies</h2>
-      <table className="profile-lobby">
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Game Key</th>
-          </tr>
-        </thead>
-        <tbody>
-          {userLobbies.map((lobby, index) => (
-            <tr key={index} className="border-line">
-              <td>
-                <Link
-                  to={
-                    lobby.gameState === 'started'
-                      ? `/table/${lobby.gameKey}`
-                      : `/play/${lobby.gameKey}`
-                  }
-                  className="link"
-                >
-                  {lobby.lobbyName}
-                </Link>
-              </td>
-              <td>{lobby.gameKey}</td>
+      <div>
+        <h2>Your Lobbies</h2>
+        <table className="profile-lobby">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Game Key</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          {urLobbies.length > 0 ? (
+            <tbody>
+              {urLobbies.map((lobby, index) => (
+                <tr key={index} className="border-line">
+                  <td>
+                    <Link
+                      to={
+                        lobby.gameState === 'true'
+                          ? `/table/${lobby.gameKey}`
+                          : `/play/${lobby.gameKey}`
+                      }
+                      className="link"
+                    >
+                      {lobby.lobbyName}
+                    </Link>
+                  </td>
+                  <td>{lobby.gameKey}</td>
+                </tr>
+              ))}
+            </tbody>
+
+
+          ) : (
+            <p>No lobbies found.</p>
+          )}
+        </table>
+      </div>
+
+      <div>
+        <h2>Joined Lobbies</h2>
+        <table className="profile-lobby">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Game Key</th>
+            </tr>
+          </thead>
+          {userLobbies.length > 0 ? (
+            <tbody>
+              {userLobbies.map((lobby, index) => (
+                <tr key={index} className="border-line">
+                  <td>
+                    <Link
+                      to={
+                        lobby.gameState === 'true'
+                          ? `/table/${lobby.gameKey}`
+                          : `/play/${lobby.gameKey}`
+                      }
+                      className="link"
+                    >
+                      {lobby.lobbyName}
+                    </Link>
+                  </td>
+                  <td>{lobby.gameKey}</td>
+                </tr>
+              ))}
+            </tbody>
+
+          ) : (
+            <p>No lobbies found.</p>
+          )}
+        </table>
+      </div>
     </div>
-  ) : (
-    <p>No lobbies found.</p>
-  )}
-</div>
   )
 }
 
