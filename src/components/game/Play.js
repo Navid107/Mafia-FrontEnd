@@ -120,8 +120,7 @@ function PreGame() {
       <h4 className="subtitle">Please wait for the God to start the game!</h4>
       <div className="player-char-container">
         <div className="players-container">
-      <h2>Your Created Lobbies</h2>
-      <p>Player List</p>
+      <h2>Player List</h2>
       <div className="player-list"> 
           {players.length > 0 ? (
             players.map((player) => (
@@ -138,7 +137,7 @@ function PreGame() {
           )}
       
       </div>
-        {userId ? (
+      {userId ? (
           <Link to={{ pathname: `/table/${gameKey}` }}>
             <button className="btn-start-game" onClick={startGame}>Start Game</button>
           </Link>
