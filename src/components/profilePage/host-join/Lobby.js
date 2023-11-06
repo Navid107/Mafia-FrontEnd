@@ -26,9 +26,11 @@ function UserLobbies() {
         console.error('Error fetching user lobbies:', error);
       });
   }, [userId]);
+  console.log('ur lobbbies', urLobbies)
+
+
   return (
     <div className="container">
-
       <div>
         <h2>Your Lobbies</h2>
         <table className="profile-lobby">
@@ -45,9 +47,9 @@ function UserLobbies() {
                   <td>
                     <Link
                       to={
-                        lobby.gameState === 'true'
+                        lobby.gameState !== 'false'
                           ? `/table/${lobby.gameKey}`
-                          : `/play/${lobby.gameKey}`
+                          :  `/play/${lobby.gameKey}`
                       }
                       className="link"
                     >
@@ -58,8 +60,6 @@ function UserLobbies() {
                 </tr>
               ))}
             </tbody>
-
-
           ) : (
             <p>No lobbies found.</p>
           )}

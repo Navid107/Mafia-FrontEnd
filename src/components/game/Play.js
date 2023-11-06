@@ -12,24 +12,6 @@ function Play() {
 
 
   console.log('gameKey', gameKey)
-
-  useEffect(() => {
-    // Make an API request to retrieve the user's created lobbies
-    axios.post(`http://localhost:3500/api/game/lobby`, {
-      gameKey
-    }
-    )
-      .then((response) => {
-        if (response.status === 201) {
-          navigate(`/table/${gameKey}`)
-        }
-        setPlayers(response.data[0].players);
-        setUserId(response.data[0].host)
-      })
-      .catch((error) => {
-        console.error('Error fetching user lobbies:', error);
-      });
-  }, []);
   //console.log('players', players, 'userId', userId);
 
   useEffect(() => {
