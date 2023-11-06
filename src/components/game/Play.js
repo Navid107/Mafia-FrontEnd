@@ -6,7 +6,7 @@ import Checkbox from './CardUI/CheckBox';
 function PreGame() {
   const [userId, setUserId] = useState('');
   const [players, setPlayers] = useState([]);
-  const [selectedChars, setSelectedChars] = useState([]);
+  const [selectedChars, setSelectedChars] = useState([1,2,5,6,7,8,]);
   const { gameKey } = useParams();
 
   useEffect(() => {
@@ -104,6 +104,7 @@ function PreGame() {
       .catch((error) => {
         console.error('Error starting the game:', error);
       });
+      setSelectedChars([1,2,5,6,7,8,])
   };
 
   const handleSubmit = (e) => {
@@ -123,7 +124,7 @@ function PreGame() {
         ) : (
           'Waiting for host to start'
         )}
-  
+
         <ul>
           <p>Player Name </p>
           {players.length > 0 ? (
@@ -143,8 +144,9 @@ function PreGame() {
           <Checkbox
             key={character.id}
             character={character}
-            checked={selectedChars.includes(character.id)}
-            disabled={!character.select}
+            checked={character.select === true ||
+              selectedChars.includes(character.id)}
+            disabled={character.select}
             onChange={() => handleCheckboxChange(character.id)}
           />
         ))}
@@ -152,8 +154,8 @@ function PreGame() {
       </form>
     </div>
   );
-  
-  
+
+
 }
 
 export default PreGame;
