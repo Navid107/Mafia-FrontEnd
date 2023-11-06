@@ -7,7 +7,6 @@ function CustomCheckbox({ character, checked, disabled, onChange }) {
           disabled={disabled}
           onChange={onChange}
         />
-        {checked ? "✔ " : "◻ "}
         {character.name}
       </label>
     );
