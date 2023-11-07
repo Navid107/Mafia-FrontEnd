@@ -73,7 +73,7 @@
   }
   
 
-   .btn-start-game {
+  .btn-start-game {
     background-color: #ff00006b; /* Adjust the button color as needed */
     color: #FFF; /* Adjust the text color as needed */
     margin-left: 300px;

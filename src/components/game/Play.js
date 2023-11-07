@@ -8,6 +8,7 @@ function PreGame() {
   const [userId, setUserId] = useState('');
   const [players, setPlayers] = useState([]);
   const [selectedChars, setSelectedChars] = useState([1, 2, 5, 6, 7, 8]);
+  const [formSubmit, setFormSubmit] = useState(false)
   const { gameKey } = useParams();
 
   useEffect(() => {
@@ -89,6 +90,7 @@ function PreGame() {
     if (isAlreadySelected) {
       setSelectedChars(selectedChars.filter((id) => id !== charId));
     }
+    
   };
 
   const startGame = () => {
@@ -110,7 +112,7 @@ function PreGame() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle the selected characters
+    setFormSubmit(true);
     console.log("Selected Characters:", selectedChars);
   };
 
@@ -137,13 +139,17 @@ function PreGame() {
           )}
       
       </div>
-      {userId ? (
+      
+      {userId && formSubmit ? (
           <Link to={{ pathname: `/table/${gameKey}` }}>
             <button className="btn-start-game" onClick={startGame}>Start Game</button>
           </Link>
         ) : (
-          'Waiting for host to start'
+          <div className="btn-start-game">
+          Please select the characters first
+          </div>
         )}
+       
         </div>
       <div className="char-checkbox-container">
         <h2 className="char-title">Available Characters</h2>
@@ -158,7 +164,9 @@ function PreGame() {
                 onChange={() => handleCheckboxChange(character.id)}
               />
             ))}
+            {userId ?
             <button className="btn-checkbox" type="submit">Submit</button>
+            : 'Please Waiting for God to start' }
           </form>
           </div>
         </div>
