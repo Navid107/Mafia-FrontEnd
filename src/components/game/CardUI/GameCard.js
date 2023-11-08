@@ -12,51 +12,74 @@ import Nostradamoos from './pictures/Nostradamoos.jpg';
 import S6Constantine from './pictures/S6Constantine.jpg';
 import SaulGoodMan from './pictures/SaulGoodman.jpg';
 
-function GameCard({ playerChar }) {
+function GameCard({ playerChar, charId}) {
   const characters = [
     {
+      id: 1,
       name: 'The GodFather',
       side: 'mafia',
       ability: 'Identity false',
       image: GodFather
     },
     {
-      name: 'Matador',
+      id: 2,
+      name: 'Witch',
       side: 'mafia',
       ability: 'Can block someone ability',
       image: Matador
     },
     {
+      id: 3,
       name: 'SaulGoodMan',
       side: 'mafia',
       ability: 'Can buy a citizen who has no ability',
       image: SaulGoodMan
     },
+  
     {
-      name: 'Regular Mafia',
-      side: 'mafia',
-      ability: 'none',
-      image: Mafia
-    },
-    {
-      name: 'Leon',
+      id: 4,
+      name: 'Sniper',
       side: 'citizen',
       ability: 'can shoot at night',
       image: Sniper
     },
     {
+      id: 5,
       name: 'Detective',
       side: 'citizen',
       ability: 'Can get the identity of a player',
       image: Detective
     },
     {
+      id: 6,
       name: 'Doctor',
       side: 'citizen',
       ability: 'Can save someone',
       image: Dr
     },
     {
+      id: 7,
+      name: 'BodyGuard',
+      side: 'citizen',
+      ability: 'Can protect someone',
+      image: City
+    },
+    {
+      id: 8,
+      name: 'Night Walker',
+      side: 'citizen',
+      ability: 'Can wake a at night',
+      image: City
+    },
+    {
+      id: 9,
+      name: 'Regular Mafia',
+      side: 'mafia',
+      ability: 'none',
+      image: Mafia
+    },
+    {
+      id: 10,
       name: 'Regular Citizen',
       side: 'citizen',
       ability: 'none',
@@ -65,8 +88,8 @@ function GameCard({ playerChar }) {
   ];
 
   // Find the character based on playerChar
-  const character = characters.find((char) => char.name === playerChar);
-  console.log('cjarjaja', playerChar);
+  const character = characters.find((char) => char.id === playerChar);
+  
   return (
     <div>
       {character ? (

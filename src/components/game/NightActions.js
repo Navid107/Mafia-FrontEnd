@@ -1,9 +1,62 @@
 import React, { useState } from "react";
-
-const NightActions = ({ characterData, onNightActionSubmit }) => {
+import GameCard from './CardUI/GameCard';
+const NightActions = ({ characterData, onNightActionSubmit}) => {
   const [selectedAbilities, setSelectedAbilities] = useState([]);
   const [playerShot, setPlayerShot] = useState([]);
   const [nightCounter, setNightCounter] = useState(1); // Initialize night counter to 1
+
+  const availableChars = [
+    {
+      id: 1,
+      name: 'GodFather',
+      select: true,
+    },
+    {
+      id: 2,
+      name: 'Witch',
+      select: true,
+    },
+    {
+      id: 3,
+      name: 'Saul Goodman',
+      select: false,
+    },
+    {
+      id: 4,
+      name: 'Detective',
+      select: true,
+    },
+    {
+      id: 5,
+      name: 'Sniper',
+      select: true,
+    },
+    {
+      id: 6,
+      name: 'Dr',
+      select: true,
+    },
+    {
+      id: 7,
+      name: 'BodyGuard',
+      select: true,
+    },
+    {
+      id: 8,
+      name: 'Night Walker',
+      select: false,
+    },
+    {
+      id: 9,
+      name: 'Regular Mafia',
+      select: false,
+    },
+    {
+      id: 10,
+      name: 'Citizen',
+      select: false,
+    },
+  ];
 
   const handleCheckboxChange = (char) => {
     // Implement your logic to update selectedAbilities based on form input
@@ -35,7 +88,6 @@ const NightActions = ({ characterData, onNightActionSubmit }) => {
     setPlayerShot([]);
   };
 
-
   return (
     <div className="night-actions-container">
       <h1>Night: {nightCounter}</h1>
@@ -59,7 +111,7 @@ const NightActions = ({ characterData, onNightActionSubmit }) => {
               checked={selectedAbilities.includes(character.char)}
               onChange={() => handleCheckboxChange(character.char)}
             />
-            {character.char}
+             {}
           </label>
         ))}
 

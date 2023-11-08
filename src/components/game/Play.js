@@ -112,10 +112,14 @@ function PreGame() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setFormSubmit(true);
-    console.log("Selected Characters:", selectedChars);
+    if(players.length === selectedChars.length || 
+      players.length > 10 ) {
+        setFormSubmit(true);
+        console.log("Selected Characters:", selectedChars);
+    } else {  
+      alert("Please check the numbers of Players and Characters");
   };
-
+  }
   return (
     <div className="pre-game-container">
       <h1 className="title">Welcome to Pre Game Lobby</h1>
@@ -154,21 +158,27 @@ function PreGame() {
       <div className="char-checkbox-container">
         <h2 className="char-title">Available Characters</h2>
         <div className="char-checkbox">
-          <form onSubmit={handleSubmit}>
-            {availableChars.map((character) => (
-              <Checkbox
-                key={character.id}
-                character={character}
-                checked={character.select === true || selectedChars.includes(character.id)}
-                disabled={character.select}
-                onChange={() => handleCheckboxChange(character.id)}
-              />
-            ))}
-            {userId ?
-            <button className="btn-checkbox" type="submit">Submit</button>
-            : 'Please Waiting for God to start' }
-          </form>
-          </div>
+  <form onSubmit={handleSubmit}>
+    {availableChars.map((character) => (
+      <div key={character.id} className="char-row">
+        <Checkbox
+          character={character}
+          checked={character.select === true || selectedChars.includes(character.id)}
+          disabled={character.select}
+          onChange={() => handleCheckboxChange(character.id)}
+        />
+      </div>
+    ))}
+    {userId ? (
+      <button className="btn-checkbox" type="submit">
+        Submit
+      </button>
+    ) : (
+      'Please wait for God to start'
+    )}
+  </form>
+</div>
+
         </div>
       </div>
     </div>

@@ -9,7 +9,7 @@ function Host({ hostData }) {
           {hostData.map((e, index) => (
             <div key={index} className="character-wrapper">
               <p>{e.name}</p>
-              <GameCard playerChar={e.char} />
+              <GameCard playerChar={e.charId} />
             </div>
           ))}
         </div>
