@@ -5,7 +5,8 @@
     justify-content: center;
     width: 1200px;
     margin: 0 auto;
-    color:antiquewhite
+    color:antiquewhite;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   }
   
   /* Title styles */

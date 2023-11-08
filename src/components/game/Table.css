@@ -26,15 +26,28 @@
     margin: 5px;
     padding-left: 30px;
   }
-  .character-wrapper{
-    width: 190px;
-    height: 270px;
+  .character-container{
+    display: flex;
+    flex-direction: row;
+    width: auto;
+    margin: 0 auto;
+  }
+  .citizen-container, .mafia-container{ 
+    width: 190px; 
+    height: 280px;
     text-align: center;
     border-radius: 5px; 
+    margin: 10px;
   }
-  .character-wrapper:hover {
-    box-shadow: 0 0 5px rgb(112, 2, 255);
-    background-color: rgba(179, 13, 13, 0.325);
+  .mafia-container:hover {
+    color:black;
+    box-shadow: 0 0 5px rgb(255, 217, 2);
+    background-color: rgb(255, 0, 0);
+  }
+  .citizen-container:hover {
+    color: black;
+    box-shadow: 0 0 5px rgb(137, 255, 2);
+    background-color: rgb(7, 255, 156);
   }
   .night-actions-container{
     width: 20%;

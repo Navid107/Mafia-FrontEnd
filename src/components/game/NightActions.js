@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import GameCard from './CardUI/GameCard';
-const NightActions = ({ characterData, onNightActionSubmit}) => {
+
+const NightActions = ({ characterData, onNightActionSubmit }) => {
   const [selectedAbilities, setSelectedAbilities] = useState([]);
   const [playerShot, setPlayerShot] = useState([]);
   const [nightCounter, setNightCounter] = useState(1); // Initialize night counter to 1
@@ -58,7 +59,12 @@ const NightActions = ({ characterData, onNightActionSubmit}) => {
     },
   ];
 
-  const handleCheckboxChange = (char) => {
+  const findCharacterName = (charId) => {
+    const character = availableChars.find((char) => char.id === charId);
+    return character.name; // Return character name or an empty string
+  };
+
+  const handleCheckboxChange = (charId) => {
     // Implement your logic to update selectedAbilities based on form input
   };
 
@@ -85,7 +91,7 @@ const NightActions = ({ characterData, onNightActionSubmit}) => {
 
     // Clear the form inputs
     setSelectedAbilities([]);
-    setPlayerShot([]);
+    setPlayerShot("");
   };
 
   return (
@@ -105,16 +111,19 @@ const NightActions = ({ characterData, onNightActionSubmit}) => {
           </select>
         </label>
         {characterData.map((character, index) => (
-          <label key={index}>
-            <input
-              type="checkbox"
-              checked={selectedAbilities.includes(character.char)}
-              onChange={() => handleCheckboxChange(character.char)}
-            />
-             {}
-          </label>
+          character.charId <= 8 && (
+            <div key={index}>
+              <label>
+                <input
+                  type="checkbox"
+                  checked={selectedAbilities.includes(character.charId)}
+                  onChange={() => handleCheckboxChange(character.charId)}
+                />
+                {findCharacterName(character.charId)}
+              </label>
+            </div>
+          )
         ))}
-
         <button className="submit-form" type="submit">
           Submit Night Action
         </button>
