@@ -90,7 +90,7 @@ function PreGame() {
     if (isAlreadySelected) {
       setSelectedChars(selectedChars.filter((id) => id !== charId));
     }
-    
+
   };
 
   const startGame = () => {
@@ -107,18 +107,18 @@ function PreGame() {
       .catch((error) => {
         console.error('Error starting the game:', error);
       });
-      setSelectedChars([1, 2, 5, 6, 7, 8]);
+    setSelectedChars([1, 2, 5, 6, 7, 8]);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if(players.length === selectedChars.length || 
-      players.length > 10 ) {
-        setFormSubmit(true);
-        console.log("Selected Characters:", selectedChars);
-    } else {  
+    if (players.length === selectedChars.length ||
+      players.length > 10) {
+      setFormSubmit(true);
+      console.log("Selected Characters:", selectedChars);
+    } else {
       alert("Please check the numbers of Players and Characters");
-  };
+    };
   }
   return (
     <div className="pre-game-container">
@@ -126,59 +126,58 @@ function PreGame() {
       <h4 className="subtitle">Please wait for the God to start the game!</h4>
       <div className="player-char-container">
         <div className="players-container">
-      <h2>Player List</h2>
-      <div className="player-list"> 
-          {players.length > 0 ? (
-            players.map((player) => (
-              <>
-              <div className="user-avatar">
+          <h2>Player List</h2>
+          <div className="player-list">
+            {players.length > 0 ? (
+              players.map((player) => (
+                <>
+                  <div className="user-avatar">
 
-                <img src="https://cdn.wallpapersafari.com/97/93/ZyLAgn.jpg" alt="User Avatar" />
-                <p>{player.name}</p>
-                </div>
-              </>
-            ))
-          ) : (
-            "no players available"
-          )}
-      
-      </div>
-      
-      {userId && formSubmit ? (
-          <Link to={{ pathname: `/table/${gameKey}` }}>
-            <button className="btn-start-game" onClick={startGame}>Start Game</button>
-          </Link>
-        ) : (
-          <div className="btn-start-game">
-          Please select the characters first
+                    <img src="https://cdn.wallpapersafari.com/97/93/ZyLAgn.jpg" alt="User Avatar" />
+                    <p>{player.name}</p>
+                  </div>
+                </>
+              ))
+            ) : (
+              "no players available"
+            )}
+
           </div>
-        )}
-       
-        </div>
-      <div className="char-checkbox-container">
-        <h2 className="char-title">Available Characters</h2>
-        <div className="char-checkbox">
-  <form onSubmit={handleSubmit}>
-    {availableChars.map((character) => (
-      <div key={character.id} className="char-row">
-        <Checkbox
-          character={character}
-          checked={character.select === true || selectedChars.includes(character.id)}
-          disabled={character.select}
-          onChange={() => handleCheckboxChange(character.id)}
-        />
-      </div>
-    ))}
-    {userId ? (
-      <button className="btn-checkbox" type="submit">
-        Submit
-      </button>
-    ) : (
-      'Please wait for God to start'
-    )}
-  </form>
-</div>
 
+          {userId && formSubmit ? (
+            <Link to={{ pathname: `/table/${gameKey}` }}>
+              <button className="btn-start-game" onClick={startGame}>Start Game</button>
+            </Link>
+          ) : (
+            <div className="btn-start-game">
+              Please select the characters first
+            </div>
+          )}
+
+        </div>
+        <div className="char-checkbox-container">
+          <h2 className="char-title">Available Characters</h2>
+          <div className="char-checkbox">
+            <form onSubmit={handleSubmit}>
+              {availableChars.map((character) => (
+                <div key={character.id} className="char-row">
+                  <Checkbox
+                    character={character}
+                    checked={character.select === true || selectedChars.includes(character.id)}
+                    disabled={character.select}
+                    onChange={() => handleCheckboxChange(character.id)}
+                  />
+                </div>
+              ))}
+              {userId ? (
+                <button className="btn-checkbox" type="submit">
+                  Submit
+                </button>
+              ) : (
+                'Please wait for God to start'
+              )}
+            </form>
+          </div>
         </div>
       </div>
     </div>

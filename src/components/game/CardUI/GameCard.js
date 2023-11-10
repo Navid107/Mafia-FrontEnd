@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import './CharCard.css';
+import './GameCard.css';
 import City from './pictures/City.jpg';
 import Dr from './pictures/DrWatson.jpg';
 import GodFather from './pictures/GodFather.jpg';
@@ -12,7 +12,7 @@ import Nostradamoos from './pictures/Nostradamoos.jpg';
 import S6Constantine from './pictures/S6Constantine.jpg';
 import SaulGoodMan from './pictures/SaulGoodman.jpg';
 
-function GameCard({ playerChar, charId}) {
+function GameCard({ playerChar, death}) {
   const characters = [
     {
       id: 1,
@@ -93,7 +93,8 @@ function GameCard({ playerChar, charId}) {
   return (
     <div>
       {character ? (
-        <div className="character-card">
+        <div className={`character-card ${death ? 'dead' : ''}`}>
+          {death && <div className="death-marker">X</div>}
           <img className="character-image" src={character.image} alt={character.name} />
           <div className="character-info">
             <h3 className="character-name">{character.name}</h3>

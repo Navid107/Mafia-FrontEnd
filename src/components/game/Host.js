@@ -2,8 +2,7 @@ import React from "react";
 import GameCard from './CardUI/GameCard.js';
 import NightActions from "./NightActions";
 
-function Host({ hostData }) {
-  // Sort the hostData array based on charId
+function Host({ hostData}) {
   hostData.sort((a, b) => a.charId - b.charId);
 
   return (
@@ -16,18 +15,18 @@ function Host({ hostData }) {
             .map((e, index) => (
               <div key={index} className="mafia-container">
                 <p>{e.name}</p>
-                <GameCard playerChar={e.charId} />
+                <GameCard playerChar={e.charId} death={e.death} />
               </div>
             ))}
         </div>
         <div className="character-container">
-          
+          {/* Render other characters in the second row */}
           {hostData
             .filter((e) => ![1, 2, 3, 9].includes(e.charId))
             .map((e, index) => (
               <div key={index} className="citizen-container">
                 <p>{e.name}</p>
-                <GameCard playerChar={e.charId} />
+                <GameCard playerChar={e.charId}/>
               </div>
             ))}
         </div>

@@ -1,9 +1,8 @@
 import React, { useState } from "react";
-import GameCard from './CardUI/GameCard';
 
-const NightActions = ({ characterData, onNightActionSubmit }) => {
+const NightActions = ({ characterData, onNightActionSubmit, onUpdateCharacterData }) => {
   const [selectedAbilities, setSelectedAbilities] = useState([]);
-  const [playerShot, setPlayerShot] = useState([]);
+  const [playerShot, setPlayerShot] = useState("");
   const [nightCounter, setNightCounter] = useState(1); // Initialize night counter to 1
 
   const availableChars = [
@@ -61,11 +60,16 @@ const NightActions = ({ characterData, onNightActionSubmit }) => {
 
   const findCharacterName = (charId) => {
     const character = availableChars.find((char) => char.id === charId);
-    return character.name; // Return character name or an empty string
+    return character ? character.name : ''; // Return character name or an empty string
   };
 
   const handleCheckboxChange = (charId) => {
-    // Implement your logic to update selectedAbilities based on form input
+    if (selectedAbilities.includes(charId)) {
+      setSelectedAbilities(selectedAbilities.filter(id => id !== charId));
+    } else {
+
+      setSelectedAbilities([...selectedAbilities, charId]);
+    }
   };
 
   const handlePlayerShotChange = (event) => {
@@ -74,26 +78,38 @@ const NightActions = ({ characterData, onNightActionSubmit }) => {
 
   const handleNightAction = (event) => {
     event.preventDefault();
-
+  
     // Construct the night data object with the selected abilities and player shot
     const nightData = {
       night: nightCounter,
       selectedAbilities: selectedAbilities,
       playerShot: playerShot,
-      // Add more properties if needed
     };
-
+  
     // Call the onNightActionSubmit function to handle the night action
     onNightActionSubmit(nightData);
-
+  
     // Increment the night counter
     setNightCounter(nightCounter + 1);
-
+  
+    // Update the death property based on the selected abilities
+    const updatedCharacterData = characterData.map((character) => {
+      // Check if the character is in the selectedAbilities and update their status
+      if (nightData.selectedAbilities.includes(character.charId)) {
+        // Mark the character as dead
+        character.death = true;
+      }
+      return character;
+    });
+  
+    // Update the character data state with the new data
+    onUpdateCharacterData(updatedCharacterData);
+  
     // Clear the form inputs
     setSelectedAbilities([]);
     setPlayerShot("");
   };
-
+console.log("charData NightActions", characterData);
   return (
     <div className="night-actions-container">
       <h1>Night: {nightCounter}</h1>
@@ -110,8 +126,9 @@ const NightActions = ({ characterData, onNightActionSubmit }) => {
             ))}
           </select>
         </label>
-        {characterData.map((character, index) => (
-          character.charId <= 8 && (
+        {characterData
+          .filter((character) => character.charId <= 8)
+          .map((character, index) => (
             <div key={index}>
               <label>
                 <input
@@ -122,8 +139,7 @@ const NightActions = ({ characterData, onNightActionSubmit }) => {
                 {findCharacterName(character.charId)}
               </label>
             </div>
-          )
-        ))}
+          ))}
         <button className="submit-form" type="submit">
           Submit Night Action
         </button>
