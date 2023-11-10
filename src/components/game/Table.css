@@ -63,7 +63,6 @@
     opacity: 0.7; 
   }
 
-  /* Update the existing styles */
   .night-actions-container label {
     display: flex;
     flex-direction: column;
@@ -91,7 +90,6 @@
     background-color: black;
   }
   
-  /* Add this new style for the night actions container */
   .night-actions-container.dead {
     filter: grayscale(100%); /* Make the night actions container black and white for dead characters */
   }
