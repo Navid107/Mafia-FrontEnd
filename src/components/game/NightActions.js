@@ -2,6 +2,8 @@ import React, { useState } from "react";
 const NightActions = ({ characterData, death, gameKey }) => {
   const [selectedAbilities, setSelectedAbilities] = useState([]);
   const [playerShot, setPlayerShot] = useState("");
+  const [sniperShot, setSniperShot] = useState("");
+  const [boughtCitizen, setBoughtCitizen] = useState("");
   const [nightCounter, setNightCounter] = useState(1); // Initialize night counter to 1
 
   const availableChars = [
@@ -79,46 +81,58 @@ const NightActions = ({ characterData, death, gameKey }) => {
       setSelectedAbilities([...selectedAbilities, charId]);
     }
   };
-
+  // set the night actions for Mafia shot, Sniper and RC
   const handlePlayerShotChange = (event) => {
     setPlayerShot(event.target.value);
   };
+  const handleSniperShot = (e) => {
+    setSniperShot(e.target.value);
+  }
+  const handleBoughtCitizen = (e) => {
+    setBoughtCitizen(e.target.value);
+  }
+
 
   const handleNightAction = (event) => {
     event.preventDefault();
 
-    if(playerShot){
+    //turning death:true for the player who got shot
+    if (playerShot) {
       const killedPlayer = characterData.find(
         character => character.name === playerShot);
 
-        if(killedPlayer){
-          killedPlayer.death = true
-        }
+      if (killedPlayer) {
+        killedPlayer.death = true
+      }
     }
 
     // Handle Saul Goodman's ability
-    if (selectedAbilities.includes(3)) { // Assuming charId 3 is Saul Goodman
+    if (boughtCitizen) { 
       // Find the selected citizen by name
-      const selectedCitizen = characterData.find(character => character.name === playerShot);
-
-      if (selectedCitizen && selectedCitizen.side === 'citizen') {
-        // Convert the citizen to Regular Mafia
-        selectedCitizen.side = 'mafia';
+      const targetCharacter = characterData.find(
+        character => character.charId === 9);
+        targetCharacter.side = 'mafia'
       }
-    }
+
 
     // Handle Sniper's ability
-    if (selectedAbilities.includes(5)) { // Assuming charId 5 is Sniper
-      const targetCharacter = characterData.find(character => character.name === playerShot);
+    if (sniperShot) {
+      const targetCharacter = characterData.find(character => character.name === sniperShot);
 
-      if (targetCharacter && targetCharacter.side === 'mafia') {
-        // Mafia dies
-        targetCharacter.death = true;
-      } else if (targetCharacter && targetCharacter.side === 'citizen') {
-        // Sniper dies
-        death = true;
+      if (targetCharacter) {
+        if (targetCharacter.side === 'mafia') {
+          // Mafia dies
+          targetCharacter.death = true;
+        } else if (targetCharacter.side === 'citizen') {
+          // Sniper dies
+          const sniper = characterData.find(character => character.charId === 5);
+          if (sniper) {
+            sniper.death = true;
+          }
+        }
       }
     }
+
 
     /* Handle Night Walker's ability
     if (selectedAbilities.includes(8)) { // Assuming charId 8 is Night Walker
@@ -132,9 +146,6 @@ const NightActions = ({ characterData, death, gameKey }) => {
       }
     }
 */
-    if(selectedAbilities.includes(9)){
-      
-    }
 
     // Update local storage with the modified characterData
     localStorage.setItem(gameKey, JSON.stringify(characterData));
@@ -145,6 +156,8 @@ const NightActions = ({ characterData, death, gameKey }) => {
     // Clear the form inputs
     setSelectedAbilities([]);
     setPlayerShot("");
+    setSniperShot("");
+    setBoughtCitizen("");
   };
 
   return (
@@ -171,7 +184,7 @@ const NightActions = ({ characterData, death, gameKey }) => {
           .filter((character) => character.charId <= 9)
           .map((character, index) => (
             <div key={index}>
-              {character.charId !== 3 && character.charId !== 8 ?
+              {character.charId !== 4 && character.charId !== 8 ?
                 <label className={`character-label ${character.death ? 'dead' : ''}`}>
                   <input
                     type="checkbox"
@@ -180,30 +193,32 @@ const NightActions = ({ characterData, death, gameKey }) => {
                   />
                   {findCharacterName(character.charId)}
                 </label>
-                 : character.charId === 8 ?
-                <label>
-                  Regular Citizen
-                  <select value={playerShot} onChange={handlePlayerShotChange}>
-                    <option value=""></option>
-                    {
-                      <option key={index} value={character.name}>
-                        {character.name}
-                      </option>
-                    }
-                  </select>
-                </label>
-                  : character.charId === 3 &&
-                <label>
-                Sniper
-                <select value={playerShot} onChange={handlePlayerShotChange}>
-                  <option value=""></option>
-                  {
-                    <option key={index} value={character.name}>
-                      {character.name}
-                    </option>
-                  }
-                </select>
-              </label>
+                : character.charId === 8 ?
+                  <label>
+                    Regular Citizen
+                    <select value={boughtCitizen} onChange={handleBoughtCitizen}>
+                      <option value="">Change Side</option>
+                      {
+                        <option key={index} value={character.charId}>
+                          Mafia
+                        </option>
+                      }
+                    </select>
+                  </label>
+                  : character.charId === 4 &&
+                  <label>
+                    Sniper
+                    <select value={sniperShot} onChange={handleSniperShot}>
+                      <option value="">Select a player</option>
+                      {characterData
+                        .filter((character) => !character.death)
+                        .map((character, index) => (
+                          <option key={index} value={character.name}>
+                            {character.name}
+                          </option>
+                        ))}
+                    </select>
+                  </label>
               }
             </div>
           ))}
