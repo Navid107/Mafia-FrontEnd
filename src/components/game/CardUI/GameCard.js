@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import './GameCard.css';
 import City from './pictures/City.jpg';
@@ -62,14 +62,14 @@ function GameCard({ playerChar, death}) {
       name: 'BodyGuard',
       side: 'citizen',
       ability: 'Can protect someone',
-      image: City
+      image: Nostradamoos
     },
     {
       id: 8,
       name: 'Night Walker',
       side: 'citizen',
       ability: 'Can wake a at night',
-      image: City
+      image: S6Constantine
     },
     {
       id: 9,

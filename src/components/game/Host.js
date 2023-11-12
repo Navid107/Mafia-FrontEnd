@@ -11,7 +11,7 @@ function Host({ hostData}) {
         <div className="character-container">
           {/* Render characters with charId 1, 2, 3, and 9 in the first row */}
           {hostData
-            .filter((e) => [1, 2, 3, 9].includes(e.charId))
+            .filter((e) => [1, 2, 3, 10].includes(e.charId))
             .map((e, index) => (
               <div key={index} className="mafia-container">
                 <p>{e.name}</p>
@@ -22,7 +22,7 @@ function Host({ hostData}) {
         <div className="character-container">
           {/* Render other characters in the second row */}
           {hostData
-            .filter((e) => ![1, 2, 3, 9].includes(e.charId))
+            .filter((e) => ![1, 2, 3, 10].includes(e.charId))
             .map((e, index) => (
               <div key={index} className="citizen-container">
                 <p>{e.name}</p>
