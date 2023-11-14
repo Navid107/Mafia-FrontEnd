@@ -1,33 +1,40 @@
 
-.character-card {
-  width: 180px;
-  height: auto;
+.gameCard-design-container {
+  width: 150px;
+  height: 280px;
   background-color: #000;
-  border: 1px solid #f34747; /* Red border */
   border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   text-align: center;
   padding: 5px;
-  color: #fff; /* White text color */
-
-  /* New styles for grayscale and 'X' marker */
   position: relative;
   overflow: hidden;
 }
-
-.character-card img {
+.gameCard-character-info{
+  border-radius: 10px;
+  text-align: center;
+  padding: 5px;
+  position: relative;
+  overflow: hidden;
+  }
+.gameCard-character-info > p {
+  color: bisque;
+  margin: 7px;
+  
+  }
+.gameCard-character-image {
   width: 100%;
-  height: 200px;
+  height: 170px;
   object-fit: cover;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
+  border: 1px solid #0c30fa;
+  box-shadow: 0 4px 6px rgba(241, 1, 1, 0.995);
+  
 }
 
-.character-card.dead {
+.gameCard-design-container.dead {
   filter: grayscale(100%);
 }
 
-.character-card.dead::before {
+.gameCard-design-container.dead::before {
   content: 'X';
   position: absolute;
   top: 50%;
@@ -37,22 +44,5 @@
   color: red;
 }
 
-.character-info {
-  font-size: 10px;
-  background-color: #f34747; /* Red background for info section */
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
-  border-bottom-left-radius: 10px;
-  border-bottom-right-radius: 10px;
-  padding: 1px;
-}
 
-.character-name {
-  font-weight: bold;
-  color: #000; /* Black text color for character name */
-}
 
-.character-ability {
-  margin-top: 1px;
-  color: #030303; /* White text color for character ability */
-}

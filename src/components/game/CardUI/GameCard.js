@@ -12,7 +12,7 @@ import Nostradamoos from './pictures/Nostradamoos.jpg';
 import S6Constantine from './pictures/S6Constantine.jpg';
 import SaulGoodMan from './pictures/SaulGoodman.jpg';
 
-function GameCard({ playerChar, death}) {
+function GameCard({ playerChar, death, playerName}) {
   const characters = [
     {
       id: 1,
@@ -93,12 +93,13 @@ function GameCard({ playerChar, death}) {
   return (
     <div>
       {character ? (
-        <div className={`character-card ${death ? 'dead' : ''}`}>
+        <div className={`gameCard-design-container ${death ? 'dead' : ''}`}>
+          <div className="gameCard-character-info">
+            <p>{playerName}</p>
           {death && <div className="death-marker">X</div>}
-          <img className="character-image" src={character.image} alt={character.name} />
-          <div className="character-info">
-            <h3 className="character-name">{character.name}</h3>
-            <p className="character-ability">Ability: {character.ability}</p>
+          <img className="gameCard-character-image" src={character.image}
+           alt={character.name} />
+            <p>{character.name}</p>
           </div>
         </div>
       ) : (

@@ -184,7 +184,7 @@ const NightActions = ({ characterData, death, gameKey }) => {
           .filter((character) => character.charId <= 9)
           .map((character, index) => (
             <div key={index}>
-              {character.charId !== 4 && character.charId !== 8 ?
+              {character.charId !== 4 && character.charId !== 9 ?
                 <label className={`character-label ${character.death ? 'dead' : ''}`}>
                   <input
                     type="checkbox"
@@ -193,7 +193,7 @@ const NightActions = ({ characterData, death, gameKey }) => {
                   />
                   {findCharacterName(character.charId)}
                 </label>
-                : character.charId === 8 ?
+                : character.charId === 9 ?
                   <label>
                     Regular Citizen
                     <select value={boughtCitizen} onChange={handleBoughtCitizen}>
