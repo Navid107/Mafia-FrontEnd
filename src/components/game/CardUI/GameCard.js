@@ -73,17 +73,17 @@ function GameCard({ playerChar, death}) {
     },
     {
       id: 9,
-      name: 'Regular Mafia',
-      side: 'mafia',
-      ability: 'none',
-      image: Mafia
-    },
-    {
-      id: 10,
       name: 'Regular Citizen',
       side: 'citizen',
       ability: 'none',
       image: City
+    },
+    {
+      id: 10,
+      name: 'Regular Mafia',
+      side: 'mafia',
+      ability: 'none',
+      image: Mafia
     },
   ];
 

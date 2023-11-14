@@ -112,8 +112,8 @@ function PreGame() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (players.length === selectedChars.length ||
-      players.length > 10) {
+    if (players.length >= selectedChars.length && 
+      selectedChars.length >= 10) {
       setFormSubmit(true);
       console.log("Selected Characters:", selectedChars);
     } else {
