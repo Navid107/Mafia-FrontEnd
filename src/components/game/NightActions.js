@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import CheckboxWithData from './CardUI/CheckboxWithData'; 
 const NightActions = ({ characterData, death, gameKey }) => {
   const [selectedAbilities, setSelectedAbilities] = useState([]);
   const [playerShot, setPlayerShot] = useState("");
@@ -27,22 +28,23 @@ const NightActions = ({ characterData, death, gameKey }) => {
     },
     {
       id: 4,
-      name: 'Detective',
+      name: 'Dr',
       side: 'citizen',
       select: true,
     },
     {
       id: 5,
-      name: 'Sniper',
+      name: 'Detective',
       side: 'citizen',
       select: true,
     },
     {
       id: 6,
-      name: 'Dr',
+      name: 'Sniper',
       side: 'citizen',
       select: true,
     },
+
     {
       id: 7,
       name: 'BodyGuard',
@@ -133,7 +135,7 @@ const NightActions = ({ characterData, death, gameKey }) => {
       }
     }
 
-
+   
     /* Handle Night Walker's ability
     if (selectedAbilities.includes(8)) { // Assuming charId 8 is Night Walker
       const targetCharacter = characterData.find(character => character.name === playerShot);
@@ -149,7 +151,7 @@ const NightActions = ({ characterData, death, gameKey }) => {
 
     // Update local storage with the modified characterData
     localStorage.setItem(gameKey, JSON.stringify(characterData));
-
+    console.log('this is updated form ',characterData)
     // Increment the night counter
     setNightCounter(nightCounter + 1);
 
@@ -184,7 +186,7 @@ const NightActions = ({ characterData, death, gameKey }) => {
           .filter((character) => character.charId <= 9)
           .map((character, index) => (
             <div key={index}>
-              {character.charId !== 4 && character.charId !== 9 ?
+              {character.charId !== 6 && character.charId !== 9 ?
                 <label className={`character-label ${character.death ? 'dead' : ''}`}>
                   <input
                     type="checkbox"
@@ -205,7 +207,7 @@ const NightActions = ({ characterData, death, gameKey }) => {
                       }
                     </select>
                   </label>
-                  : character.charId === 4 &&
+                  : character.charId === 6 &&
                   <label>
                     Sniper
                     <select value={sniperShot} onChange={handleSniperShot}>

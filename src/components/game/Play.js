@@ -7,7 +7,47 @@ import Checkbox from './CardUI/CheckBox';
 function PreGame() {
   const [userId, setUserId] = useState('');
   const [players, setPlayers] = useState([]);
-  const [selectedChars, setSelectedChars] = useState([1, 2, 5, 6, 7, 8]);
+  const [selectedChars, setSelectedChars] = useState([{
+    id: 1,
+    name: 'GodFather',
+    side: 'mafia',
+    ability: true,
+    death: false,
+  },
+  {
+    id: 2,
+    name: 'Witch',
+    side: 'mafia',
+    ability: true,
+    death: false,
+  },
+  {
+    id: 4,
+    name: 'Dr',
+    side: 'citizen',
+    ability: true,
+    death: false,
+  },
+  {
+    id: 5,
+    name: 'Detective',
+    side: 'citizen',
+    ability: true,
+    death: false,
+  },
+  {
+    id: 6,
+    name: 'Sniper',
+    side: 'citizen',
+    ability: true,
+    death: false,
+  }, {
+    id: 9,
+    name: 'Regular Citizen',
+    side: 'citizen',
+    ability: true,
+    death: false,
+  },]);
   const [formSubmit, setFormSubmit] = useState(false)
   const { gameKey } = useParams();
 
@@ -28,70 +68,95 @@ function PreGame() {
     {
       id: 1,
       name: 'GodFather',
-      select: true,
+      side: 'mafia',
+      ability: true,
+      death: false,
     },
     {
       id: 2,
       name: 'Witch',
-      select: true,
+      side: 'mafia',
+      ability: true,
+      death: false,
     },
     {
       id: 3,
       name: 'Saul Goodman',
-      select: false,
+      side: 'mafia',
+      ability: true,
+      death: false,
     },
     {
       id: 4,
-      name: 'Regular Mafia',
-      select: false,
+      name: 'Dr',
+      side: 'citizen',
+      ability: true,
+      death: false,
     },
     {
       id: 5,
       name: 'Detective',
-      select: true,
+      side: 'citizen',
+      ability: true,
+      death: false,
     },
     {
       id: 6,
       name: 'Sniper',
-      select: true,
+      side: 'citizen',
+      ability: true,
+      death: false,
     },
+
     {
       id: 7,
-      name: 'Dr',
-      select: true,
+      name: 'Ex-Police Officer',
+      side: 'citizen',
+      ability: false,
+      death: false,
     },
     {
       id: 8,
-      name: 'BodyGuard',
-      select: true,
+      name: 'Night Walker',
+      side: 'citizen',
+      ability: true,
+      death: false,
     },
     {
       id: 9,
-      name: 'Night Walker',
-      select: false,
+      name: 'Regular Citizen',
+      side: 'citizen',
+      ability: true,
+      death: false,
     },
     {
       id: 10,
-      name: 'Citizen',
-      select: false,
+      name: 'Regular Mafia',
+      side: 'mafia',
+      ability: false,
+      death: false,
     },
   ];
 
-  const handleCheckboxChange = (charId) => {
-    const isAlreadySelected = selectedChars.includes(charId);
+  const handleCheckboxChange = (character) => {
+    // Check if the character is one of the always selected characters
+    const isAlwaysSelected = [1, 2, 4, 5, 6, 9].includes(character.id);
 
-    if (!isAlreadySelected) {
-      const char = availableChars.find((character) => character.id === charId);
-      if (char && !char.select) {
-        setSelectedChars([...selectedChars, charId]);
+    // Check if the character is already selected
+    const isAlreadySelected = selectedChars.some((e) => e.id === character.id);
+
+    if (!isAlwaysSelected) {
+      // If the character is not always selected, allow toggling
+      if (!isAlreadySelected) {
+        setSelectedChars([...selectedChars, character]);
+      } else {
+        setSelectedChars(selectedChars.filter((e) => e.id !== character.id));
       }
     }
-
-    if (isAlreadySelected) {
-      setSelectedChars(selectedChars.filter((id) => id !== charId));
-    }
-
+    // If the character is always selected, do nothing (user can't change it)
   };
+
+
 
   const startGame = () => {
     axios.post(`http://localhost:3500/api/game/start`, {
@@ -107,18 +172,57 @@ function PreGame() {
       .catch((error) => {
         console.error('Error starting the game:', error);
       });
-    setSelectedChars([1, 2, 5, 6, 7, 8]);
+    setSelectedChars([{
+      id: 1,
+      name: 'GodFather',
+      side: 'mafia',
+      ability: true,
+      death: false,
+    },
+    {
+      id: 2,
+      name: 'Witch',
+      side: 'mafia',
+      ability: true,
+      death: false,
+    },
+    {
+      id: 4,
+      name: 'Dr',
+      side: 'citizen',
+      ability: true,
+      death: false,
+    },
+    {
+      id: 5,
+      name: 'Detective',
+      side: 'citizen',
+      ability: true,
+      death: false,
+    },
+    {
+      id: 6,
+      name: 'Sniper',
+      side: 'citizen',
+      ability: true,
+      death: false,
+    }, {
+      id: 9,
+      name: 'Regular Citizen',
+      side: 'citizen',
+      ability: true,
+      death: false,
+    },]);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (players.length >= selectedChars.length && 
-      selectedChars.length >= 10) {
-      setFormSubmit(true);
-      console.log("Selected Characters:", selectedChars);
-    } else {
-      alert("Please check the numbers of Players and Characters");
-    };
+    // if (players.length >= selectedChars.length) {
+    setFormSubmit(true);
+    console.log("Selected Characters:", selectedChars);
+    //  } else {
+    //  alert("Please check the numbers of Players and Characters");
+    // };
   }
   return (
     <div className="pre-game-container">
@@ -129,14 +233,12 @@ function PreGame() {
           <h2>Player List</h2>
           <div className="player-list">
             {players.length > 0 ? (
-              players.map((player) => (
-                <>
-                  <div className="user-avatar">
+              players.map((player, index) => (
+                <div key={index} className="user-avatar">
 
-                    <img src="https://cdn.wallpapersafari.com/97/93/ZyLAgn.jpg" alt="User Avatar" />
-                    <p>{player.name}</p>
-                  </div>
-                </>
+                  <img src="https://cdn.wallpapersafari.com/97/93/ZyLAgn.jpg" alt="User Avatar" />
+                  <p>{player.name}</p>
+                </div>
               ))
             ) : (
               "no players available"
@@ -163,9 +265,9 @@ function PreGame() {
                 <div key={character.id} className="char-row">
                   <Checkbox
                     character={character}
-                    checked={character.select === true || selectedChars.includes(character.id)}
-                    disabled={character.select}
-                    onChange={() => handleCheckboxChange(character.id)}
+                    checked={selectedChars.some((e) => e.id === character.id)}
+                    disabled={[1, 2, 4, 5, 6, 9].includes(character.id)}
+                    onChange={() => handleCheckboxChange(character)}
                   />
                 </div>
               ))}

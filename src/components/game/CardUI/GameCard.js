@@ -35,13 +35,12 @@ function GameCard({ playerChar, death, playerName}) {
       ability: 'Can buy a citizen who has no ability',
       image: SaulGoodMan
     },
-  
     {
       id: 4,
-      name: 'Sniper',
+      name: 'Doctor',
       side: 'citizen',
-      ability: 'can shoot at night',
-      image: Sniper
+      ability: 'Can save someone',
+      image: Dr
     },
     {
       id: 5,
@@ -50,13 +49,16 @@ function GameCard({ playerChar, death, playerName}) {
       ability: 'Can get the identity of a player',
       image: Detective
     },
+  
     {
       id: 6,
-      name: 'Doctor',
+      name: 'Sniper',
       side: 'citizen',
-      ability: 'Can save someone',
-      image: Dr
+      ability: 'can shoot at night',
+      image: Sniper
     },
+
+ 
     {
       id: 7,
       name: 'BodyGuard',
