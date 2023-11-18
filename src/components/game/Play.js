@@ -139,24 +139,17 @@ function PreGame() {
   ];
 
   const handleCheckboxChange = (character) => {
-    // Check if the character is one of the always selected characters
     const isAlwaysSelected = [1, 2, 4, 5, 6, 9].includes(character.id);
 
-    // Check if the character is already selected
-    const isAlreadySelected = selectedChars.some((e) => e.id === character.id);
-
     if (!isAlwaysSelected) {
-      // If the character is not always selected, allow toggling
-      if (!isAlreadySelected) {
-        setSelectedChars([...selectedChars, character]);
-      } else {
-        setSelectedChars(selectedChars.filter((e) => e.id !== character.id));
-      }
+      setSelectedChars((prevSelectedChars) => {
+        const isAlreadySelected = prevSelectedChars.some((e) => e.id === character.id);
+        return isAlreadySelected
+          ? prevSelectedChars.filter((e) => e.id !== character.id)
+          : [...prevSelectedChars, character];
+      });
     }
-    // If the character is always selected, do nothing (user can't change it)
   };
-
-
 
   const startGame = () => {
     axios.post(`http://localhost:3500/api/game/start`, {
@@ -217,13 +210,15 @@ function PreGame() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // if (players.length >= selectedChars.length) {
-    setFormSubmit(true);
-    console.log("Selected Characters:", selectedChars);
-    //  } else {
-    //  alert("Please check the numbers of Players and Characters");
-    // };
-  }
+
+    if (players.length === selectedChars.length || (selectedChars.length === 10 && players.length > 10)) {
+      setFormSubmit(true);
+      console.log("Selected Characters:", selectedChars);
+    } else {
+      alert("Please make sure you have selected characters for all players.");
+    }
+  };
+  
   return (
     <div className="pre-game-container">
       <h1 className="title">Welcome to Pre Game Lobby</h1>
@@ -248,7 +243,9 @@ function PreGame() {
 
           {userId && formSubmit ? (
             <Link to={{ pathname: `/table/${gameKey}` }}>
-              <button className="btn-start-game" onClick={startGame}>Start Game</button>
+              <button className="btn-start-game" onClick={startGame} disabled={!selectedChars.length}>
+                Start Game
+              </button>
             </Link>
           ) : (
             <div className="btn-start-game">

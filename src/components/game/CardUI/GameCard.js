@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState} from 'react';
 
 import './GameCard.css';
 import City from './pictures/City.jpg';
@@ -12,7 +12,8 @@ import Nostradamoos from './pictures/Nostradamoos.jpg';
 import S6Constantine from './pictures/S6Constantine.jpg';
 import SaulGoodMan from './pictures/SaulGoodman.jpg';
 
-function GameCard({ playerChar, death, playerName}) {
+function GameCard({ playerChar, playerName}) {
+  const[death ,setDeath] = useState(playerChar.death)
   const characters = [
     {
       id: 1,
@@ -90,8 +91,8 @@ function GameCard({ playerChar, death, playerName}) {
   ];
 
   // Find the character based on playerChar
-  const character = characters.find((char) => char.id === playerChar);
-  
+  const character = characters.find((char) => char.id === (playerChar ? playerChar.id : null));
+
   return (
     <div>
       {character ? (
@@ -101,7 +102,7 @@ function GameCard({ playerChar, death, playerName}) {
           {death && <div className="death-marker">X</div>}
           <img className="gameCard-character-image" src={character.image}
            alt={character.name} />
-            <p>{character.name}</p>
+            <p>{playerChar.name}</p>
           </div>
         </div>
       ) : (
