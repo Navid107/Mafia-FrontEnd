@@ -8,35 +8,39 @@ import Host from "./Host";
 
 function GameTable() {
   const [hostData, setHostData] = useState([]);
+  const [nightRound, setNightRound] = useState();
   const [playerData, setPlayerData] = useState([]);
-
   const token = localStorage.getItem("user");
   const userInfo = jwt_decode(token);
   const userId = userInfo.userId;
   const { gameKey } = useParams();
-
   useEffect(() => {
-      axios
-        .post(`http://localhost:3500/api/game/table`, {
+    const fetchData = async () => {
+      try {
+        const response = await axios.post(`http://localhost:3500/api/game/table`, {
           gameKey: gameKey,
           userId: userId,
-        })
-        .then((response) => {
-          // Set your component state with the received API data
-          setHostData(response.data.nights[0].players);
-          setPlayerData(response.data);
-        })
-        .catch((error) => {
-          console.error("Error fetching user lobbies:", error);
         });
-    
-  }, [gameKey, userId]);
+        // Set your component state with the received API data
+        const  nightCount = response.data.nights.length - 1
+        setNightRound(nightCount) 
+        console.log('working', nightCount)
+        if(nightCount)
+        {
+          setHostData(response.data.nights[nightCount].players);
+          console.log('this is working', nightCount)
+        } else {
+        setHostData(response.data.nights[nightCount].players);
+        setPlayerData(response.data.nightCount);
+        }
+      } catch (error) {
+        console.error("Error fetching user lobbies:", error);
+      }
+    };
   
-  
-  useEffect(() => {
-    console.log("data", hostData);
-    console.log("playerData", playerData);
-  }, [hostData, playerData]);
+    fetchData();
+  }, [gameKey, userId,]); // Make sure to include nightCount as a dependency
+
 
   return (
     <div className="table-container">
@@ -44,7 +48,8 @@ function GameTable() {
       <div className="container-card">
         <div className="player-card">
           {hostData ? (
-            <Host hostData={hostData} />
+            <Host hostData={hostData} nightCount={nightRound} gameKey={gameKey} hostId={userId}
+            />
           ) : (
             <GameCard playerChar={playerData.char} />
           )}

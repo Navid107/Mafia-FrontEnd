@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import CheckboxWithData from './CardUI/CheckboxWithData';
-const NightActions = ({ characterData, death, gameKey }) => {
+import axios from "axios";
+const NightActions = ({ characterData, hostId, gameKey, death, nightCount }) => {
   const [selectedAbilities, setSelectedAbilities] = useState([]);
   const [playerShot, setPlayerShot] = useState("");
   const [sniperShot, setSniperShot] = useState("");
   const [boughtCitizen, setBoughtCitizen] = useState("");
-  const [nightCounter, setNightCounter] = useState(1); // Initialize night counter to 1
-
+  const [votedOut, setVotedOut] = useState("");
+  
   const handleCheckboxChange = (charId) => {
     if (selectedAbilities.includes(charId)) {
       setSelectedAbilities(selectedAbilities.filter(id => id !== charId));
@@ -18,6 +18,9 @@ const NightActions = ({ characterData, death, gameKey }) => {
   const handlePlayerShotChange = (event) => {
     setPlayerShot(event.target.value);
   };
+  const handlePlayerVotedOut = (event) => {
+    setVotedOut(event.target.value);
+  };
   const handleSniperShot = (e) => {
     setSniperShot(e.target.value);
   }
@@ -25,9 +28,7 @@ const NightActions = ({ characterData, death, gameKey }) => {
     setBoughtCitizen(e.target.value);
   }
 
-  const handleNightAction = (event) => {
-    event.preventDefault();
-
+  const handleNightAction = (e) => {
     //turning death:true for the player who got shot
     if (playerShot) {
       const killedPlayer = characterData.find(
@@ -37,6 +38,13 @@ const NightActions = ({ characterData, death, gameKey }) => {
         killedPlayer.char.death = true
       }
     }
+    // player who get voted out by other players 
+    if(votedOut){
+      const votedOutCharacter = characterData.find(
+          character => character.playerId === votedOut);
+          votedOutCharacter.char.death = true
+    }
+
     // Handle Saul Goodman's ability
     if (boughtCitizen) {
       // Find the selected citizen by name
@@ -52,18 +60,20 @@ const NightActions = ({ characterData, death, gameKey }) => {
     console.log('bought citizen ',boughtCitizen)
     // Handle Sniper's ability
     if (sniperShot) {
-      const targetCharacter = characterData.find(character => character.playerId === sniperShot);
-      console.log('sniper shot ',sniperShot)
+      const targetCharacter = characterData.find(
+        character => character.playerId === sniperShot);
+        console.log('sniper shot', targetCharacter)
       if (targetCharacter) {
         if (targetCharacter.char.side === 'mafia') {
           // Mafia dies
           targetCharacter.char.death = true;
+          console.log('mafia killed', targetCharacter.char.death )
         } else if (targetCharacter.char.side === 'citizen') {
           // Sniper dies
-          const sniper = characterData.find(character => character.char.id === 5);
+          const sniper = characterData.find(character => character.char.id === 6);
           if (sniper) {
             sniper.char.death = true;
-            console.log('sniper ',sniper)
+            console.log('sniper died', sniper)
           }
         }
       }
@@ -83,21 +93,51 @@ const NightActions = ({ characterData, death, gameKey }) => {
 */
 
     console.log('charDataaaa',characterData)
+    axios.post(`http://localhost:3500/api/game/table-update`, {
+      gameKey,
+      hostId: hostId,
+
+      players: characterData,
+    })
+      .then((response) => {
+        if (response.data.message === 'Game updated successfully') {
+          // Handle success, e.g., redirect to the game table
+        }
+      })
+      .catch((error) => {
+        console.error('Error updating the game:', error);
+      });
+      console.log('charDataaaa',characterData)
     // Increment the night counter
-    setNightCounter(nightCounter + 1);
+    ;
 
     // Clear the form inputs
     setSelectedAbilities([]);
     setPlayerShot("");
     setSniperShot("");
     setBoughtCitizen("");
+    setVotedOut("")
+  
   };
-
+  console.log(nightCount)
   return (
     <div className={`night-actions-container ${death ? 'dead' : ''}`}>
-      <h1>Night: {nightCounter}</h1>
+      <h1>Night: {nightCount}</h1>
       <form onSubmit={handleNightAction}>
         <h3>Character Abilities:</h3>
+        <label>
+          Voted Out:
+          <select value={votedOut} onChange={handlePlayerVotedOut}>
+            <option value="">Select a player</option>
+            {characterData
+              .filter((character) => !character.char.death)
+              .map((character, index) => (
+                <option key={index} value={character.playerId}>
+                  {character.playerName}
+                </option>
+              ))}
+          </select>
+        </label>      
         <label>
           Mafia Shot:
           <select value={playerShot} onChange={handlePlayerShotChange}>
@@ -111,14 +151,14 @@ const NightActions = ({ characterData, death, gameKey }) => {
               ))}
           </select>
         </label>
-
+        
         {/* Conditionally render Regular Citizen checkbox only if there are Regular Citizens with select:true */}
         {characterData
           .filter((character) => character.char.id <= 9)
           .map((character, index) => (
             <div key={index}>
               {character.char.id !== 6 && character.char.id !== 9 ?
-                <label className={`character-label ${character.death ? 'dead' : ''}`}>
+                <label className={`character-label ${character.char.death ? 'dead' : ''}`}>
                   <input
                     type="checkbox"
                     checked={selectedAbilities.includes(character.char.id)}
@@ -127,7 +167,7 @@ const NightActions = ({ characterData, death, gameKey }) => {
                   {character.char.name}
                 </label>
                 : character.char.id === 9 ?
-                  <label>
+                  <label className={`character-label ${character.char.death ? 'dead' : ''}`}>
                     Regular Citizen
                     <select value={boughtCitizen} onChange={handleBoughtCitizen}>
                       <option value="">Change Side</option>
@@ -139,7 +179,7 @@ const NightActions = ({ characterData, death, gameKey }) => {
                     </select>
                   </label>
                   : character.char.id === 6 &&
-                  <label>
+                  <label className={`character-label ${character.char.death ? 'dead' : ''}`}>
                     Sniper
                     <select value={sniperShot} onChange={handleSniperShot}>
                       <option value="">Select a player</option>

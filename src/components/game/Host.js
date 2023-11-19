@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import GameCard from './CardUI/GameCard.js';
 import NightActions from "./NightActions";
 
-function Host({ hostData }) {
+function Host({ hostData, hostId, gameKey,nightCount }) {
+
   hostData.sort((a, b) => a.char.id - b.char.id);
   return (
     <div className="host-container-card">
@@ -29,7 +30,7 @@ function Host({ hostData }) {
             ))}
         </div>
       </div>
-      <NightActions characterData={hostData} />
+      <NightActions nightCount={nightCount} characterData={hostData} gameKey={gameKey} hostId={hostId} />
     </div>
   );
 }
