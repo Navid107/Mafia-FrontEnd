@@ -10,10 +10,13 @@ function GameTable() {
   const [hostData, setHostData] = useState([]);
   const [nightRound, setNightRound] = useState();
   const [playerData, setPlayerData] = useState([]);
+  const [gameOver, setGameOver]  =useState('');
+
   const token = localStorage.getItem("user");
   const userInfo = jwt_decode(token);
   const userId = userInfo.userId;
   const { gameKey } = useParams();
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -24,8 +27,9 @@ function GameTable() {
         // Set your component state with the received API data
         const  nightCount = response.data.nights.length - 1
         setNightRound(nightCount) 
-        console.log('working', nightCount)
-        if(nightCount)
+        setGameOver(response.data.gameOver)
+        console.log('this', nightCount)
+        if(nightCount >= 0)
         {
           setHostData(response.data.nights[nightCount].players);
           console.log('this is working', nightCount)
@@ -39,7 +43,7 @@ function GameTable() {
     };
   
     fetchData();
-  }, [gameKey, userId,]); // Make sure to include nightCount as a dependency
+  }, [gameKey, userId,]);
 
 
   return (
@@ -48,7 +52,12 @@ function GameTable() {
       <div className="container-card">
         <div className="player-card">
           {hostData ? (
-            <Host hostData={hostData} nightCount={nightRound} gameKey={gameKey} hostId={userId}
+            <Host 
+            hostData={hostData}
+            nightCount={nightRound}
+            gameKey={gameKey}
+            hostId={userId}
+            gameOver={gameOver}
             />
           ) : (
             <GameCard playerChar={playerData.char} />
