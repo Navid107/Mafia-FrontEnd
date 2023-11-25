@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, {useState} from "react";
 import GameCard from './CardUI/GameCard.js';
 import NightActions from "./NightActions";
 
 function Host({ hostData, hostId, gameKey, nightCount, gameOver }) {
   hostData.sort((a, b) => a.char.id - b.char.id);
-
+  const [targetId, setTargetId] = useState('');
+  console.log('playerId', targetId)
   // Determine the winning team
   const winningTeam = gameOver === "Mafia" ? "Mafia" : "Citizen";
 
@@ -22,7 +23,8 @@ function Host({ hostData, hostId, gameKey, nightCount, gameOver }) {
           {hostData
             .filter((e) => [1, 2, 3, 10].includes(e.char.id))
             .map((e, index) => (
-              <div key={index} className="host-mafia-container">
+              <div key={index} className="host-mafia-container" 
+              onClick={() => setTargetId(e.playerId)}>
                 <GameCard playerChar={e.char} playerName={e.playerName} />
               </div>
             ))}
@@ -33,7 +35,8 @@ function Host({ hostData, hostId, gameKey, nightCount, gameOver }) {
           {hostData
             .filter((e) => ![1, 2, 3, 10].includes(e.char.id))
             .map((e, index) => (
-              <div key={index} className="host-citizen-container">
+              <div key={index} className="host-citizen-container"
+               onClick={() => setTargetId(e.playerId)}>
                 <GameCard playerChar={e.char} playerName={e.playerName} />
               </div>
             ))}
@@ -45,6 +48,7 @@ function Host({ hostData, hostId, gameKey, nightCount, gameOver }) {
         gameKey={gameKey}
         hostId={hostId}
         gameOver={gameOver}
+        targetId={targetId}
       />
     </div>
   );
