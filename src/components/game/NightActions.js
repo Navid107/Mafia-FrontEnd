@@ -1,13 +1,22 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import axios from "axios";
-const NightActions = ({ characterData, hostId, gameKey, death, nightCount, targetId }) => {
+import GameCard from './CardUI/GameCard.js';
+const NightActions = ({ characterData, hostId, gameKey, death, nightCount, gameOver }) => {
   const [selectedAbilities, setSelectedAbilities] = useState([]);
+  const [targetId, setTargetId] = useState()
+
   const [playerAction, setPlayerAction] = useState(null);
   const [selectedCard, setSelectedCard] = useState(null);
   const [playerShot, setPlayerShot] = useState("");
   const [sniperShot, setSniperShot] = useState("");
   const [boughtCitizen, setBoughtCitizen] = useState("");
   const [votedOut, setVotedOut] = useState("");
+  characterData.sort((a, b) => a.char.id - b.char.id);
+ 
+
+  // Determine the winning team
+  const winningTeam = gameOver === "Mafia" ? "Mafia" : "Citizen";
+
 
   const handleCheckboxChange = (charId) => {
     if (selectedAbilities.includes(charId)) {
@@ -17,13 +26,14 @@ const NightActions = ({ characterData, hostId, gameKey, death, nightCount, targe
       const findPlayer = characterData.find((id) => id.char.id === charId);
 
       if (charId === 12) {
-        handleKillAction();
+        handleKillAction()
+        
       } else if (charId === 11) {
-        handlePlayerVotedOut();
-      } else if (findPlayer.char.name === "Sniper") {
-        handleSniperShot();
-      } else if (findPlayer.char.name === "Regular Citizen") {
-        handleBoughtCitizen();
+        handleVotingKill()
+      } else if (charId === 6) {
+        handleSniperAbility()
+      } else if (charId === 3) {
+        handleSaulGoodmanAbility()
       }
 
       setPlayerAction(charId);
@@ -32,9 +42,11 @@ const NightActions = ({ characterData, hostId, gameKey, death, nightCount, targe
     }
   };
 
-  const handleTarget = () => {
-    return targetId
-  }
+
+
+  const handleGetTarget = (playerId) => {
+    setTargetId(playerId);
+  };
 
   const handleCardClick = (charId) => {
     setSelectedCard(charId);
@@ -57,6 +69,7 @@ const NightActions = ({ characterData, hostId, gameKey, death, nightCount, targe
   };
 
   const handleNightAction = (e) => {
+   
     // Turn death:true for the player who got shot
     // Async operation to update the game table
     axios
@@ -107,10 +120,9 @@ const NightActions = ({ characterData, hostId, gameKey, death, nightCount, targe
     }
   };
 
-  const handleKillActionByPlayerId = (playerId) => {
-    const target = handleTarget()
+  const handleVotingKill = () => {
     const votedOutCharacter = characterData.find(
-      character => character.playerId === target
+      character => character.playerId === targetId
     );
 
     if (votedOutCharacter) {
@@ -118,33 +130,68 @@ const NightActions = ({ characterData, hostId, gameKey, death, nightCount, targe
     }
   };
 
-  const handleSaulGoodmanAbility = (targetPlayerId, targetCharacter) => {
-    if (targetCharacter && targetCharacter.char.side !== 'mafia') {
-      targetCharacter.char.ability = false;
-      targetCharacter.char.death = false;
-      targetCharacter.char.id = 10;
-      targetCharacter.char.name = 'Regular Mafia';
-      targetCharacter.char.side = 'mafia';
+  const handleSaulGoodmanAbility = () => {
+    const citizen = characterData.find(
+      character => character.playerId === targetId)
+      console.log(citizen)
+    if (citizen && citizen.char.id === 9) {
+      citizen.char.ability = false;
+      citizen.char.death = false;
+      citizen.char.id = 10;
+      citizen.char.name = 'Regular Mafia';
+      citizen.char.side = 'mafia';
     }
   };
 
-  const handleSniperAbility = (targetPlayerId, targetCharacter) => {
-    if (targetCharacter) {
-      if (targetCharacter.char.side === 'mafia') {
+  const handleSniperAbility = () => {
+    const sniper = characterData.find(
+      character => character.char.id === 6);
+
+    const sniperTarget = characterData.find(
+      character => character.playerId === targetId)
+     
+      if (sniperTarget.char.side === 'mafia') {
         // Mafia dies
-        targetCharacter.char.death = true;
-      } else if (targetCharacter.char.side === 'citizen') {
+        sniperTarget.char.death = true;
+      } else {
         // Sniper dies
-        const sniper = characterData.find(character => character.char.id === 6);
-        if (sniper) {
           sniper.char.death = true;
         }
-      }
-    }
   };
 
-  console.log(selectedAbilities)
+  console.log('playerId',targetId);
   return (
+    <div className={`host-container-card ${death ? 'dead' : ''}`}>
+       <div className={`host-player-card ${death ? 'dead' : ''}`}>
+        {gameOver && (
+          <p className="winning-message">
+            {winningTeam === "Mafia" ? "Mafia Won the Game!" : "Citizen Won the Game!"}
+          </p>
+        )}
+        <p className="host-sides-mafia">Mafia</p>
+        <div className={`host-character-container${death ? 'dead' : ''}`}>
+          {characterData
+            .filter((e) => [1, 2, 3, 10].includes(e.char.id))
+            .map((e, index) => (
+              <div key={index} className={`host-mafia-container ${e.char.death ? 'dead' : ''}`} 
+              onClick={() => handleGetTarget(e.playerId)}>
+                <GameCard playerChar={e.char} playerName={e.playerName} />
+              </div>
+            ))}
+        </div>
+
+        <p className="host-sides-citizen">Citizen</p>
+        <div className={`host-character-container ${death ? 'dead' : ''}`}>
+          {characterData
+            .filter((e) => ![1, 2, 3, 10].includes(e.char.id))
+            .map((e, index) => (
+              <div key={index} className={`host-citizen-container ${e.char.death ? 'dead' : ''}`}
+               onClick={() => handleGetTarget(e.playerId)}>
+                <GameCard playerChar={e.char} playerName={e.playerName} />
+              </div>
+            ))}
+        </div>
+      </div>
     <div className={`night-actions-container ${death ? 'dead' : ''}`}>
       <h1>Night: {nightCount}</h1>
       <form onSubmit={handleNightAction}>
@@ -171,7 +218,6 @@ const NightActions = ({ characterData, hostId, gameKey, death, nightCount, targe
           .filter((character) => character.char.id <= 9)
           .map((character, index) => (
             <div key={index}>
-              {character.char.id !== 6 && character.char.id !== 9 ?
                 <label className={`character-label ${character.char.death ? 'dead' : ''}`}>
                   <input
                     type="checkbox"
@@ -180,33 +226,6 @@ const NightActions = ({ characterData, hostId, gameKey, death, nightCount, targe
                   />
                   {character.char.name}
                 </label>
-                : character.char.id === 9 ?
-                  <label className={`character-label ${character.char.death ? 'dead' : ''}`}>
-                    Regular Citizen
-                    <select value={boughtCitizen} onChange={handleBoughtCitizen}>
-                      <option value="">Change Side</option>
-                      {
-                        <option key={index} value={character.playerId}>
-                          Mafia
-                        </option>
-                      }
-                    </select>
-                  </label>
-                  : character.char.id === 6 &&
-                  <label className={`character-label ${character.char.death ? 'dead' : ''}`}>
-                    Sniper
-                    <select value={sniperShot} onChange={handleSniperShot}>
-                      <option value="">Select a player</option>
-                      {characterData
-                        .filter((character) => !character.char.death)
-                        .map((character, index) => (
-                          <option key={index} value={character.playerId}>
-                            {character.playerName}
-                          </option>
-                        ))}
-                    </select>
-                  </label>
-              }
             </div>
           ))}
         <button className="submit-form" type="submit">
@@ -214,7 +233,7 @@ const NightActions = ({ characterData, hostId, gameKey, death, nightCount, targe
         </button>
       </form>
     </div>
-
+  </div>
   );
 };
 
