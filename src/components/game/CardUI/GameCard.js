@@ -12,8 +12,8 @@ import Nostradamoos from './pictures/Nostradamoos.jpg';
 import S6Constantine from './pictures/S6Constantine.jpg';
 import SaulGoodMan from './pictures/SaulGoodman.jpg';
 
-function GameCard({ playerChar, playerName}) {
-  const[death ,setDeath] = useState(playerChar.death)
+function GameCard({ playerChar, playerName, activeBorderLine, death}) {
+
   const characters = [
     {
       id: 1,
@@ -90,18 +90,18 @@ function GameCard({ playerChar, playerName}) {
     },
   ];
 
-  // Find the character based on playerChar
-  const character = characters.find((char) => char.id === (playerChar ? playerChar.id : null));
-
+  const character = characters.find((char) => 
+                char.id === (playerChar ? playerChar.id : null));
   return (
     <div>
       {character ? (
-        <div className={`gameCard-design-container ${death ? 'dead' : ''}`}>
-          <div className="gameCard-character-info">
+        <div className="gameCard-design-container">
+          <div className={`gameCard-character-info `}>
             <p>{playerName}</p>
           {death && <div className="death-marker">X</div>}
           <img className="gameCard-character-image" src={character.image}
-           alt={character.name} />
+           alt={character.name}
+            />
             <p>{playerChar.name}</p>
           </div>
         </div>

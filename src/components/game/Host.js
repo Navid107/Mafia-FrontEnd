@@ -4,7 +4,6 @@ import NightActions from "./NightActions";
 
 function Host({ hostData, hostId, gameKey, nightCount, gameOver }) {
 
-
   return (
     <div className="host-container-card">
       <NightActions
@@ -12,8 +11,7 @@ function Host({ hostData, hostId, gameKey, nightCount, gameOver }) {
         characterData={hostData}
         gameKey={gameKey}
         hostId={hostId}
-        gameOver={gameOver}
-        
+        gameOver={gameOver}        
       />
     </div>
   );

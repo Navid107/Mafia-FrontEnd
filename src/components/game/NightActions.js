@@ -3,73 +3,111 @@ import axios from "axios";
 import GameCard from './CardUI/GameCard.js';
 const NightActions = ({ characterData, hostId, gameKey, death, nightCount, gameOver }) => {
   const [selectedAbilities, setSelectedAbilities] = useState([]);
-  const [targetId, setTargetId] = useState()
+  const [targetId, setTargetId] = useState('')
 
   const [playerAction, setPlayerAction] = useState(null);
   const [selectedCard, setSelectedCard] = useState(null);
-  const [playerShot, setPlayerShot] = useState("");
+  const [mafiaShot, setMafiaShot] = useState("");
   const [sniperShot, setSniperShot] = useState("");
-  const [boughtCitizen, setBoughtCitizen] = useState("");
+  const [saulGoodMan, setSaulGoodMan] = useState("");
   const [votedOut, setVotedOut] = useState("");
   characterData.sort((a, b) => a.char.id - b.char.id);
- 
-
   // Determine the winning team
   const winningTeam = gameOver === "Mafia" ? "Mafia" : "Citizen";
 
 
-  const handleCheckboxChange = (charId) => {
-    if (selectedAbilities.includes(charId)) {
-      setSelectedAbilities(selectedAbilities.filter((id) => id !== charId));
-      setPlayerAction(null);
+  const colors = [
+    {
+      id: 2,
+      color: '',  
+    },
+    {
+      id: 3,
+      color: ''
+    },
+    {
+      id: 4,
+      color: ''
+    }, {
+      id: 6,
+      color: ''
+    },
+    {
+      id: 11,
+      color: ''
+    },
+    {
+      id: 12,
+      color: ''
+    },
+    {
+      id: 0,
+      color: ''
+    }
+  ]; // Add more colors as needed
+
+  const getColorForCharacter = (character) => {
+    
+    const index = characterData.find((e) =>
+      e.playerId === character);
+    const color = colors.find((color) =>
+    color.id === index.char.id)
+    if (color) {
+      console.log(color.color)
+      return color.color;      
     } else {
-      const findPlayer = characterData.find((id) => id.char.id === charId);
-
-      if (charId === 12) {
-        handleKillAction()
-        
-      } else if (charId === 11) {
-        handleVotingKill()
-      } else if (charId === 6) {
-        handleSniperAbility()
-      } else if (charId === 3) {
-        handleSaulGoodmanAbility()
-      }
-
-      setPlayerAction(charId);
-      handleAbilityAction(targetId, charId); // Make sure to pass the targetId here
-      setSelectedAbilities([...selectedAbilities, charId]);
+      return 
     }
   };
 
 
 
+
+  const handleCheckboxChange = (charId) => {
+    if (selectedAbilities.includes(charId)) {
+      if (charId === 3) {
+        setSaulGoodMan('')
+      } else if (charId === 6) {
+        setSniperShot('');
+      } else if (charId === 11) {
+        setVotedOut("");
+        console.log('29 setvote', votedOut);
+      } else if (charId === 12) {
+        setMafiaShot('')
+      }
+      setSelectedAbilities(selectedAbilities.filter((id) => id !== charId));
+
+    } else {
+      const findPlayer = characterData.find((id) => id.char.id === charId);
+
+      if (charId === 3) {
+        colors[1].color = 'pink'
+        setSaulGoodMan(targetId)
+        console.log('goodman', targetId);
+      } else if (charId === 6) {
+        colors[2].color = 'green'
+        setSniperShot(targetId);
+        console.log('sniper', targetId);
+      } else if (charId === 11) {
+        colors[3].color = 'yellow'
+        setVotedOut(targetId);
+        console.log('setvote', targetId);
+      } else if (charId === 12) {
+        colors[4].color = 'red'
+        setMafiaShot(targetId)
+        console.log('mafiashot', targetId);
+      }
+
+      setSelectedAbilities([...selectedAbilities, charId]);
+    }
+  };
+
   const handleGetTarget = (playerId) => {
     setTargetId(playerId);
   };
 
-  const handleCardClick = (charId) => {
-    setSelectedCard(charId);
-  };
-
-  const handlePlayerVotedOut = () => {
-    setVotedOut(targetId);
-  };
-
-  const handlePlayerShotChange = () => {
-    setPlayerShot(targetId);
-  };
-
-  const handleSniperShot = () => {
-    setSniperShot(targetId);
-  };
-
-  const handleBoughtCitizen = () => {
-    setBoughtCitizen(targetId);
-  };
-
   const handleNightAction = (e) => {
-   
+
     // Turn death:true for the player who got shot
     // Async operation to update the game table
     axios
@@ -84,9 +122,9 @@ const NightActions = ({ characterData, hostId, gameKey, death, nightCount, gameO
           // Clear the form inputs after the async operation is successful
           setSelectedAbilities([]);
           setSelectedCard(null);
-          setPlayerShot("");
+          setMafiaShot("");
           setSniperShot("");
-          setBoughtCitizen("");
+          setSaulGoodMan("");
           setVotedOut("");
         }
       })
@@ -113,6 +151,7 @@ const NightActions = ({ characterData, hostId, gameKey, death, nightCount, gameO
   };
 
   const handleKillAction = () => {
+
     const killedPlayer = characterData.find((character) => character.playerId === targetId);
     console.log(killedPlayer)
     if (killedPlayer) {
@@ -133,7 +172,7 @@ const NightActions = ({ characterData, hostId, gameKey, death, nightCount, gameO
   const handleSaulGoodmanAbility = () => {
     const citizen = characterData.find(
       character => character.playerId === targetId)
-      console.log(citizen)
+    console.log(citizen)
     if (citizen && citizen.char.id === 9) {
       citizen.char.ability = false;
       citizen.char.death = false;
@@ -149,20 +188,20 @@ const NightActions = ({ characterData, hostId, gameKey, death, nightCount, gameO
 
     const sniperTarget = characterData.find(
       character => character.playerId === targetId)
-     
-      if (sniperTarget.char.side === 'mafia') {
-        // Mafia dies
-        sniperTarget.char.death = true;
-      } else {
-        // Sniper dies
-          sniper.char.death = true;
-        }
+
+    if (sniperTarget.char.side === 'mafia') {
+      // Mafia dies
+      sniperTarget.char.death = true;
+    } else {
+      // Sniper dies
+      sniper.char.death = true;
+    }
   };
 
-  console.log('playerId',targetId);
+  console.log('playerId', targetId);
   return (
     <div className={`host-container-card ${death ? 'dead' : ''}`}>
-       <div className={`host-player-card ${death ? 'dead' : ''}`}>
+      <div className={`host-player-card ${death ? 'dead' : ''}`}>
         {gameOver && (
           <p className="winning-message">
             {winningTeam === "Mafia" ? "Mafia Won the Game!" : "Citizen Won the Game!"}
@@ -173,8 +212,10 @@ const NightActions = ({ characterData, hostId, gameKey, death, nightCount, gameO
           {characterData
             .filter((e) => [1, 2, 3, 10].includes(e.char.id))
             .map((e, index) => (
-              <div key={index} className={`host-mafia-container ${e.char.death ? 'dead' : ''}`} 
-              onClick={() => handleGetTarget(e.playerId)}>
+              <div key={index} className={`host-mafia-container ${e.char.death ? 'dead' : ''}`}
+                onClick={() => handleGetTarget(e.playerId)}
+                style={{ backgroundColor: getColorForCharacter(e.playerId) }}
+              >
                 <GameCard playerChar={e.char} playerName={e.playerName} />
               </div>
             ))}
@@ -186,38 +227,39 @@ const NightActions = ({ characterData, hostId, gameKey, death, nightCount, gameO
             .filter((e) => ![1, 2, 3, 10].includes(e.char.id))
             .map((e, index) => (
               <div key={index} className={`host-citizen-container ${e.char.death ? 'dead' : ''}`}
-               onClick={() => handleGetTarget(e.playerId)}>
+                onClick={() => handleGetTarget(e.playerId)}
+                style={{ backgroundColor: getColorForCharacter(e.playerId) }}>
                 <GameCard playerChar={e.char} playerName={e.playerName} />
               </div>
             ))}
         </div>
       </div>
-    <div className={`night-actions-container ${death ? 'dead' : ''}`}>
-      <h1>Night: {nightCount}</h1>
-      <form onSubmit={handleNightAction}>
-        <h3>Character Abilities:</h3>
-        <label>
-          Voted Out
-          <input
-            type="checkbox"
-            checked={selectedAbilities.includes(11)}
-            onChange={() => handleCheckboxChange(11)}
-          />
-        </label>
-        <label className={`character-label `}>
-          Mafia Shot
-          <input
-            type="checkbox"
-            checked={selectedAbilities.includes(12)}
-            onChange={() => handleCheckboxChange(12)}
-          />
+      <div className={`night-actions-container ${death ? 'dead' : ''}`}>
+        <h1>Night: {nightCount}</h1>
+        <form onSubmit={handleNightAction}>
+          <h3>Character Abilities:</h3>
+          <label>
+            Voted Out
+            <input
+              type="checkbox"
+              checked={selectedAbilities.includes(11)}
+              onChange={() => handleCheckboxChange(11)}
+            />
+          </label>
+          <label>
+            Mafia Shot
+            <input
+              type="checkbox"
+              checked={selectedAbilities.includes(12)}
+              onChange={() => handleCheckboxChange(12)}
+            />
 
-        </label>
-        {/* Conditionally render Regular Citizen checkbox only if there are Regular Citizens with select:true */}
-        {characterData
-          .filter((character) => character.char.id <= 9)
-          .map((character, index) => (
-            <div key={index}>
+          </label>
+          {/* Conditionally render Regular Citizen checkbox only if there are Regular Citizens with select:true */}
+          {characterData
+            .filter((character) => character.char.id <= 7)
+            .map((character, index) => (
+              <div key={index}>
                 <label className={`character-label ${character.char.death ? 'dead' : ''}`}>
                   <input
                     type="checkbox"
@@ -226,14 +268,14 @@ const NightActions = ({ characterData, hostId, gameKey, death, nightCount, gameO
                   />
                   {character.char.name}
                 </label>
-            </div>
-          ))}
-        <button className="submit-form" type="submit">
-          Submit Night Action
-        </button>
-      </form>
+              </div>
+            ))}
+          <button className="submit-form" type="submit">
+            Submit Night Action
+          </button>
+        </form>
+      </div>
     </div>
-  </div>
   );
 };
 

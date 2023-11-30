@@ -44,5 +44,10 @@
   color: red;
 }
 
+.gameCard-character-info:active{
+  border: 2px solid rgb(212, 16, 16);
+  /* Styles when the character is targeted */
+}
+
 
 
