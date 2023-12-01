@@ -1,5 +1,4 @@
 import React, {useState} from "react";
-import GameCard from './CardUI/GameCard.js';
 import NightActions from "./NightActions";
 
 function Host({ hostData, hostId, gameKey, nightCount, gameOver }) {

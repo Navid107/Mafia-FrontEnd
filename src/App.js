@@ -14,7 +14,7 @@ import Lobby from "../src/components/profilePage/host-join/Lobby"
 import Table from "./components/game/Table";
 import AuthService from "./components/auth/AuthService";
 import './App.css';
-import Play from "./components/game/Play";
+import PreGameLobby from "./components/game/PreGameLobby";
 const App = () => {
   const [message, setMessage] = useState('');
   const user = AuthService.getCurrentUser();
@@ -48,7 +48,7 @@ const App = () => {
           <Route path="/gameroom" element={<GameRoom />} />
           <Route path="/user" element={<Profile />} />
           <Route path="/lobby" element={<Lobby />} />
-          <Route path="/play/:gameKey" element={<Play />} />
+          <Route path="/play/:gameKey" element={<PreGameLobby />} />
           <Route path="/table/:gameKey" element={<Table />} />
 
         </Route>

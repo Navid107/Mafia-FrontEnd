@@ -5,157 +5,35 @@ const NightActions = ({ characterData, hostId, gameKey, death, nightCount, gameO
   const [selectedAbilities, setSelectedAbilities] = useState([]);
   const [targetId, setTargetId] = useState('')
 
-  const [playerAction, setPlayerAction] = useState(null);
-  const [selectedCard, setSelectedCard] = useState(null);
   const [mafiaShot, setMafiaShot] = useState("");
   const [sniperShot, setSniperShot] = useState("");
   const [saulGoodMan, setSaulGoodMan] = useState("");
   const [votedOut, setVotedOut] = useState("");
   characterData.sort((a, b) => a.char.id - b.char.id);
   // Determine the winning team
-  const winningTeam = gameOver === "Mafia" ? "Mafia" : "Citizen";
-
-
-  const colors = [
-    {
-      id: 2,
-      color: '',  
-    },
-    {
-      id: 3,
-      color: ''
-    },
-    {
-      id: 4,
-      color: ''
-    }, {
-      id: 6,
-      color: ''
-    },
-    {
-      id: 11,
-      color: ''
-    },
-    {
-      id: 12,
-      color: ''
-    },
-    {
-      id: 0,
-      color: ''
-    }
-  ]; // Add more colors as needed
-
-  const getColorForCharacter = (character) => {
-    
-    const index = characterData.find((e) =>
-      e.playerId === character);
-    const color = colors.find((color) =>
-    color.id === index.char.id)
-    if (color) {
-      console.log(color.color)
-      return color.color;      
-    } else {
-      return 
-    }
-  };
-
-
-
+  const winningTeam = gameOver;
+console.log(winningTeam, "winning")
 
   const handleCheckboxChange = (charId) => {
     if (selectedAbilities.includes(charId)) {
-      if (charId === 3) {
-        setSaulGoodMan('')
-      } else if (charId === 6) {
-        setSniperShot('');
-      } else if (charId === 11) {
-        setVotedOut("");
-        console.log('29 setvote', votedOut);
-      } else if (charId === 12) {
-        setMafiaShot('')
+      if (charId === 11) {
+        handleUndoVotingKill()
       }
       setSelectedAbilities(selectedAbilities.filter((id) => id !== charId));
-
+      setTargetId(null)
     } else {
-      const findPlayer = characterData.find((id) => id.char.id === charId);
-
       if (charId === 3) {
-        colors[1].color = 'pink'
         setSaulGoodMan(targetId)
         console.log('goodman', targetId);
       } else if (charId === 6) {
-        colors[2].color = 'green'
         setSniperShot(targetId);
         console.log('sniper', targetId);
       } else if (charId === 11) {
-        colors[3].color = 'yellow'
-        setVotedOut(targetId);
-        console.log('setvote', targetId);
+        handleVotingKill()
       } else if (charId === 12) {
-        colors[4].color = 'red'
         setMafiaShot(targetId)
-        console.log('mafiashot', targetId);
       }
-
       setSelectedAbilities([...selectedAbilities, charId]);
-    }
-  };
-
-  const handleGetTarget = (playerId) => {
-    setTargetId(playerId);
-  };
-
-  const handleNightAction = (e) => {
-
-    // Turn death:true for the player who got shot
-    // Async operation to update the game table
-    axios
-      .post(`http://localhost:3500/api/game/table-update`, {
-        gameKey,
-        hostId: hostId,
-        players: characterData,
-      })
-      .then((response) => {
-        if (response.data.message === "Game updated successfully") {
-          // Handle success, e.g., redirect to the game table
-          // Clear the form inputs after the async operation is successful
-          setSelectedAbilities([]);
-          setSelectedCard(null);
-          setMafiaShot("");
-          setSniperShot("");
-          setSaulGoodMan("");
-          setVotedOut("");
-        }
-      })
-      .catch((error) => {
-        console.error("Error updating the game:", error);
-      });
-  };
-  const handleAbilityAction = (targetPlayer, playerAction) => {
-    const targetCharacter = characterData.find((character) => character.playerId === targetPlayer);
-
-    if (targetCharacter) {
-      switch (playerAction) {
-        case "Sniper":
-          handleSniperAbility(targetPlayer, targetCharacter);
-          break;
-        case "SaulGoodman":
-          handleSaulGoodmanAbility(targetPlayer, targetCharacter);
-          break;
-        // Add more cases for other abilities as needed
-        default:
-          break;
-      }
-    }
-  };
-
-  const handleKillAction = () => {
-
-    const killedPlayer = characterData.find((character) => character.playerId === targetId);
-    console.log(killedPlayer)
-    if (killedPlayer) {
-      killedPlayer.char.death = true;
     }
   };
 
@@ -168,40 +46,93 @@ const NightActions = ({ characterData, hostId, gameKey, death, nightCount, gameO
       votedOutCharacter.char.death = true;
     }
   };
+  const handleUndoVotingKill = () => {
+    const votedOutCharacter = characterData.find(
+      character => character.playerId === targetId
+    );
 
-  const handleSaulGoodmanAbility = () => {
-    const citizen = characterData.find(
-      character => character.playerId === targetId)
-    console.log(citizen)
-    if (citizen && citizen.char.id === 9) {
-      citizen.char.ability = false;
-      citizen.char.death = false;
-      citizen.char.id = 10;
-      citizen.char.name = 'Regular Mafia';
-      citizen.char.side = 'mafia';
+    if (votedOutCharacter) {
+      votedOutCharacter.char.death = false;
     }
+    setTargetId(null)
   };
 
-  const handleSniperAbility = () => {
-    const sniper = characterData.find(
-      character => character.char.id === 6);
+  const handleGetTarget = (playerId) => {
+    setTargetId(playerId);
+  };
 
-    const sniperTarget = characterData.find(
-      character => character.playerId === targetId)
+  const handleNightAction = (e) => {
 
-    if (sniperTarget.char.side === 'mafia') {
-      // Mafia dies
-      sniperTarget.char.death = true;
-    } else {
-      // Sniper dies
-      sniper.char.death = true;
+    if (mafiaShot) {
+      const killedPlayer = characterData.find((character) => character.playerId === mafiaShot);
+      console.log(killedPlayer)
+      if (killedPlayer) {
+        killedPlayer.char.death = true;
+      }
+      setSaulGoodMan(null)
     }
+    if (!mafiaShot && saulGoodMan) {
+      const mafiaPlayers = characterData.filter((character) => character.char.side === 'mafia');
+      
+      // Find a dead Mafia player among the Mafia players
+      const deathMafia = mafiaPlayers.find((character) => character.char.death === true);
+    
+      if (deathMafia) {
+        const citizen = characterData.find((character) => character.playerId === saulGoodMan);
+    
+        if (citizen && citizen.char.id === 9) {
+          // Update the information of the dead Mafia player
+          deathMafia.char.ability = false;
+          deathMafia.char.death = false;
+          deathMafia.char.id = 10;
+          deathMafia.char.name = 'Regular Mafia';
+          deathMafia.char.side = 'mafia';
+        }
+      }
+    }
+    
+    if (sniperShot) {
+      const sniper = characterData.find(
+        character => character.char.id === 6);
+
+      const sniperTarget = characterData.find(
+        character => character.playerId === sniperShot)
+
+      if (sniperTarget.char.side === 'mafia') {
+        // Mafia dies
+        sniperTarget.char.death = true;
+      } else {
+        // Sniper dies
+        sniper.char.death = true;
+      }
+    }
+
+    axios
+      .post(`http://localhost:3500/api/game/table-update`, {
+        gameKey,
+        hostId: hostId,
+        players: characterData,
+      })
+      .then((response) => {
+        if (response.data.message === "Game updated successfully") {
+          // Handle success, e.g., redirect to the game table
+          // Clear the form inputs after the async operation is successful
+          setSelectedAbilities([]);
+          setMafiaShot("");
+          setSniperShot("");
+          setSaulGoodMan("");
+          setVotedOut("");
+        }
+      })
+      .catch((error) => {
+        console.error("Error updating the game:", error);
+      });
   };
 
   console.log('playerId', targetId);
   return (
     <div className={`host-container-card ${death ? 'dead' : ''}`}>
-      <div className={`host-player-card ${death ? 'dead' : ''}`}>
+      <div className={`host-player-card `}>
         {gameOver && (
           <p className="winning-message">
             {winningTeam === "Mafia" ? "Mafia Won the Game!" : "Citizen Won the Game!"}
@@ -214,7 +145,6 @@ const NightActions = ({ characterData, hostId, gameKey, death, nightCount, gameO
             .map((e, index) => (
               <div key={index} className={`host-mafia-container ${e.char.death ? 'dead' : ''}`}
                 onClick={() => handleGetTarget(e.playerId)}
-                style={{ backgroundColor: getColorForCharacter(e.playerId) }}
               >
                 <GameCard playerChar={e.char} playerName={e.playerName} />
               </div>
@@ -228,7 +158,7 @@ const NightActions = ({ characterData, hostId, gameKey, death, nightCount, gameO
             .map((e, index) => (
               <div key={index} className={`host-citizen-container ${e.char.death ? 'dead' : ''}`}
                 onClick={() => handleGetTarget(e.playerId)}
-                style={{ backgroundColor: getColorForCharacter(e.playerId) }}>
+              >
                 <GameCard playerChar={e.char} playerName={e.playerName} />
               </div>
             ))}
@@ -238,13 +168,9 @@ const NightActions = ({ characterData, hostId, gameKey, death, nightCount, gameO
         <h1>Night: {nightCount}</h1>
         <form onSubmit={handleNightAction}>
           <h3>Character Abilities:</h3>
-          <label>
-            Voted Out
-            <input
-              type="checkbox"
-              checked={selectedAbilities.includes(11)}
-              onChange={() => handleCheckboxChange(11)}
-            />
+          <label>     
+            <button onChange={() => handleCheckboxChange(11)}
+            >Voting Form </button>
           </label>
           <label>
             Mafia Shot
@@ -257,7 +183,7 @@ const NightActions = ({ characterData, hostId, gameKey, death, nightCount, gameO
           </label>
           {/* Conditionally render Regular Citizen checkbox only if there are Regular Citizens with select:true */}
           {characterData
-            .filter((character) => character.char.id <= 7)
+            .filter((character) => character.char.id <= 6)
             .map((character, index) => (
               <div key={index}>
                 <label className={`character-label ${character.char.death ? 'dead' : ''}`}>
