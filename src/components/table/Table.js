@@ -3,8 +3,8 @@ import axios from "axios";
 import jwt_decode from "jwt-decode";
 import { useParams } from "react-router-dom";
 import "./Table.css";
-import GameCard from "./CardUI/GameCard.js";
-import Host from "./Host";
+import GameCard from "../CardUI/GameCard.js";
+import Host from '../host/Host.js';
 
 function GameTable() {
   const [hostData, setHostData] = useState([]);

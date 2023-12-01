@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams, Link } from "react-router-dom";
 import axios from 'axios';
 import './PreGameLobby.css';
-import Checkbox from './CardUI/CheckBox';
+import Checkbox from '../CardUI/CheckBox';
 
 function PreGame() {
   const [userId, setUserId] = useState('');

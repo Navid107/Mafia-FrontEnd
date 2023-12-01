@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import axios from "axios";
-import GameCard from './CardUI/GameCard.js';
+import GameCard from '../CardUI/GameCard.js';
 const NightActions = ({ characterData, hostId, gameKey, death, nightCount, gameOver }) => {
   const [selectedAbilities, setSelectedAbilities] = useState([]);
   const [targetId, setTargetId] = useState('')
@@ -168,9 +168,13 @@ console.log(winningTeam, "winning")
         <h1>Night: {nightCount}</h1>
         <form onSubmit={handleNightAction}>
           <h3>Character Abilities:</h3>
-          <label>     
-            <button onChange={() => handleCheckboxChange(11)}
-            >Voting Form </button>
+          <label>
+            Voting     
+          <input
+              type="checkbox"
+              checked={selectedAbilities.includes(11)}
+              onChange={() => handleCheckboxChange(11)}
+            />
           </label>
           <label>
             Mafia Shot

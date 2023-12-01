@@ -1,20 +1,21 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import './App.css';
 import Navbar from "./components/navBar/NavigationBar";
+import PrivateRoute from "./components/privateRoute/PrivateRoute";
 import Home from "./components/Home";
-import Rules from "./components/game/Rules";
+import Rules from "./components/Rules";
 import GameRoom from "./components/profilePage/host-join/GameRoom";
 
 import Profile from "./components/profilePage/Profile";
+import AuthService from "./components/auth/AuthService";
 import Login from "./components/auth/Login";
 import SignUp from "./components/auth/Signup";
-import PrivateRoute from "./components/privateRoute/PrivateRoute";
-import Character from "../src/components/game/CardUI/GameCard"
+
+import Character from "../src/components/CardUI/GameCard"
 import Lobby from "../src/components/profilePage/host-join/Lobby"
-import Table from "./components/game/Table";
-import AuthService from "./components/auth/AuthService";
-import './App.css';
-import PreGameLobby from "./components/game/PreGameLobby";
+import Table from "./components/table/Table";
+import PreGameLobby from "./components/preGame/PreGameLobby";
 const App = () => {
   const [message, setMessage] = useState('');
   const user = AuthService.getCurrentUser();

@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React from "react";
 import NightActions from "./NightActions";
 
 function Host({ hostData, hostId, gameKey, nightCount, gameOver }) {
