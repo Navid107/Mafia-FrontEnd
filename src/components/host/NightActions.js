@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import GameCard from '../CardUI/GameCard.js';
 const NightActions = ({ characterData, hostId, gameKey, death, nightCount, gameOver }) => {

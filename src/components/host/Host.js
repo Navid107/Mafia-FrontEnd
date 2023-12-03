@@ -1,17 +1,26 @@
 import React from "react";
 import NightActions from "./NightActions";
-
+import GameOver from './GameOver';
 function Host({ hostData, hostId, gameKey, nightCount, gameOver }) {
-
+  const winingTeamPlayers = hostData.filter((character) =>
+    character.char.death === false);
+    
   return (
     <div className="host-container-card">
-      <NightActions
-        nightCount={nightCount}
-        characterData={hostData}
-        gameKey={gameKey}
-        hostId={hostId}
-        gameOver={gameOver}        
-      />
+      {gameOver ?
+        <GameOver
+          winningTeam={gameOver}
+          winningPlayers={winingTeamPlayers}
+          gameKey={gameKey} />
+        :
+        <NightActions
+          nightCount={nightCount}
+          characterData={hostData}
+          gameKey={gameKey}
+          hostId={hostId}
+          gameOver={gameOver}
+        />
+      }
     </div>
   );
 }
