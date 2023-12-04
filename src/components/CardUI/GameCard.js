@@ -1,19 +1,18 @@
-import React,{useState} from 'react';
+import React, { useState } from 'react'
 
-import './GameCard.css';
-import City from './pictures/City.jpg';
-import Dr from './pictures/DrWatson.jpg';
-import GodFather from './pictures/GodFather.jpg';
-import Detective from './pictures/Kin.jpg';
-import Sniper from './pictures/Leon.jpg';
-import Mafia from './pictures/mafia.jpeg';
-import Matador from './pictures/Matador.jpg';
-import Nostradamoos from './pictures/Nostradamoos.jpg';
-import S6Constantine from './pictures/S6Constantine.jpg';
-import SaulGoodMan from './pictures/SaulGoodman.jpg';
+import './GameCard.css'
+import City from './pictures/City.jpg'
+import Dr from './pictures/DrWatson.jpg'
+import GodFather from './pictures/GodFather.jpg'
+import Detective from './pictures/Kin.jpg'
+import Sniper from './pictures/Leon.jpg'
+import Mafia from './pictures/mafia.jpeg'
+import Matador from './pictures/Matador.jpg'
+import Nostradamoos from './pictures/Nostradamoos.jpg'
+import S6Constantine from './pictures/S6Constantine.jpg'
+import SaulGoodMan from './pictures/SaulGoodman.jpg'
 
-function GameCard({ playerChar, playerName, activeBorderLine, death}) {
-
+function GameCard ({ playerChar, playerName, activeBorderLine, death }) {
   const characters = [
     {
       id: 1,
@@ -50,7 +49,7 @@ function GameCard({ playerChar, playerName, activeBorderLine, death}) {
       ability: 'Can get the identity of a player',
       image: Detective
     },
-  
+
     {
       id: 6,
       name: 'Sniper',
@@ -59,7 +58,6 @@ function GameCard({ playerChar, playerName, activeBorderLine, death}) {
       image: Sniper
     },
 
- 
     {
       id: 7,
       name: 'BodyGuard',
@@ -87,31 +85,34 @@ function GameCard({ playerChar, playerName, activeBorderLine, death}) {
       side: 'mafia',
       ability: 'none',
       image: Mafia
-    },
-  ];
+    }
+  ]
 
-  const character = characters.find((char) => 
-                char.id === (playerChar ? playerChar.id : null));
+  const character = characters.find(
+    char => char.id === (playerChar ? playerChar.id : null)
+  )
   return (
     <div>
       {character ? (
-        <div className="gameCard-design-container">
+        <div className='gameCard-design-container'>
           <div className={`gameCard-character-info `}>
             <p>{playerName}</p>
-          {death && <div className="death-marker">X</div>}
-          <img className="gameCard-character-image" src={character.image}
-           alt={character.name}
+            {death && <div className='death-marker'>X</div>}
+            <img
+              className='gameCard-character-image'
+              src={character.image}
+              alt={character.name}
             />
             <p>{playerChar.name}</p>
           </div>
         </div>
       ) : (
-        <div className="character-card">
-          <p className="character-name">Character not found</p>
+        <div className='character-card'>
+          <p className='character-name'>Character not found</p>
         </div>
       )}
     </div>
-  );
+  )
 }
 
-export default GameCard;
+export default GameCard

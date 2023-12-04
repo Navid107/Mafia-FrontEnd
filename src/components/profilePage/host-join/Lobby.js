@@ -1,39 +1,38 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import { Link } from 'react-router-dom';
-import jwt_decode from 'jwt-decode';
-import './Lobby.css';
+import React, { useEffect, useState } from 'react'
+import axios from 'axios'
+import { Link } from 'react-router-dom'
+import jwt_decode from 'jwt-decode'
+import './Lobby.css'
 
-function UserLobbies() {
-  const [userLobbies, setUserLobbies] = useState([]);
-  const [urLobbies, setUrLobbies] = useState([]);
+function UserLobbies () {
+  const [userLobbies, setUserLobbies] = useState([])
+  const [urLobbies, setUrLobbies] = useState([])
 
-  const token = localStorage.getItem('user');
-  const userInfo = jwt_decode(token);
-  const userId = userInfo.userId;
+  const token = localStorage.getItem('user')
+  const userInfo = jwt_decode(token)
+  const userId = userInfo.userId
 
   useEffect(() => {
     // Make an API request to retrieve the user's created lobbies
     axios
       .post(`http://localhost:3500/api/game/lobbies`, {
-        userId,
+        userId
       })
-      .then((response) => {
-        setUserLobbies(response.data.joined);
-        setUrLobbies(response.data.hosted);
+      .then(response => {
+        setUserLobbies(response.data.joined)
+        setUrLobbies(response.data.hosted)
       })
-      .catch((error) => {
-        console.error('Error fetching user lobbies:', error);
-      });
-  }, [userId]);
+      .catch(error => {
+        console.error('Error fetching user lobbies:', error)
+      })
+  }, [userId])
   console.log('ur lobbbies', urLobbies)
 
-
   return (
-    <div className="container">
+    <div className='container'>
       <div>
         <h2>Your Lobbies</h2>
-        <table className="profile-lobby">
+        <table className='profile-lobby'>
           <thead>
             <tr>
               <th>Name</th>
@@ -43,15 +42,15 @@ function UserLobbies() {
           {urLobbies.length > 0 ? (
             <tbody>
               {urLobbies.map((lobby, index) => (
-                <tr key={index} className="border-line">
+                <tr key={index} className='border-line'>
                   <td>
                     <Link
                       to={
                         lobby.gameState !== 'false'
                           ? `/table/${lobby.gameKey}`
-                          :  `/play/${lobby.gameKey}`
+                          : `/play/${lobby.gameKey}`
                       }
-                      className="link"
+                      className='link'
                     >
                       {lobby.lobbyName}
                     </Link>
@@ -68,7 +67,7 @@ function UserLobbies() {
 
       <div>
         <h2>Joined Lobbies</h2>
-        <table className="profile-lobby">
+        <table className='profile-lobby'>
           <thead>
             <tr>
               <th>Name</th>
@@ -78,7 +77,7 @@ function UserLobbies() {
           {userLobbies.length > 0 ? (
             <tbody>
               {userLobbies.map((lobby, index) => (
-                <tr key={index} className="border-line">
+                <tr key={index} className='border-line'>
                   <td>
                     <Link
                       to={
@@ -86,7 +85,7 @@ function UserLobbies() {
                           ? `/table/${lobby.gameKey}`
                           : `/play/${lobby.gameKey}`
                       }
-                      className="link"
+                      className='link'
                     >
                       {lobby.lobbyName}
                     </Link>
@@ -95,7 +94,6 @@ function UserLobbies() {
                 </tr>
               ))}
             </tbody>
-
           ) : (
             <p>No lobbies found.</p>
           )}
@@ -105,4 +103,4 @@ function UserLobbies() {
   )
 }
 
-export default UserLobbies;
+export default UserLobbies
