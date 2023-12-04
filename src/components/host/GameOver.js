@@ -1,22 +1,21 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import GameCard from "../CardUI/GameCard";
 function GameOver({ winningTeam, winningPlayers, gameKey }) {
+  const navigate = useNavigate();
+
   const playAgain = () => {
     axios
       .delete(`http://localhost:3500/api/game/table/${gameKey}`)
       .then((response) => {
         console.log(response);
-        <Link to={{ pathname: `/user` }}>
-        
-        </Link>
+        navigate('/user')
       })
       .catch((error) => {
         console.error('Error in deleting lobby:', error);
       });
   };
-
   return (
     <div>
       <h2>Game Over</h2>
