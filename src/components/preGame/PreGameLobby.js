@@ -17,7 +17,7 @@ function PreGame () {
     },
     {
       id: 2,
-      name: 'Witch',
+      name: 'El Matador',
       side: 'mafia',
       ability: true,
       death: false
@@ -44,7 +44,7 @@ function PreGame () {
       death: false
     },
     {
-      id: 9,
+      id: 8,
       name: 'Regular Citizen',
       side: 'citizen',
       ability: true,
@@ -78,7 +78,7 @@ function PreGame () {
     },
     {
       id: 2,
-      name: 'Witch',
+      name: 'El Matador',
       side: 'mafia',
       ability: true,
       death: false
@@ -114,27 +114,20 @@ function PreGame () {
 
     {
       id: 7,
-      name: 'Ex-Police Officer',
+      name: 'BodyGuard',
       side: 'citizen',
       ability: false,
       death: false
     },
     {
       id: 8,
-      name: 'Night Walker',
+      name: 'Regular Citizen',
       side: 'citizen',
-      ability: true,
+      ability: false,
       death: false
     },
     {
       id: 9,
-      name: 'Regular Citizen',
-      side: 'citizen',
-      ability: true,
-      death: false
-    },
-    {
-      id: 10,
       name: 'Regular Mafia',
       side: 'mafia',
       ability: false,
@@ -143,7 +136,7 @@ function PreGame () {
   ]
 
   const handleCheckboxChange = character => {
-    const isAlwaysSelected = [1, 2, 4, 5, 6, 9].includes(character.id)
+    const isAlwaysSelected = [1, 2, 4, 5, 6, 8].includes(character.id)
 
     if (!isAlwaysSelected) {
       setSelectedChars(prevSelectedChars => {
@@ -185,7 +178,7 @@ function PreGame () {
       },
       {
         id: 2,
-        name: 'Witch',
+        name: 'El Matador',
         side: 'mafia',
         ability: true,
         death: false
@@ -212,10 +205,10 @@ function PreGame () {
         death: false
       },
       {
-        id: 9,
+        id: 8,
         name: 'Regular Citizen',
         side: 'citizen',
-        ability: true,
+        ability: false,
         death: false
       }
     ])
@@ -226,7 +219,7 @@ function PreGame () {
 
     if (
       players.length === selectedChars.length ||
-      (selectedChars.length === 10 && players.length > 10)
+      (selectedChars.length === 9 && players.length > 9)
     ) {
       setFormSubmit(true)
       console.log('Selected Characters:', selectedChars)
@@ -281,7 +274,7 @@ function PreGame () {
                   <Checkbox
                     character={character}
                     checked={selectedChars.some(e => e.id === character.id)}
-                    disabled={[1, 2, 4, 5, 6, 9].includes(character.id)}
+                    disabled={[1, 2, 4, 5, 6, 8].includes(character.id)}
                     onChange={() => handleCheckboxChange(character)}
                   />
                 </div>

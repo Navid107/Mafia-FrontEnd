@@ -1,16 +1,15 @@
 import React, { useState } from 'react'
 
 import './GameCard.css'
-import City from './pictures/City.jpg'
-import Dr from './pictures/DrWatson.jpg'
-import GodFather from './pictures/GodFather.jpg'
+import City from './pictures/City.png'
+import Dr from './pictures/DrWatson.png'
+import GodFather from './pictures/GodFather.png'
 import Detective from './pictures/Kin.jpg'
-import Sniper from './pictures/Leon.jpg'
-import Mafia from './pictures/mafia.jpeg'
-import Matador from './pictures/Matador.jpg'
-import Nostradamoos from './pictures/Nostradamoos.jpg'
-import S6Constantine from './pictures/S6Constantine.jpg'
-import SaulGoodMan from './pictures/SaulGoodman.jpg'
+import Sniper from './pictures/Leon.png'
+import Mafia from './pictures/mafia.png'
+import Matador from './pictures/Matador.png'
+import SaulGoodMan from './pictures/SaulGoodman.png'
+import BodyGuard from './pictures/BodyGuard.png'
 
 function GameCard ({ playerChar, playerName, activeBorderLine, death }) {
   const characters = [
@@ -23,7 +22,7 @@ function GameCard ({ playerChar, playerName, activeBorderLine, death }) {
     },
     {
       id: 2,
-      name: 'Witch',
+      name: 'El Matador',
       side: 'mafia',
       ability: 'Can block someone ability',
       image: Matador
@@ -63,24 +62,17 @@ function GameCard ({ playerChar, playerName, activeBorderLine, death }) {
       name: 'BodyGuard',
       side: 'citizen',
       ability: 'Can protect someone',
-      image: Nostradamoos
+      image: BodyGuard
     },
     {
       id: 8,
-      name: 'Night Walker',
-      side: 'citizen',
-      ability: 'Can wake a at night',
-      image: S6Constantine
-    },
-    {
-      id: 9,
       name: 'Regular Citizen',
       side: 'citizen',
       ability: 'none',
       image: City
     },
     {
-      id: 10,
+      id: 9,
       name: 'Regular Mafia',
       side: 'mafia',
       ability: 'none',

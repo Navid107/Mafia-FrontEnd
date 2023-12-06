@@ -1,7 +1,7 @@
 
 .gameCard-design-container {
-  width: 150px;
-  height: 280px;
+  width: 200px;
+  height: 380px;
   background-color: #000;
   border-radius: 10px;
   text-align: center;
@@ -22,8 +22,8 @@
   
   }
 .gameCard-character-image {
-  width: 100%;
-  height: 170px;
+  width: auto;
+  height: 250px;
   object-fit: cover;
   border: 1px solid #0c30fa;
   box-shadow: 0 4px 6px rgba(241, 1, 1, 0.995);

@@ -157,7 +157,7 @@ const NightActions = ({
         <p className='host-sides-mafia'>Mafia</p>
         <div className={`host-character-container${death ? 'dead' : ''}`}>
           {characterData
-            .filter(e => [1, 2, 3, 10].includes(e.char.id))
+            .filter(e => [1, 2, 3, 9].includes(e.char.id))
             .map((e, index) => (
               <div
                 key={index}
@@ -172,7 +172,7 @@ const NightActions = ({
         <p className='host-sides-citizen'>Citizen</p>
         <div className={`host-character-container ${death ? 'dead' : ''}`}>
           {characterData
-            .filter(e => ![1, 2, 3, 10].includes(e.char.id))
+            .filter(e => ![1, 2, 3, 9].includes(e.char.id))
             .map((e, index) => (
               <div
                 key={index}
