@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
+import jwt_decode from 'jwt-decode'
 import axios from 'axios'
 import './PreGameLobby.css'
 import Checkbox from '../CardUI/CheckBox'
 
 function PreGame () {
-  const [userId, setUserId] = useState('')
+  const [hostId, setHostId] = useState('')
   const [players, setPlayers] = useState([])
   const [selectedChars, setSelectedChars] = useState([
     {
@@ -47,12 +48,16 @@ function PreGame () {
       id: 8,
       name: 'Regular Citizen',
       side: 'citizen',
-      ability: true,
+      ability: false,
       death: false
     }
   ])
   const [formSubmit, setFormSubmit] = useState(false)
   const { gameKey } = useParams()
+
+  const token = localStorage.getItem('user')
+
+  const userId = jwt_decode(token)
 
   useEffect(() => {
     axios
@@ -60,7 +65,7 @@ function PreGame () {
       .then(response => {
         if (response.data && response.data[0]) {
           setPlayers(response.data[0].players)
-          setUserId(response.data[0].host)
+          setHostId(response.data[0].host)
         }
       })
       .catch(error => {
@@ -154,7 +159,7 @@ function PreGame () {
     axios
       .post(`http://localhost:3500/api/game/start`, {
         gameKey,
-        userId,
+        hostId,
         selectedChars
       })
       .then(response => {
@@ -227,7 +232,6 @@ function PreGame () {
       alert('Please make sure you have selected characters for all players.')
     }
   }
-
   return (
     <div className='pre-game-container'>
       <h1 className='title'>Welcome to Pre Game Lobby</h1>
@@ -248,9 +252,10 @@ function PreGame () {
                 ))
               : 'no players available'}
           </div>
-
-          {userId && formSubmit ? (
+          {hostId === userId.userId ? ( 
+          
             <Link to={{ pathname: `/table/${gameKey}` }}>
+              {formSubmit ? (
               <button
                 className='btn-start-game'
                 onClick={startGame}
@@ -258,11 +263,14 @@ function PreGame () {
               >
                 Start Game
               </button>
+              ) : (
+                <div className='btn-start-game'>
+                  Please select the characters first
+                </div>
+              )}
             </Link>
           ) : (
-            <div className='btn-start-game'>
-              Please select the characters first
-            </div>
+            'Please wait for God to start'
           )}
         </div>
         <div className='char-checkbox-container'>
@@ -279,7 +287,7 @@ function PreGame () {
                   />
                 </div>
               ))}
-              {userId ? (
+              {hostId === userId.userId ?(
                 <button className='btn-checkbox' type='submit'>
                   Submit
                 </button>

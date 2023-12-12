@@ -28,9 +28,7 @@ const login = (email, password) => {
 
 const logout = () => {
   localStorage.removeItem("user");
-  return axios.post("/").then((response) => {
-    return response.data;
-  });
+
 };
 const getChars = () => {
   return axios.get(API_URL + "characters", {

@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route,} from 'react-router-dom'
+
 import './App.css'
 import Navbar from './components/navBar/NavigationBar'
 import PrivateRoute from './components/privateRoute/PrivateRoute'
@@ -23,8 +24,8 @@ const App = () => {
   const handleLogout = () => {
     setMessage('')
     AuthService.logout().then(
-      () => {
-        setMessage('User logged out')
+      () => {   
+        window.location.reload();
       },
       error => {
         setMessage('something with wrong')

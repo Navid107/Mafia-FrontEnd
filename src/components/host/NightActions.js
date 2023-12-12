@@ -11,7 +11,6 @@ const NightActions = ({
 }) => {
   const [selectedAbilities, setSelectedAbilities] = useState([])
   const [targetId, setTargetId] = useState('')
-
   const [mafiaShot, setMafiaShot] = useState('')
   const [sniperShot, setSniperShot] = useState('')
   const [saulGoodMan, setSaulGoodMan] = useState('')
@@ -154,7 +153,7 @@ const NightActions = ({
               : 'Citizen Won the Game!'}
           </p>
         )}
-        <p className='host-sides-mafia'>Mafia</p>
+        <p className='host-sides-mafia'>MAFIA</p>
         <div className={`host-character-container${death ? 'dead' : ''}`}>
           {characterData
             .filter(e => [1, 2, 3, 9].includes(e.char.id))
@@ -169,7 +168,7 @@ const NightActions = ({
             ))}
         </div>
 
-        <p className='host-sides-citizen'>Citizen</p>
+        <p className='host-sides-citizen'>CITIZEN</p>
         <div className={`host-character-container ${death ? 'dead' : ''}`}>
           {characterData
             .filter(e => ![1, 2, 3, 9].includes(e.char.id))

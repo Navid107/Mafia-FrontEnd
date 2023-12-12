@@ -6,7 +6,6 @@
     display: flex;
     flex-direction: column;
     color: bisque;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-size: 20px;
     text-align: center;
     
@@ -30,11 +29,11 @@
   }
   .host-sides-mafia{
     font-size: 30px;
-    color: rgba(255, 0, 0, 0.217);
+    color: rgba(255, 0, 0, 0.831);
   }
   .host-sides-citizen{
     font-size: 30px;
-    color: rgba(0, 255, 47, 0.217);
+    color: rgba(0, 255, 47, 0.75);
   }
   .host-character-container{
     display: flex;
@@ -97,8 +96,10 @@
   }
   
   .night-actions-container.dead {
-    filter: grayscale(100%); /* Make the night actions container black and white for dead characters */
-  
+    filter: grayscale(100%); 
   }
- 
+ .player-characterCard-container{
+  display: flex;
+  justify-content: space-around;
+ }
   

@@ -11,7 +11,7 @@ import Matador from './pictures/Matador.png'
 import SaulGoodMan from './pictures/SaulGoodman.png'
 import BodyGuard from './pictures/BodyGuard.png'
 
-function GameCard ({ playerChar, playerName, activeBorderLine, death }) {
+function GameCard ({ playerChar, playerName, death }) {
   const characters = [
     {
       id: 1,

@@ -7,8 +7,9 @@ import GameCard from '../CardUI/GameCard.js'
 import Host from '../host/Host.js'
 
 function GameTable () {
+  const [hostValidation, setHostValidation] = useState(false)
   const [hostData, setHostData] = useState([])
-  const [nightRound, setNightRound] = useState()
+  const [nightRound, setNightRound] = useState(0)
   const [playerData, setPlayerData] = useState([])
   const [gameOver, setGameOver] = useState('')
 
@@ -27,17 +28,21 @@ function GameTable () {
             userId: userId
           }
         )
-        // Set your component state with the received API data
-        const nightCount = response.data.nights.length - 1
-        setNightRound(nightCount)
-        setGameOver(response.data.gameOver)
-        console.log('this', nightCount)
-        if (nightCount >= 0) {
-          setHostData(response.data.nights[nightCount].players)
-          console.log('this is working', nightCount)
+        if (userId === response.data.host) {
+          setHostValidation(true)
+          // Set your component state with the received API data
+          const nightCount = response.data.nights.length - 1
+          setNightRound(nightCount)
+          setGameOver(response.data.gameOver)
+          console.log('this', nightCount)
+          if (nightCount >= 0) {
+            setHostData(response.data.nights[nightCount].players)
+            console.log('this is working', nightCount)
+          } else {
+            setHostData(response.data.nights[nightCount].players)
+          }
         } else {
-          setHostData(response.data.nights[nightCount].players)
-          setPlayerData(response.data.nightCount)
+          setPlayerData(response.data[0].char)
         }
       } catch (error) {
         console.error('Error fetching user lobbies:', error)
@@ -46,13 +51,13 @@ function GameTable () {
 
     fetchData()
   }, [gameKey, userId])
-
+  console.log(hostData)
   return (
     <div className='table-container'>
       <h1>People in the City</h1>
       <div className='container-card'>
         <div className='player-card'>
-          {hostData ? (
+          {hostValidation === true ? (
             <Host
               hostData={hostData}
               nightCount={nightRound}
@@ -61,7 +66,9 @@ function GameTable () {
               gameOver={gameOver}
             />
           ) : (
-            <GameCard playerChar={playerData.char} />
+            <div className='player-characterCard-container'>
+              <GameCard playerChar={playerData} />
+            </div>
           )}
         </div>
       </div>
