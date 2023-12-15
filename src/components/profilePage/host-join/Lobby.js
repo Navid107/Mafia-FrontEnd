@@ -1,16 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
-import jwt_decode from 'jwt-decode'
 import './Lobby.css'
-
+import AuthService from '../../auth/AuthService'
 function UserLobbies () {
   const [joinedLobbies, setJoinedLobbies] = useState([])
   const [createdLobbies, setCreatedLobbies] = useState([])
-
-  const token = localStorage.getItem('user')
-  const userInfo = jwt_decode(token)
-  const userId = userInfo.userId
+  const userId = AuthService.getCurrentUser().userId
 
   useEffect(() => {
     // Make an API request to retrieve the user's created lobbies
@@ -27,10 +23,9 @@ function UserLobbies () {
       })
   }, [userId])
 
-  function handleDelete (e) {
-    const gameKey = e
+  function handleDeleteLobby (e) {
     axios
-      .delete(`http://localhost:3500/api/game/table/${gameKey}`)
+      .delete(`http://localhost:3500/api/game/table/${e}`)
 
       .then(response => {
         console.log(response)
@@ -55,7 +50,7 @@ function UserLobbies () {
           <tbody className='border-line'>
             {createdLobbies.length > 0 ? (
               createdLobbies.map((lobby, index) => (
-                <tr key={index} >
+                <tr key={index}>
                   <td>
                     <Link
                       to={
@@ -70,13 +65,13 @@ function UserLobbies () {
                   </td>
                   <td>{lobby.gameKey}</td>
                   <td>
-        <button
-          className='Delete-lobby'
-          onClick={() => handleDelete(lobby.gameKey)} // Use an arrow function
-        >
-          X
-        </button>
-      </td>
+                    <button
+                      className='Delete-lobby'
+                      onClick={() => handleDeleteLobby(lobby.gameKey)}
+                    >
+                      X
+                    </button>
+                  </td>
                 </tr>
               ))
             ) : (
@@ -100,7 +95,7 @@ function UserLobbies () {
           <tbody className='border-line'>
             {joinedLobbies.length > 0 ? (
               joinedLobbies.map((lobby, index) => (
-                <tr key={index} >
+                <tr key={index}>
                   <td>
                     <Link
                       to={

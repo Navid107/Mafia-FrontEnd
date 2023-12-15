@@ -50,7 +50,9 @@
 .link {
   color: rgba(255, 228, 196, 0.824);
 }
-
+.Delete-lobby{
+  background-color: red;
+}
 .border-line:hover{
   background-color: rgba(72, 9, 190, 0.224);
 }

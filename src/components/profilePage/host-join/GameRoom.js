@@ -1,20 +1,19 @@
 import React, { useState } from 'react'
 import axios from 'axios'
-
-import jwt_decode from 'jwt-decode'
 import './GameRoom.css'
+import AuthService from '../../auth/AuthService'
 function GameRoom () {
   const [gameKey, setGameKey] = useState('')
   const [lobbyName, setLobbyName] = useState('')
   const [lobbyInfo, setLobbyInfo] = useState('')
-  const token = localStorage.getItem('user')
-
-  const user = jwt_decode(token)
+  
+  const userInfo = AuthService.getCurrentUser()
+  
   const handleHostGame = async () => {
     try {
       // Make an API request to create a new game and receive a game key
       const response = await axios.post('http://localhost:3500/api/game/host', {
-        userId: user.userId,
+        userId: userInfo.userId,
         lobbyName
       })
       setLobbyInfo(response.data)
@@ -28,8 +27,8 @@ function GameRoom () {
       // Make an API request to join a game using the game key and player name
       const response = await axios.post('http://localhost:3500/api/game/join', {
         gameKey: gameKey,
-        userId: user.userId,
-        name: user.user
+        userId: userInfo.userId,
+        name: userInfo.user
       })
       console.log(response.data.message)
     } catch (err) {
@@ -48,25 +47,19 @@ function GameRoom () {
           onChange={e => setLobbyName(e.target.value)}
         />
         <button className='host-btn' onClick={handleHostGame}>
-          Host Game
+          Create Lobby
         </button>
       </div>
-      {lobbyInfo && (
-        <div className='gameKey'>
-          <p>Your Game Key:</p>
-          <p>{lobbyInfo.lobbyName}</p>
-          <p>{lobbyInfo.gameKey}</p>
-        </div>
-      )}
       <div className='game-host'>
         <h1>Join a Game</h1>
         <input
           type='text'
+          placeholder='Enter Lobby GameKey'
           value={gameKey}
           onChange={e => setGameKey(e.target.value)}
         />
         <button className='host-btn' onClick={joinGame}>
-          Join Game
+          Join Lobby
         </button>
       </div>
     </div>

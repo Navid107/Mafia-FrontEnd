@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
-import jwt_decode from 'jwt-decode'
 import { useParams } from 'react-router-dom'
 import './Table.css'
 import GameCard from '../CardUI/GameCard.js'
 import Host from '../host/Host.js'
-
+import AuthService from '../auth/AuthService'
 function GameTable () {
   const [hostValidation, setHostValidation] = useState(false)
   const [hostData, setHostData] = useState([])
@@ -13,9 +12,8 @@ function GameTable () {
   const [playerData, setPlayerData] = useState([])
   const [gameOver, setGameOver] = useState('')
 
-  const token = localStorage.getItem('user')
-  const userInfo = jwt_decode(token)
-  const userId = userInfo.userId
+  const userId = AuthService.getCurrentUser().userId
+ 
   const { gameKey } = useParams()
 
   useEffect(() => {

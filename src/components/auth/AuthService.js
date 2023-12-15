@@ -1,5 +1,5 @@
-import React from "react";
 import axios from "axios";
+import jwt_decode from 'jwt-decode'
 const API_URL = "http://localhost:3500/api/auth/";
 
 const register = (name, email, password) => {
@@ -36,7 +36,9 @@ const getChars = () => {
 };
 
 const getCurrentUser = () => {
-  return JSON.parse(localStorage.getItem("user"));
+  const token = JSON.parse(localStorage.getItem("user"));
+  const userInfo = jwt_decode(token)
+  return userInfo
 };
 
 const AuthService = {

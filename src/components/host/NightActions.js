@@ -128,8 +128,6 @@ const NightActions = ({
       })
       .then(response => {
         if (response.data.message === 'Game updated successfully') {
-          // Handle success, e.g., redirect to the game table
-          // Clear the form inputs after the async operation is successful
           setSelectedAbilities([])
           setMafiaShot('')
           setSniperShot('')
@@ -205,7 +203,7 @@ const NightActions = ({
               onChange={() => handleCheckboxChange(12)}
             />
           </label>
-          {/* Conditionally render Regular Citizen checkbox only if there are Regular Citizens with select:true */}
+
           {characterData
             .filter(character => character.char.id <= 6)
             .map((character, index) => (

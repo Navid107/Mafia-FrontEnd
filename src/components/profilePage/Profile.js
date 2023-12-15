@@ -1,13 +1,11 @@
-import jwt_decode from 'jwt-decode'
 import './Profile.css'
 import Lobbies from './host-join/Lobby.js'
 import GameRoom from './host-join/GameRoom.js'
+import AuthService from '../auth/AuthService'
 const Profile = () => {
-  const token = localStorage.getItem('user')
+  const userInfo = AuthService.getCurrentUser()
 
-  const userInfo = jwt_decode(token)
-
-  console.log('line 7 info', userInfo.userId)
+  console.log('line 7 info', userInfo)
   const gameData = {
     totalGames: 19,
     mafiaWins: 10,

@@ -6,7 +6,6 @@ import Navbar from './components/navBar/NavigationBar'
 import PrivateRoute from './components/privateRoute/PrivateRoute'
 import Home from './components/Home'
 import Rules from './components/Rules'
-import GameRoom from './components/profilePage/host-join/GameRoom'
 
 import Profile from './components/profilePage/Profile'
 import AuthService from './components/auth/AuthService'

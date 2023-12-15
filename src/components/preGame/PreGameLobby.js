@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
-import jwt_decode from 'jwt-decode'
 import axios from 'axios'
 import './PreGameLobby.css'
 import Checkbox from '../CardUI/CheckBox'
-
+import AuthService from '../auth/AuthService'
 function PreGame () {
   const [hostId, setHostId] = useState('')
   const [players, setPlayers] = useState([])
@@ -54,10 +53,7 @@ function PreGame () {
   ])
   const [formSubmit, setFormSubmit] = useState(false)
   const { gameKey } = useParams()
-
-  const token = localStorage.getItem('user')
-
-  const userId = jwt_decode(token)
+  const userId = AuthService.getCurrentUser()
 
   useEffect(() => {
     axios
@@ -252,17 +248,16 @@ function PreGame () {
                 ))
               : 'no players available'}
           </div>
-          {hostId === userId.userId ? ( 
-          
+          {hostId === userId.userId ? (
             <Link to={{ pathname: `/table/${gameKey}` }}>
               {formSubmit ? (
-              <button
-                className='btn-start-game'
-                onClick={startGame}
-                disabled={!selectedChars.length}
-              >
-                Start Game
-              </button>
+                <button
+                  className='btn-start-game'
+                  onClick={startGame}
+                  disabled={!selectedChars.length}
+                >
+                  Start Game
+                </button>
               ) : (
                 <div className='btn-start-game'>
                   Please select the characters first
@@ -287,7 +282,7 @@ function PreGame () {
                   />
                 </div>
               ))}
-              {hostId === userId.userId ?(
+              {hostId === userId.userId ? (
                 <button className='btn-checkbox' type='submit'>
                   Submit
                 </button>
