@@ -18,6 +18,7 @@ function GameRoom () {
         lobbyName
       })
       setLobbyInfo(response.data)
+      window.location.reload();
     } catch (error) {
       console.error('Error hosting the game:', error)
     }

@@ -5,8 +5,8 @@ import jwt_decode from 'jwt-decode'
 import './Lobby.css'
 
 function UserLobbies () {
-  const [userLobbies, setUserLobbies] = useState([])
-  const [urLobbies, setUrLobbies] = useState([])
+  const [joinedLobbies, setJoinedLobbies] = useState([])
+  const [createdLobbies, setCreatedLobbies] = useState([])
 
   const token = localStorage.getItem('user')
   const userInfo = jwt_decode(token)
@@ -19,15 +19,27 @@ function UserLobbies () {
         userId
       })
       .then(response => {
-        setUserLobbies(response.data.joined)
-        setUrLobbies(response.data.hosted)
+        setJoinedLobbies(response.data.joined)
+        setCreatedLobbies(response.data.hosted)
       })
       .catch(error => {
         console.error('Error fetching user lobbies:', error)
       })
   }, [userId])
-  console.log('ur lobbbies', urLobbies)
 
+  function handleDelete (e) {
+    const gameKey = e
+    axios
+      .delete(`http://localhost:3500/api/game/table/${gameKey}`)
+
+      .then(response => {
+        console.log(response)
+        window.location.reload()
+      })
+      .catch(error => {
+        console.error('Error in deleting lobby:', error)
+      })
+  }
   return (
     <div className='container'>
       <div>
@@ -39,10 +51,11 @@ function UserLobbies () {
               <th>Game Key</th>
             </tr>
           </thead>
-          {urLobbies.length > 0 ? (
-            <tbody>
-              {urLobbies.map((lobby, index) => (
-                <tr key={index} className='border-line'>
+
+          <tbody className='border-line'>
+            {createdLobbies.length > 0 ? (
+              createdLobbies.map((lobby, index) => (
+                <tr key={index} >
                   <td>
                     <Link
                       to={
@@ -56,12 +69,22 @@ function UserLobbies () {
                     </Link>
                   </td>
                   <td>{lobby.gameKey}</td>
+                  <td>
+        <button
+          className='Delete-lobby'
+          onClick={() => handleDelete(lobby.gameKey)} // Use an arrow function
+        >
+          X
+        </button>
+      </td>
                 </tr>
-              ))}
-            </tbody>
-          ) : (
-            <p>No lobbies found.</p>
-          )}
+              ))
+            ) : (
+              <tr>
+                <td>No lobbies found</td>
+              </tr>
+            )}
+          </tbody>
         </table>
       </div>
 
@@ -74,10 +97,10 @@ function UserLobbies () {
               <th>Game Key</th>
             </tr>
           </thead>
-          {userLobbies.length > 0 ? (
-            <tbody>
-              {userLobbies.map((lobby, index) => (
-                <tr key={index} className='border-line'>
+          <tbody className='border-line'>
+            {joinedLobbies.length > 0 ? (
+              joinedLobbies.map((lobby, index) => (
+                <tr key={index} >
                   <td>
                     <Link
                       to={
@@ -92,11 +115,13 @@ function UserLobbies () {
                   </td>
                   <td>{lobby.gameKey}</td>
                 </tr>
-              ))}
-            </tbody>
-          ) : (
-            <p>No lobbies found.</p>
-          )}
+              ))
+            ) : (
+              <tr>
+                <td>No lobbies found</td>
+              </tr>
+            )}
+          </tbody>
         </table>
       </div>
     </div>

@@ -46,7 +46,6 @@ const App = () => {
         <Route element={<PrivateRoute />}>
           <Route path='/' element={<Home />} />
           <Route path='/rules' element={<Rules />} />
-          <Route path='/gameroom' element={<GameRoom />} />
           <Route path='/user' element={<Profile />} />
           <Route path='/lobby' element={<Lobby />} />
           <Route path='/play/:gameKey' element={<PreGameLobby />} />

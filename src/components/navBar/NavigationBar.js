@@ -22,9 +22,7 @@ const NavigationBar = ({ loggedIn, handleLogout }) => {
         )}
         {loggedIn && (
           <>
-            <li>
-              <Link to='/Gameroom'>GameRoom</Link>
-            </li>
+           
             <li>
               <Link to='/user'>Profile</Link>
             </li>
