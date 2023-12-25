@@ -12,7 +12,7 @@ import AuthService from './components/auth/AuthService'
 import Login from './components/auth/Login'
 import SignUp from './components/auth/Signup'
 
-import Character from '../src/components/CardUI/GameCard'
+import Character from './components/Chars'
 import Lobby from '../src/components/profilePage/host-join/Lobby'
 import Table from './components/table/Table'
 import PreGameLobby from './components/preGame/PreGameLobby'

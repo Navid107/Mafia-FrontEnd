@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 
 import './GameCard.css'
 import City from './pictures/City.png'
@@ -83,6 +83,7 @@ function GameCard ({ playerChar, playerName, death }) {
   const character = characters.find(
     char => char.id === (playerChar ? playerChar.id : null)
   )
+  console.log(playerChar)
   return (
     <div>
       {character ? (

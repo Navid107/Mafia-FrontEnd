@@ -19,7 +19,7 @@ const Profile = () => {
           <div className='profile-header'>
             <div className='avatar'>
               <img
-                src='https://cdn.wallpapersafari.com/97/93/ZyLAgn.jpg'
+                src='https://i1.sndcdn.com/avatars-000109494119-bioafx-t500x500.jpg'
                 alt='User Avatar'
               />
             </div>

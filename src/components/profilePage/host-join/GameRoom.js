@@ -11,7 +11,7 @@ function GameRoom () {
   
   const handleHostGame = async () => {
     try {
-      // Make an API request to create a new game and receive a game key
+      // request to create a new game and receive a game key
       const response = await axios.post('http://localhost:3500/api/game/host', {
         userId: userInfo.userId,
         lobbyName
@@ -24,7 +24,7 @@ function GameRoom () {
   }
   const joinGame = async () => {
     try {
-      // Make an API request to join a game using the game key and player name
+      // request to join a game using the game key and player name
       const response = await axios.post('http://localhost:3500/api/game/join', {
         gameKey: gameKey,
         userId: userInfo.userId,
