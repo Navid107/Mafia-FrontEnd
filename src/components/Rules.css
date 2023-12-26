@@ -1,0 +1,39 @@
+.mafia-rules-container {
+    font-family: 'Arial', sans-serif;
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 2px 2px 58px 2px rgba(180, 99, 99, 0.1);
+  }
+  
+  .mafia-rules-container > h1, h2 {
+    color: #fa02025f;
+  }
+  
+  .mafia-rules-container > h2 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+  }
+  
+  .mafia-rules-container > p, ul, ol {
+    margin-bottom: 15px;
+  }
+  
+  .mafia-rules-container > ul, ol {
+    padding-left: 20px;
+  }
+  
+  .mafia-rules-container > li {
+    margin-bottom: 8px;
+  }
+  
+  .mafia-rules-container >a {
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  .mafia-rules-container > a:hover {
+    text-decoration: underline;
+  }
+  

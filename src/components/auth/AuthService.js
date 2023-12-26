@@ -1,5 +1,5 @@
 import axios from "axios";
-import jwt_decode from 'jwt-decode'
+import jwtDecode from 'jwt-decode';
 const API_URL = "http://localhost:3500/api/auth/";
 
 const register = (name, email, password) => {
@@ -37,8 +37,13 @@ const getChars = () => {
 
 const getCurrentUser = () => {
   const token = JSON.parse(localStorage.getItem("user"));
-  const userInfo = jwt_decode(token)
-  return userInfo
+  try {
+    const decodedToken = jwtDecode(token);
+    return decodedToken;
+  } catch (error) {
+    console.error('Error decoding token:', error.message);
+    return null;
+  }
 };
 
 const AuthService = {
