@@ -10,6 +10,7 @@ function GameRoom () {
   const userInfo = AuthService.getCurrentUser()
   
   const handleHostGame = async () => {
+    if(lobbyName) {
     try {
       // request to create a new game and receive a game key
       const response = await axios.post('http://localhost:3500/api/game/host', {
@@ -20,6 +21,7 @@ function GameRoom () {
       window.location.reload();
     } catch (error) {
       console.error('Error hosting the game:', error)
+    }
     }
   }
   const joinGame = async () => {

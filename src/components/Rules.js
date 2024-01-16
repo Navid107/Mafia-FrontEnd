@@ -27,11 +27,25 @@ const MafiaRules = () => {
           <strong>Mafia:</strong> Eliminate all other players.
         </li>
         <li>
+          <strong>El Matador:</strong> Disables abilities.
+        </li>
+        <li>
+          <strong>Saul GoodMan:</strong> Buys the citizen with you abilities.
+        </li>
+      </ul>
+      <ul>
+        <li>
           <strong>Citizens:</strong> Eliminate all Mafia members and other
           threats.
         </li>
         <li>
           <strong>Detective:</strong> Identify the Mafia members.
+        </li>
+        <li>
+          <strong>Doctor:</strong> Saves members.
+        </li>
+        <li>
+          <strong>Sniper:</strong> Can shot and eliminate mafia members.
         </li>
       </ul>
 
@@ -73,10 +87,10 @@ const MafiaRules = () => {
               Doctor chooses a player to protect (if they are still alive).
             </li>
             <li>
-              Sniper selects a target to eliminate.
-              If the target is a Mafia member, that player will be eliminated.
-              However, if the Sniper mistakenly targets a Citizen, the Sniper
-              will be eliminated instead.
+              Sniper selects a target to eliminate. If the target is a Mafia
+              member, that player will be eliminated. However, if the Sniper
+              mistakenly targets a Citizen, the Sniper will be eliminated
+              instead.
             </li>
           </ul>
         </li>
@@ -88,8 +102,17 @@ const MafiaRules = () => {
               A vote is held to eliminate a player suspected of being Mafia.
             </li>
             <li>
-              The player with the most votes is eliminated (or no one if it's a
-              tie).
+              The player with the most votes is eliminated (or if it's a tie
+              then head/face between 2 players).
+            </li>
+            <li>
+              If there are 9 players in the game and the voting starts, everyone
+              can vote multiples except the person in accusation. From 8 votes a
+              player needs 5+ (more than half lf players) to get into court and
+              defend him/herself. The players who received court will defend
+              them self individually and after everyone goes to a nap and God
+              will read the defended players names and every player can vote
+              once and the most voted player will be eliminate from the game.
             </li>
           </ul>
         </li>

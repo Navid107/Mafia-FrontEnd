@@ -56,7 +56,6 @@
 .border-line:hover{
   background-color: rgba(72, 9, 190, 0.224);
 }
-/* Styles for screens between 768px and 1024px (typical landscape tablets) */
 @media screen and (max-width: 1024px) {
   .container {
     flex-direction: column;
@@ -64,11 +63,10 @@
   }
 }
 
-/* Styles for screens up to 768px (typical portrait mode tablets and phones) */
 @media screen and (max-width: 768px) {
   .container {
     flex-direction: column;
-    width: 90%;
+    width: 360px;
   }
 
   .profile-lobby {
@@ -79,10 +77,10 @@
     width: 100%;
   }
 }
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 380px) {
   .container {
     flex-direction: column;
-    width: 70%;
+    width: 90%;
   }
 
   .profile-lobby {

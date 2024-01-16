@@ -1,4 +1,3 @@
-
 .gameCard-design-container {
   width: 200px;
   height: 380px;
@@ -46,7 +45,6 @@
 
 .gameCard-character-info:active{
   border: 2px solid rgb(212, 16, 16);
-  /* Styles when the character is targeted */
 }
 
 

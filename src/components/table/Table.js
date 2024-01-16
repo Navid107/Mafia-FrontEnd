@@ -28,7 +28,7 @@ function GameTable () {
         )
         if (userId === response.data.host) {
           setHostValidation(true)
-          // Set your component state with the received API data
+          // Set component state with the received API data
           const nightCount = response.data.nights.length - 1
           setNightRound(nightCount)
           setGameOver(response.data.gameOver)
