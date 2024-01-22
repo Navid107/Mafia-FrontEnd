@@ -58,10 +58,11 @@ const SignUp = () => {
           <div className='field'>
             <input type='password' placeholder='Confirm password' required />
           </div>
-          <div className='field btn'>
-            
-            <button type='submit' value='Signup'>SignUp</button>
-          </div>
+
+          <button className='field-btn' type='submit' value='Signup'>
+            SignUp
+          </button>
+
           <div className='signup-link'>
             Already have an account? <a href='/login'>Login</a>
           </div>

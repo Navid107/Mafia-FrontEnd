@@ -41,15 +41,7 @@
     outline: none;
     border-color: #0516ff;
   }
-  
-  .field.btn button {
-    font-family: serif;
-    font-weight: bold;
-    font-size: 30px;
-    text-align: center;
-    background-color: rgba(64, 0, 255, 0.513);
-  }
-  
+
   .btn-layer {
     position: absolute;
     top: 0;
@@ -61,26 +53,23 @@
     transition: all 0.3s ease-in-out;
   }
   
-  .field input[type="submit"] {
-    opacity: 0;
+  .field-btn {
+    opacity: 2;
     z-index: 2;
-    cursor: pointer;
-    background: none;
     border: 2px solid #007bff;
-    padding: 10px 20px;
-    font-size: 18px;
-    color: #007bff;
-    border-radius: 25px;
-    transition: background 0.3s, color 0.3s;
+    margin-top: 20px;
+    padding: 10px 40%;
+    border-radius: 10px;
+    font-size: 20px;
+    background-color: black;
   }
   
-  .field.btn:hover .btn-layer {
+  .field-btn:hover .btn-layer {
     clip-path: circle(150% at 100% 0%);
   }
   
-  .field.btn:hover input[type="submit"] {
-    background: #007bff;
-    color: #fff;
+  .field-btn:hover {
+    background-color: #de111127;
   }
   
   .signup-link {
@@ -104,4 +93,11 @@
     border-radius: 5px;
     font-size: 14px;
   }
-  
+  @media only screen and (max-width: 600px) {
+    .form-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 60vh;
+    }
+  }
