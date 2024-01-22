@@ -59,8 +59,8 @@ const SignUp = () => {
             <input type='password' placeholder='Confirm password' required />
           </div>
           <div className='field btn'>
-            SignUp
-            <input type='submit' value='Signup' />
+            
+            <button type='submit' value='Signup'>SignUp</button>
           </div>
           <div className='signup-link'>
             Already have an account? <a href='/login'>Login</a>

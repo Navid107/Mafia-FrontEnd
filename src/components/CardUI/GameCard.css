@@ -1,5 +1,6 @@
 .gameCard-design-container {
-  width: 200px;
+  width: 100%; 
+  max-width: 200px;
   height: 380px;
   background-color: #000;
   border-radius: 10px;
@@ -8,25 +9,26 @@
   position: relative;
   overflow: hidden;
 }
-.gameCard-character-info{
+
+.gameCard-character-info {
   border-radius: 10px;
   text-align: center;
   padding: 5px;
   position: relative;
   overflow: hidden;
-  }
+}
+
 .gameCard-character-info > p {
   color: bisque;
   margin: 7px;
-  
-  }
+}
+
 .gameCard-character-image {
-  width: auto;
+  width: 100%; 
   height: 250px;
   object-fit: cover;
   border: 1px solid #0c30fa;
   box-shadow: 0 4px 6px rgba(241, 1, 1, 0.995);
-  
 }
 
 .gameCard-design-container.dead {
@@ -43,9 +45,18 @@
   color: red;
 }
 
-.gameCard-character-info:active{
+.gameCard-character-info:active {
   border: 2px solid rgb(212, 16, 16);
 }
 
 
+@media only screen and (max-width: 600px) {
+  .gameCard-design-container {
+    max-width: 100px; 
+    height: 250px;
+  }
 
+  .gameCard-character-image {
+    height: 150px;
+  }
+}

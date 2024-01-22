@@ -4,16 +4,16 @@
   max-width: 960px;
   margin: 0 auto;
   padding: 60px 0;
- 
 }
+
 .navbar-list {
   background-color: transparent;
 }
 
 .navbar ul {
   border-radius: 10px;
-  text-align: center; 
-  box-shadow: 0 0 35px rgba(253, 3, 3, 0.689)
+  text-align: center;
+  box-shadow: 0 0 35px rgba(253, 3, 3, 0.689);
 }
 
 .navbar ul li {
@@ -39,9 +39,24 @@
   color: rgba(5, 217, 250, 0.535);
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 600px) {
   .navbar {
-    display: flex;
-    flex-direction: column;
+    width: 100%;
+    padding: 20px 10px; 
+    box-sizing: border-box; 
+  }
+
+  .navbar ul {
+    padding: 0; 
+  }
+
+  .navbar ul li {
+    display: block;
+    margin-bottom: 10px; 
+  }
+
+  .navbar ul li a {
+    padding: 14px; 
+    font-size: 16px; 
   }
 }

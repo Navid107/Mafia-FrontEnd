@@ -28,7 +28,6 @@ const Login = () => {
     <div className="form-container">
       <div className="form-inner">
         <form className="login" onSubmit={handleSubmit}>
-          {/* Add the name field */}
           <div className="field">
             <input
               type="text"
@@ -47,8 +46,8 @@ const Login = () => {
               required
             />
           </div>
-          <div className="field btn"> Login
-            <input type="submit" value="Login" />
+          <div className="field btn"> 
+            <button type="submit" value="Login"> Login </button>
           </div>
           <div className="signup-link">
             Create an account <a href="/signup">Signup now</a>
