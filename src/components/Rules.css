@@ -7,13 +7,13 @@
     box-shadow: 2px 2px 58px 2px rgba(180, 99, 99, 0.1);
   }
   
-  .mafia-rules-container > h1, h2 {
-    color: #fa02025f;
+  .header-h1 {
+    text-align: center;
   }
-  
-  .mafia-rules-container > h2 {
+  .mafia-rules-container >  h2 {
     margin-top: 20px;
     margin-bottom: 10px;
+    color: #fa02025f;
   }
   
   .mafia-rules-container > p, ul, ol {
@@ -22,6 +22,7 @@
   
   .mafia-rules-container > ul, ol {
     padding-left: 20px;
+    list-style-type: disc;
   }
   
   .mafia-rules-container > li {

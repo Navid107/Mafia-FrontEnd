@@ -11,13 +11,13 @@ function GameTable () {
   const [nightRound, setNightRound] = useState(0)
   const [playerData, setPlayerData] = useState([])
   const [gameOver, setGameOver] = useState('')
-
+  const [loading , setLoading] = useState(false)
   const userId = AuthService.getCurrentUser().userId
  
   const { gameKey } = useParams()
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchData = async () => {   
       try {
         const response = await axios.post(
           `http://localhost:3500/api/game/table`,
@@ -43,7 +43,11 @@ function GameTable () {
           setPlayerData(response.data[0].char)
         }
       } catch (error) {
-        console.error('Error fetching user lobbies:', error)
+        if(loading !== true){
+          window.location.reload()
+          setLoading(true)
+        }
+        console.error('Error fetching user lobbies:', error)      
       }
     }
 

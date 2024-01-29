@@ -1,4 +1,5 @@
 import React from 'react'
+import '../table/Table.css';
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import GameCard from '../CardUI/GameCard'

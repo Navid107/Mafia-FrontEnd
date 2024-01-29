@@ -3,7 +3,7 @@ import './Rules.css'
 const MafiaRules = () => {
   return (
     <div className='mafia-rules-container'>
-      <h1>Mafia Game Rules</h1>
+      <h1 className='header-h1'>Mafia Game Rules</h1>
 
       <h2>Overview:</h2>
       <p>

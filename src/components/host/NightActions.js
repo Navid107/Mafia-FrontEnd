@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import '../table/Table.css';
 import axios from 'axios'
 import GameCard from '../CardUI/GameCard.js'
 const NightActions = ({
