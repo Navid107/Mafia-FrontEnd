@@ -1,27 +1,25 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import './Login.css'
-import AuthService from './AuthService'
+import AuthService from '../hooks/AuthService'
+
 const Login = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [message, setMessage] = useState('')
-
   const navigate = useNavigate()
-
+  
   const handleSubmit = async e => {
     e.preventDefault()
-    setMessage('')
-    // Create an object to send as the request body
-    AuthService.login(email, password).then(
-      () => {
+    // Call the login function from the AuthService
+    AuthService.login(email, password).then(response => {
+      if (response === true) {
         navigate('/user')
         window.location.reload()
-      },
-      error => {
+      } else {
         setMessage('Invalid Email and Password')
       }
-    )
+    })
   }
 
   return (

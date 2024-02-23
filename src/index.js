@@ -1,15 +1,12 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import './index.css';
 import App from './App';
-import io from 'socket.io-client';
 import reportWebVitals from './reportWebVitals';
 
-const socket = io('http://localhost:8080');
-
-ReactDOM.createRoot(document.getElementById('root')).render(
+createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <App socket={socket} />
+    <App />
   </React.StrictMode>
 );
 

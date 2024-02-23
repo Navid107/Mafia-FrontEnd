@@ -27,10 +27,14 @@ const MafiaRules = () => {
           <strong>Mafia:</strong> Eliminate all other players.
         </li>
         <li>
+          <strong>The GodFather:</strong> His identify with be false to
+          Detective.
+        </li>
+        <li>
           <strong>El Matador:</strong> Disables abilities.
         </li>
         <li>
-          <strong>Saul GoodMan:</strong> Buys the citizen with you abilities.
+          <strong>Saul GoodMan:</strong> Buys the citizen with no abilities.
         </li>
       </ul>
       <ul>
@@ -46,6 +50,10 @@ const MafiaRules = () => {
         </li>
         <li>
           <strong>Sniper:</strong> Can shot and eliminate mafia members.
+        </li>
+        <li>
+          <strong>BodyGuard:</strong> Has a shield and he can protect one player
+          or himself at night once.
         </li>
       </ul>
 

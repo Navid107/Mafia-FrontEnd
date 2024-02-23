@@ -1,21 +1,26 @@
 import React from 'react'
-import '../table/Table.css';
+import '../table/Table.css'
 import { useNavigate } from 'react-router-dom'
-import axios from 'axios'
 import GameCard from '../CardUI/GameCard'
+import useAxiosPrivate from '../auth/api/useAxiosPrivate'
 function GameOver ({ winningTeam, winningPlayers, gameKey }) {
+  const axiosPrivate = useAxiosPrivate()
   const navigate = useNavigate()
 
   const playAgain = () => {
-    axios
-      .delete(`http://localhost:3500/api/game/table/${gameKey}`)
-
+    //DELETE request for the table
+    axiosPrivate
+      .delete(`/game/table/${gameKey}`)
+      //If the request is successful,
       .then(response => {
-        console.log(response)
-        navigate('/user')
+        if (response) {
+          navigate('/user') //Navigate to the '/user' route
+        }
       })
+      // If an error occurs, log the error to the console
       .catch(error => {
         console.error('Error in deleting lobby:', error)
+        navigate('/login')
       })
   }
   return (

@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
-import '../table/Table.css';
-import axios from 'axios'
+import '../table/Table.css'
 import GameCard from '../CardUI/GameCard.js'
+import useAxiosPrivate from '../auth/api/useAxiosPrivate'
+import { useNavigate } from 'react-router-dom'
 const NightActions = ({
   characterData,
   hostId,
@@ -15,133 +16,158 @@ const NightActions = ({
   const [mafiaShot, setMafiaShot] = useState('')
   const [sniperShot, setSniperShot] = useState('')
   const [saulGoodMan, setSaulGoodMan] = useState('')
-  const [votedOut, setVotedOut] = useState('')
+  const axiosPrivate = useAxiosPrivate()
+  const navigate = useNavigate()
+  // Sorting character data based on character ID
   characterData.sort((a, b) => a.char.id - b.char.id)
-  // Determine the winning team
-  const winningTeam = gameOver
-  console.log(winningTeam, 'winning')
 
+  // Determine the winning team
+  const winningTeam = gameOver // Assigning the gameOver state to winningTeam
+
+    /* "handleCheckboxChange" This is the night action checkBox,
+      first GOD wakes up the player with ability player picks the target
+      'GOD will pick that target by clicking on its character card'
+      Then GOD checks the checkBox of the player with ability
+    */
   const handleCheckboxChange = charId => {
+    // If the selectedAbilities array includes the charId
     if (selectedAbilities.includes(charId)) {
+      // Undo the voting kill
       if (charId === 11) {
         handleUndoVotingKill()
       }
+      // Remove charId from selectedAbilities and reset targetId
       setSelectedAbilities(selectedAbilities.filter(id => id !== charId))
       setTargetId(null)
     } else {
+      // If charId is 3, set SaulGoodMan to targetId
       if (charId === 3) {
         setSaulGoodMan(targetId)
-        console.log('goodman', targetId)
-      } else if (charId === 6) {
+      }
+      // If charId is 6, set SniperShot to targetId
+      else if (charId === 6) {
         setSniperShot(targetId)
-        console.log('sniper', targetId)
-      } else if (charId === 11) {
+      }
+      // If charId is 11, call handleVotingKill function
+      else if (charId === 11) {
         handleVotingKill()
-      } else if (charId === 12) {
+      }
+      // If charId is 12, set MafiaShot to targetId
+      else if (charId === 12) {
         setMafiaShot(targetId)
       }
+      // Add charId to selectedAbilities
       setSelectedAbilities([...selectedAbilities, charId])
     }
   }
 
+  // Function to handle voting kill
   const handleVotingKill = () => {
+    // Find the character to be voted out based on targetId
     const votedOutCharacter = characterData.find(
       character => character.playerId === targetId
     )
-
     if (votedOutCharacter) {
       votedOutCharacter.char.death = true
     }
   }
+
+  // Function to handle undo voting kill
   const handleUndoVotingKill = () => {
     const votedOutCharacter = characterData.find(
       character => character.playerId === targetId
     )
-
     if (votedOutCharacter) {
       votedOutCharacter.char.death = false
     }
     setTargetId(null)
   }
 
+  // Getting the targeted playerID
   const handleGetTarget = playerId => {
+    // Set targeted player
     setTargetId(playerId)
   }
 
+  // Function to handle night action form
   const handleNightAction = e => {
+    // If MafiaShot is present
     if (mafiaShot) {
+      // Find the character targeted by MafiaShot and mark them as dead
       const killedPlayer = characterData.find(
         character => character.playerId === mafiaShot
       )
-      console.log(killedPlayer)
       if (killedPlayer) {
         killedPlayer.char.death = true
       }
+      //Mafia can shots to buy or shot, if they shot, SaulGoodMan cant buy
       setSaulGoodMan(null)
     }
+    // If no MafiaShot but SaulGoodMan is present
     if (!mafiaShot && saulGoodMan) {
-      const mafiaPlayers = characterData.filter(
+      // Find all Mafia players and check if a dead Mafia player exists
+      const mafiaChars = characterData.filter(
         character => character.char.side === 'mafia'
       )
-
-      // Find a dead Mafia player among the Mafia players
-      const deathMafia = mafiaPlayers.find(
+      const deathMafiaChar = mafiaChars.find(
         character => character.char.death === true
       )
-
-      if (deathMafia) {
+      // If a dead Mafia player exists, then check if saulGoodMan's target
+      if (deathMafiaChar) {
+        //Find the targeted player
         const citizen = characterData.find(
           character => character.playerId === saulGoodMan
         )
-
+        // if the targeted player is regular citizen
         if (citizen && citizen.char.id === 9) {
-          // Update the information of the dead Mafia player
-          deathMafia.char.ability = false
-          deathMafia.char.death = false
-          deathMafia.char.id = 10
-          deathMafia.char.name = 'Regular Mafia'
-          deathMafia.char.side = 'mafia'
+          //Change the role of the target player to mafia
+          citizen.char.ability = false
+          citizen.char.death = false
+          citizen.char.id = 10
+          citizen.char.name = 'Regular Mafia'
+          citizen.char.side = 'mafia'
+        } else {
+          //If the targeted player is not regular citizen, set saulGoodMan to empty string
+          return setSaulGoodMan('')
         }
       }
     }
-
+    //If SniperShot is present
     if (sniperShot) {
+      // Find the Sniper and the target player
       const sniper = characterData.find(character => character.char.id === 6)
-
       const sniperTarget = characterData.find(
         character => character.playerId === sniperShot
       )
-
+      // If the target is Mafia, mark them as dead; otherwise, mark the Sniper as dead
       if (sniperTarget.char.side === 'mafia') {
-        // Mafia dies
         sniperTarget.char.death = true
       } else {
-        // Sniper dies
         sniper.char.death = true
       }
     }
-
-    axios
-      .post(`http://localhost:3500/api/game/table-update`, {
+    // Send a request update the game table with the Night Action Form
+    axiosPrivate
+      .post(`/game/table-update`, {
         gameKey,
         hostId: hostId,
         players: characterData
       })
       .then(response => {
+        // If the update is successful, reset selected abilities and clear certain state variables
         if (response.data.message === 'Game updated successfully') {
           setSelectedAbilities([])
           setMafiaShot('')
           setSniperShot('')
           setSaulGoodMan('')
-          setVotedOut('')
         }
       })
       .catch(error => {
-        console.error('Error updating the game:', error)
+        console.error('Error updating the game:', error)// Log any errors to the console
+        navigate('/login')
       })
   }
 
-  console.log('playerId', targetId)
   return (
     <div className={`host-container-card ${death ? 'dead' : ''}`}>
       <div className={`host-player-card `}>

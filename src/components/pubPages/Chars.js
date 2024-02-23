@@ -1,5 +1,5 @@
 import React from 'react'
-import GameCard from './CardUI/GameCard.js'
+import GameCard from '../CardUI/GameCard.js'
 function Chars () {
   const characters = [
     {

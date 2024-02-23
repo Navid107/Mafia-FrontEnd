@@ -1,40 +1,42 @@
 import React, { useEffect, useState } from 'react'
-import axios from 'axios'
 import { Link } from 'react-router-dom'
 import './Lobby.css'
-import AuthService from '../../auth/AuthService'
+import useAxiosPrivate from '../../auth/api/useAxiosPrivate'
+import { useNavigate } from 'react-router-dom'
+
 function UserLobbies () {
   const [joinedLobbies, setJoinedLobbies] = useState([])
   const [createdLobbies, setCreatedLobbies] = useState([])
-  const userId = AuthService.getCurrentUser().userId
-
+  const axiosPrivate = useAxiosPrivate()
+  const navigate = useNavigate()
   useEffect(() => {
-    // Make an API request to retrieve the user's created lobbies
-    axios
-      .post(`http://localhost:3500/api/game/lobbies`, {
-        userId
-      })
+    // Fetch joined and hosted lobbies data
+    axiosPrivate
+      .post('/game/lobbies')
       .then(response => {
         setJoinedLobbies(response.data.joined)
         setCreatedLobbies(response.data.hosted)
       })
       .catch(error => {
         console.error('Error fetching user lobbies:', error)
+        navigate('/login')
+        
       })
-  }, [userId])
+  },[axiosPrivate]);
 
   function handleDeleteLobby (e) {
-    axios
-      .delete(`http://localhost:3500/api/game/table/${e}`)
-
-      .then(response => {
-        console.log(response)
+    // Get the value (gameKey) of the lobby to delete
+    const deleteLobby = e.target.value
+    axiosPrivate
+      .delete(`/game/table/${deleteLobby}`)
+      .then(() => {
         window.location.reload()
       })
       .catch(error => {
         console.error('Error in deleting lobby:', error)
       })
   }
+
   return (
     <div className='container'>
       <div>
@@ -67,7 +69,8 @@ function UserLobbies () {
                   <td>
                     <button
                       className='Delete-lobby'
-                      onClick={() => handleDeleteLobby(lobby.gameKey)}
+                      value={lobby.gameKey}
+                      onClick={handleDeleteLobby}
                     >
                       X
                     </button>

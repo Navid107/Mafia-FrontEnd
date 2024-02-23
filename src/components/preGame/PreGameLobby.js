@@ -1,12 +1,18 @@
 import React, { useEffect, useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
-import axios from 'axios'
 import './PreGameLobby.css'
 import Checkbox from '../CardUI/CheckBox'
-import AuthService from '../auth/AuthService'
-function PreGame () {
+import AuthService from '../auth/hooks/AuthService'
+import useAxiosPrivate from '../auth/api/useAxiosPrivate'
+import { useNavigate } from 'react-router-dom'
+function PreGameLobby () {
   const [hostId, setHostId] = useState('')
   const [players, setPlayers] = useState([])
+  const [formSubmit, setFormSubmit] = useState(false)
+  const { gameKey } = useParams()
+  const userId = AuthService.getCurrentUser()
+  const axiosPrivate = useAxiosPrivate()
+  const navigate = useNavigate()
   const [selectedChars, setSelectedChars] = useState([
     {
       id: 1,
@@ -51,24 +57,26 @@ function PreGame () {
       death: false
     }
   ])
-  const [formSubmit, setFormSubmit] = useState(false)
-  const { gameKey } = useParams()
-  const userId = AuthService.getCurrentUser()
 
   useEffect(() => {
-    axios
-      .post(`http://localhost:3500/api/game/lobby`, { gameKey })
+    // Fetch lobby data based on gameKey 
+    axiosPrivate
+      .post(`/game/lobby`, { gameKey })
       .then(response => {
         if (response.data && response.data[0]) {
+          // Set players and hostId based on response data
           setPlayers(response.data[0].players)
           setHostId(response.data[0].host)
         }
       })
       .catch(error => {
         console.error('Error fetching user lobbies:', error)
+        navigate('/login')
       })
+    // eslint-disable-next-line
   }, [gameKey])
 
+ // Array of available characters with their properties
   const availableChars = [
     {
       id: 1,
@@ -136,39 +144,40 @@ function PreGame () {
     }
   ]
 
+  // Function to handle checkbox change for character selection
   const handleCheckboxChange = character => {
+    //These are the base characters which unchangeable
     const isAlwaysSelected = [1, 2, 4, 5, 6, 8].includes(character.id)
-
+    // If the character is not always selected
     if (!isAlwaysSelected) {
       setSelectedChars(prevSelectedChars => {
+        // Check if the character is already selected
         const isAlreadySelected = prevSelectedChars.some(
           e => e.id === character.id
         )
+        // If already selected, remove it from the selected characters;
+        // otherwise, add it
         return isAlreadySelected
           ? prevSelectedChars.filter(e => e.id !== character.id)
           : [...prevSelectedChars, character]
       })
     }
   }
-
+  // Function to start the game with selected characters
   const startGame = () => {
-    axios
-      .post(`http://localhost:3500/api/game/start`, {
+    try {
+    axiosPrivate
+      .post(`/game/start`, {
         gameKey,
         hostId,
         selectedChars
       })
-      .then(response => {
-        if (
-          response.data.message ===
-          'Game started successfully with assigned characters'
-        ) {
-          // Handle success, e.g., redirect to the game table
-        }
-      })
-      .catch(error => {
+    }
+      catch(error) {
         console.error('Error starting the game:', error)
-      })
+        navigate('/login')
+      }
+    // default characters
     setSelectedChars([
       {
         id: 1,
@@ -217,13 +226,12 @@ function PreGame () {
 
   const handleSubmit = e => {
     e.preventDefault()
-
+    //Check if players length and character length is equal
     if (
       players.length === selectedChars.length ||
       (selectedChars.length === 9 && players.length > 9)
     ) {
       setFormSubmit(true)
-      console.log('Selected Characters:', selectedChars)
     } else {
       alert('Please make sure you have selected characters for all players.')
     }
@@ -297,4 +305,4 @@ function PreGame () {
   )
 }
 
-export default PreGame
+export default PreGameLobby
