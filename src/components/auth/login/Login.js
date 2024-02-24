@@ -11,6 +11,7 @@ const Login = () => {
   
   const handleSubmit = async e => {
     e.preventDefault()
+    
     // Call the login function from the AuthService
     AuthService.login(email, password).then(response => {
       if (response === true) {

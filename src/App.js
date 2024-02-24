@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 
 import './App.css'
@@ -19,7 +19,7 @@ import Table from './components/table/Table'
 
 const App = () => {
   const user = AuthService.getCurrentUser()
-    
+
   return (
     <Router>
       <Navbar loggedIn={user} handleLogout={(e) => AuthService.logout()} />
@@ -30,9 +30,7 @@ const App = () => {
         <Route path='/login' element={<Login />} />
         <Route path='/signup' element={<SignUp />} />
 
-        <Route element={<PrivateRoute />}>
-          <Route path='/' element={<Home />} />
-          <Route path='/rules' element={<Rules />} />
+        <Route element={<PrivateRoute props={user} />}>
           <Route path='/user' element={<Profile />} />
           <Route path='/lobby' element={<Lobby />} />
           <Route path='/play/:gameKey' element={<PreGameLobby />} />

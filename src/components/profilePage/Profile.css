@@ -24,8 +24,9 @@
   width: 100px;
   height: 100px;
   border-radius: 50%;
+  background-color: antiquewhite;
   object-fit: cover;
-  border: 2px solid #fff;
+  border: 2px solid #0408f6;
   box-shadow: 0 2px 4px rgba(182, 20, 20, 0.908);
 }
 

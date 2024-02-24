@@ -21,6 +21,8 @@ function GameOver ({ winningTeam, winningPlayers, gameKey }) {
       .catch(error => {
         console.error('Error in deleting lobby:', error)
         navigate('/login')
+        localStorage.removeItem('accessToken')
+        window.location.reload()
       })
   }
   return (

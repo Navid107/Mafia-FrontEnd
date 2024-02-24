@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import './PreGameLobby.css'
 import Checkbox from '../CardUI/CheckBox'
+import Avatar from '../CardUI/pictures/avatar.png'
 import AuthService from '../auth/hooks/AuthService'
 import useAxiosPrivate from '../auth/api/useAxiosPrivate'
 import { useNavigate } from 'react-router-dom'
@@ -72,6 +73,8 @@ function PreGameLobby () {
       .catch(error => {
         console.error('Error fetching user lobbies:', error)
         navigate('/login')
+        localStorage.removeItem('accessToken')
+        window.location.reload()
       })
     // eslint-disable-next-line
   }, [gameKey])
@@ -176,6 +179,8 @@ function PreGameLobby () {
       catch(error) {
         console.error('Error starting the game:', error)
         navigate('/login')
+        localStorage.removeItem('accessToken')
+        window.location.reload()
       }
     // default characters
     setSelectedChars([
@@ -248,7 +253,7 @@ function PreGameLobby () {
               ? players.map((player, index) => (
                   <div key={index} className='user-avatar'>
                     <img
-                      src='https://cdn.wallpapersafari.com/97/93/ZyLAgn.jpg'
+                      src={Avatar}
                       alt='User Avatar'
                     />
                     <p>{player.name}</p>

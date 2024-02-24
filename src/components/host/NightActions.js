@@ -165,6 +165,8 @@ const NightActions = ({
       .catch(error => {
         console.error('Error updating the game:', error)// Log any errors to the console
         navigate('/login')
+        localStorage.removeItem('accessToken')
+        window.location.reload()
       })
   }
 

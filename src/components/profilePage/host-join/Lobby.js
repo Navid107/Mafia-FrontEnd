@@ -20,6 +20,8 @@ function UserLobbies () {
       .catch(error => {
         console.error('Error fetching user lobbies:', error)
         navigate('/login')
+        localStorage.removeItem('accessToken')
+        window.location.reload()
         
       })
   },[axiosPrivate]);

@@ -10,18 +10,19 @@ function GameRoom () {
   const axiosPrivate = useAxiosPrivate()
   const navigate = useNavigate()
   const handleHostGame = async () => {
-      try {
-        if (!lobbyName) {
-          return 'Lobby name was not provided'
-        }
-        // request to create a new game and receive a game key
-        await axiosPrivate.post(`/game/host`, { lobbyName })
-        window.location.reload()
-      } catch (error) {
-        console.error('Error hosting the game:', error)
-        navigate('/login')
+    try {
+      if (!lobbyName) {
+        return 'Lobby name was not provided'
       }
-    
+      // request to create a new game and receive a game key
+      await axiosPrivate.post(`/game/host`, { lobbyName })
+      window.location.reload()
+    } catch (error) {
+      console.error('Error hosting the game:', error)
+      navigate('/login')
+      localStorage.removeItem('accessToken')
+      window.location.reload()
+    }
   }
   const joinGame = async () => {
     try {
@@ -35,6 +36,8 @@ function GameRoom () {
     } catch (err) {
       console.error('Error joining the game:', err)
       navigate('/login')
+      localStorage.removeItem('accessToken')
+      window.location.reload()
     }
   }
 

@@ -3,9 +3,11 @@ import './Profile.css'
 import Lobbies from './host-join/Lobby.js'
 import GameRoom from './host-join/GameRoom.js'
 import AuthService from '../auth/hooks/AuthService'
-const Profile = () => {
-  const userInfo = AuthService.getCurrentUser()
+import Avatar from '../CardUI/pictures/avatar.png'
 
+const Profile = () => {
+  const userInfo = AuthService.getCurrentUser().user
+  console.log(userInfo)
   const gameData = {
     totalGames: 19,
     mafiaWins: 10,
@@ -17,11 +19,11 @@ const Profile = () => {
         <div className='profile-header'>
           <div className='avatar'>
             <img
-              src='https://i1.sndcdn.com/avatars-000109494119-bioafx-t500x500.jpg'
+              src={Avatar}
               alt='User Avatar'
             />
           </div>
-          <div className='user-name'>{userInfo.user}</div>
+          <div className='user-name'>{userInfo}</div>
         </div>
         <div className='profile-stats'>
           {Object.entries(gameData).map(([key, value]) => (

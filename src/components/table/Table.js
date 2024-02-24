@@ -50,8 +50,10 @@ function GameTable () {
           window.location.reload()
           setLoading(true)
         }
-        navigate('/login')
         console.error('Error fetching user lobbies:', error)
+        navigate('/login')
+        localStorage.removeItem('accessToken')
+        window.location.reload()
       }
     }
 
