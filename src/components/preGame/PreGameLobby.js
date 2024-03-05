@@ -31,7 +31,7 @@ function PreGameLobby () {
     },
     {
       id: 4,
-      name: 'Dr',
+      name: 'Dr.Watson',
       side: 'citizen',
       ability: true,
       death: false
@@ -60,7 +60,7 @@ function PreGameLobby () {
   ])
 
   useEffect(() => {
-    // Fetch lobby data based on gameKey 
+    // Fetch lobby data based on gameKey
     axiosPrivate
       .post(`/game/lobby`, { gameKey })
       .then(response => {
@@ -73,13 +73,11 @@ function PreGameLobby () {
       .catch(error => {
         console.error('Error fetching user lobbies:', error)
         navigate('/login')
-        localStorage.removeItem('accessToken')
-        window.location.reload()
       })
     // eslint-disable-next-line
   }, [gameKey])
 
- // Array of available characters with their properties
+  // Array of available characters with their properties
   const availableChars = [
     {
       id: 1,
@@ -104,7 +102,7 @@ function PreGameLobby () {
     },
     {
       id: 4,
-      name: 'Dr',
+      name: 'Dr.Watson',
       side: 'citizen',
       ability: true,
       death: false
@@ -169,19 +167,17 @@ function PreGameLobby () {
   // Function to start the game with selected characters
   const startGame = () => {
     try {
-    axiosPrivate
-      .post(`/game/start`, {
+      axiosPrivate.post(`/game/start`, {
         gameKey,
         hostId,
         selectedChars
       })
+    } catch (error) {
+      console.error('Error starting the game:', error)
+      //navigate('/login')
+      //localStorage.removeItem('accessToken')
+      //window.location.reload()
     }
-      catch(error) {
-        console.error('Error starting the game:', error)
-        navigate('/login')
-        localStorage.removeItem('accessToken')
-        window.location.reload()
-      }
     // default characters
     setSelectedChars([
       {
@@ -200,7 +196,7 @@ function PreGameLobby () {
       },
       {
         id: 4,
-        name: 'Dr',
+        name: 'Dr.Watson',
         side: 'citizen',
         ability: true,
         death: false
@@ -228,7 +224,10 @@ function PreGameLobby () {
       }
     ])
   }
-
+  const formValidation = e => {
+    e.preventDefault()
+    return alert('You Must Select The Characters First ')
+  }
   const handleSubmit = e => {
     e.preventDefault()
     //Check if players length and character length is equal
@@ -247,15 +246,12 @@ function PreGameLobby () {
       <h4 className='subtitle'>Please wait for the God to start the game!</h4>
       <div className='player-char-container'>
         <div className='players-container'>
-          <h2>Player List</h2>
+          <h2>Players List</h2>
           <div className='player-list'>
             {players.length > 0
               ? players.map((player, index) => (
                   <div key={index} className='user-avatar'>
-                    <img
-                      src={Avatar}
-                      alt='User Avatar'
-                    />
+                    <img src={Avatar} alt='User Avatar' />
                     <p>{player.name}</p>
                   </div>
                 ))
@@ -272,9 +268,9 @@ function PreGameLobby () {
                   Start Game
                 </button>
               ) : (
-                <div className='btn-start-game'>
-                  Please select the characters first
-                </div>
+                <button className='btn-start-game' onClick={formValidation}>
+                  Select The Characters First
+                </button>
               )}
             </Link>
           ) : (
@@ -282,11 +278,11 @@ function PreGameLobby () {
           )}
         </div>
         <div className='char-checkbox-container'>
-          <h2 className='char-title'>Available Characters</h2>
+          <h2>Available Characters</h2>
           <div className='char-checkbox'>
-            <form onSubmit={handleSubmit}>
+            <form className='checkBox-form' onSubmit={handleSubmit}>
               {availableChars.map(character => (
-                <div key={character.id} className='char-row'>
+                <div key={character.id}>
                   <Checkbox
                     character={character}
                     checked={selectedChars.some(e => e.id === character.id)}
@@ -295,14 +291,14 @@ function PreGameLobby () {
                   />
                 </div>
               ))}
-              {hostId === userId.userId ? (
-                <button className='btn-checkbox' type='submit'>
-                  Submit
-                </button>
-              ) : (
-                'Please wait for God to start'
-              )}
             </form>
+            {hostId === userId.userId ? (
+              <button className='btn-checkbox' onClick={handleSubmit}>
+                Submit
+              </button>
+            ) : (
+              'Please wait for God to start'
+            )}
           </div>
         </div>
       </div>

@@ -1,34 +1,56 @@
 .gameCard-design-container {
-  width: 100%; 
-  max-width: 200px;
-  height: 350px;
+  width: 90%; 
+  max-width: 130px;
+  height: 320px;
   background-color: #000;
   border-radius: 10px;
   text-align: center;
   padding: 5px;
   position: relative;
   overflow: hidden;
+  cursor: pointer;
+
 }
 
 .gameCard-character-info {
   border-radius: 10px;
+  width: 100%;
   text-align: center;
-  padding: 5px;
+  height: auto;
+  margin: 0 auto;
+  align-items: center;
+  justify-content: center;
   position: relative;
   overflow: hidden;
+  display: block;
+  box-shadow: 0px 0px 10px 0px rgba(250, 236, 112, 0.314);
 }
-
 .gameCard-character-info > p {
+  font-family: Impact, 'Arial Narrow Bold', sans-serif;
+  padding: 7px;
+  margin: auto;
   color: bisque;
-  margin: 7px;
+}
+.gameCard-character-info > span{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  font-weight: bold;
+  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif ;
+  height: 40px;
+  padding: 5px;
+  margin: 0 auto;
 }
 
 .gameCard-character-image {
-  width: 100%; 
-  height: 250px;
-  object-fit: cover;
+  width: 85%; 
+  height: 70%;
+  object-fit:filled;
   border: 1px solid #0c30fa;
+  border-radius: 5px;
   box-shadow: 0 4px 6px rgba(241, 1, 1, 0.995);
+  margin:0 auto;
 }
 
 .gameCard-design-container.dead {
@@ -44,12 +66,22 @@
   font-size: 24px;
   color: red;
 }
-
-.gameCard-character-info:active {
-  border: 2px solid rgb(212, 16, 16);
+.active-player{
+  background-color: rgb(121, 23, 128);
+  border: 2px solid rgba(247, 1, 239, 0.606);
+  box-shadow: 1px 1px 15px 3px rgb(11, 3, 255);
 }
 
+@media only screen and (max-width: 1024px) {
+  .gameCard-design-container {
+    max-width: 110px; 
+    height: 270px;
+  }
 
+  .gameCard-character-image {
+    height: 100%;
+  }
+}
 @media only screen and (max-width: 600px) {
   .gameCard-design-container {
     max-width: 100px; 
@@ -57,6 +89,6 @@
   }
 
   .gameCard-character-image {
-    height: 150px;
+    height: 100%;
   }
 }

@@ -1,5 +1,6 @@
 import React from 'react'
 import './Rules.css'
+import Footer from '../CardUI/Footer'
 const MafiaRules = () => {
   return (
     <div className='mafia-rules-container'>
@@ -16,57 +17,43 @@ const MafiaRules = () => {
       <ul>
         <li>Recommended for 6 or more players.</li>
         <li>
-          Players are assigned one of several roles: Mafia, Detective, Doctor,
-          and Citizens (or Villagers).
+          Players are assigned one of two groups: Mafia or Citizen.
         </li>
       </ul>
 
-      <h2>Objective:</h2>
+      <h2>Characters:</h2>
       <ul>
+      
         <li>
-          <strong>Mafia:</strong> Eliminate all other players.
+          <strong>The GodFather:</strong> Conceals their true identity from the Detective and wearing a vest.
         </li>
         <li>
-          <strong>The GodFather:</strong> His identify with be false to
-          Detective.
+          <strong>El Matador:</strong> Can disable abilities.
         </li>
         <li>
-          <strong>El Matador:</strong> Disables abilities.
+          <strong>Saul GoodMan:</strong> Purchases citizens without abilities.
         </li>
         <li>
-          <strong>Saul GoodMan:</strong> Buys the citizen with no abilities.
+          <strong>Mafia:</strong> Does not have ability.
         </li>
       </ul>
       <ul>
         <li>
-          <strong>Citizens:</strong> Eliminate all Mafia members and other
-          threats.
+          <strong>Detective:</strong> Involves identifying a member.
         </li>
         <li>
-          <strong>Detective:</strong> Identify the Mafia members.
-        </li>
-        <li>
-          <strong>Doctor:</strong> Saves members.
+          <strong>Doctor:</strong> Saves a member each night.
         </li>
         <li>
           <strong>Sniper:</strong> Can shot and eliminate mafia members.
         </li>
         <li>
-          <strong>BodyGuard:</strong> Has a shield and he can protect one player
-          or himself at night once.
+          <strong>BodyGuard:</strong> Once receives notification of their protected player's assailant.
+        </li>
+        <li>
+          <strong>Citizens:</strong> Does not have ability.
         </li>
       </ul>
-
-      <h2>Setup:</h2>
-      <ol>
-        <li>
-          <strong>Roles Distribution:</strong> Assign roles to players secretly.
-        </li>
-        <li>
-          <strong>Night Phase:</strong> The game alternates between night and
-          day phases.
-        </li>
-      </ol>
 
       <h2>Gameplay:</h2>
       <ol>
@@ -78,27 +65,30 @@ const MafiaRules = () => {
               goodman could use his ability.
             </li>
             <li>
-              El Matador has the ability to disable a player's special ability
+            <strong>El Matador:</strong> has the ability to disable a player's special ability
               for the night. If successful, the targeted player will be unable
               to use their ability during that night phase.
             </li>
 
             <li>
-              Saul Goodman has the ability to buy a regular Citizen each night(
+            <strong>Saul GoodMan:</strong> has the ability to buy a regular Citizen each night(
               if mafia loses a member and don't shot).
             </li>
             <li>
-              Detective chooses a player to investigate (if they are still
+            <strong>Detective:</strong> chooses a player to investigate (if they are still
               alive).
             </li>
             <li>
-              Doctor chooses a player to protect (if they are still alive).
+            <strong>Doctor:</strong> chooses a player to protect (if they are still alive).
             </li>
             <li>
-              Sniper selects a target to eliminate. If the target is a Mafia
+            <strong>Sniper:</strong>  selects a target to eliminate. If the target is a Mafia
               member, that player will be eliminated. However, if the Sniper
               mistakenly targets a Citizen, the Sniper will be eliminated
               instead.
+            </li>
+            <li>
+              <strong>BodyGuard:</strong> With nightly protection ability, selects a player to safeguard; upon Mafia elimination, the Bodyguard receives notification from a divine source regarding the assailant, adding intrigue and strategic depth to gameplay dynamics.
             </li>
           </ul>
         </li>
@@ -129,33 +119,12 @@ const MafiaRules = () => {
       <h2>Winning:</h2>
       <ul>
         <li>
-          <strong>Mafia:</strong> Win if they eliminate all other players.
+          <strong>Mafia:</strong> Win if Mafia has an equal or greater number of members compared to the Citizens.
         </li>
         <li>
           <strong>Citizens:</strong> Win if they eliminate all Mafia members.
         </li>
-        <li>
-          <strong>Detective:</strong> Wins with the Citizens if they survive and
-          the Mafia is eliminated.
-        </li>
       </ul>
-
-      <h2>Special Roles (Optional):</h2>
-      <ul>
-        <li>Godfather: Immune to Detective investigations.</li>
-        <li>
-          Mafia Doctor: Can protect Mafia members but cannot protect the same
-          member consecutively.
-        </li>
-      </ul>
-
-      <h2>Variations:</h2>
-      <p>
-        There are many variations and additional roles that can be added to the
-        game, such as multiple Mafia factions, additional special roles, or
-        special abilities for certain roles.
-      </p>
-
       <h2>Strategy Tips:</h2>
       <ul>
         <li>
@@ -170,11 +139,7 @@ const MafiaRules = () => {
           role.
         </li>
       </ul>
-
-      <p>
-        The game continues with alternating night and day phases until one team
-        achieves its objective.
-      </p>
+      <Footer />
     </div>
   )
 }

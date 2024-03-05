@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 
 import './App.css'
@@ -7,6 +7,7 @@ import PrivateRoute from './components/privateRoute/PrivateRoute'
 import Home from './components/pubPages/Home'
 import Rules from './components/pubPages/Rules'
 import Character from './components/pubPages/Chars'
+import Gameplay from './components/pubPages/GamePlay'
 
 import Profile from './components/profilePage/Profile'
 import AuthService from './components/auth/hooks/AuthService'
@@ -27,6 +28,7 @@ const App = () => {
         <Route path='/' element={<Home />} />
         <Route path='/rules' element={<Rules />} />
         <Route path='/character' element={<Character />} />
+        <Route path='/gameplay' element={<Gameplay />} />
         <Route path='/login' element={<Login />} />
         <Route path='/signup' element={<SignUp />} />
 

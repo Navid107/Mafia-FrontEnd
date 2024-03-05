@@ -1,0 +1,162 @@
+.cards-container{
+  width: 100%;
+  color: antiquewhite;
+  display: flex;
+  flex-wrap: wrap;
+  margin: auto;
+}
+.cards-wrapper{
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding-left: 30px;
+  align-items: center;
+}
+.character-container {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: center;
+}
+.sides-mafia {
+  font-size: 30px;
+  font-weight: bold;
+  padding: 10px;
+  margin:0 auto;
+  color: rgba(255, 0, 0, 0.831);
+}
+
+.sides-citizen {
+  font-size: 30px;
+  font-weight: bold;
+  padding: 10px;
+  margin:0 auto;
+  color: rgba(0, 255, 47, 0.75);
+}
+
+.detailUI-container {
+position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-width: 600px;
+  height: 550px;
+  margin: 0 auto;
+  border-radius: 10px;
+  box-shadow: 0px 0px 50px 1px rgba(2, 218, 6, 0.607);
+}
+.detailUI-container.mafia {
+  box-shadow: 0px 0px 50px 1px rgba(241, 1, 1, 0.506);
+  margin: 0 auto;
+}
+.char-layout {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  max-width: 100%;
+  padding: 10px;
+  margin: 0 auto;
+}
+.detailUI-image img {
+  width: 200px;
+  height: 100%;
+  object-fit: cover;
+  margin: auto;
+  box-shadow: 0px 0px 5px 0px rgba(6, 250, 22, 0.427);
+  border-radius: 10px;
+}
+.detailUI-info{
+    display: flex;
+    flex-direction: column;
+    font-size: 20px;
+    width: 50%;
+    height: 350px;
+    margin: auto;
+  }
+.detailUI-info p{
+    color: rgb(21, 0, 255);
+    font-style: italic;
+}
+  .detailUI-info span{
+  color:burlywood;
+  padding: 10px;
+  margin: 0 auto;
+  }
+
+.detailUI-btn {
+    position: absolute;
+    font-size: 15px;
+    font-weight: bold;
+    bottom: 20px; 
+    right: 20px;
+    width: 20%;
+    padding: 10px;
+    background-color: rgb(80, 3, 3);
+    color: antiquewhite;
+}
+.mafia-container .gameCard-character-info {
+  box-shadow: 0 0 5px rgb(255, 2, 2);
+}
+.citizen-container .gameCard-character-info {
+  box-shadow: 0 0 5px rgb(137, 255, 2);
+}
+.citizen-container  Div.gameCard-character-info:hover {
+  box-shadow: 0 0 5px rgb(137, 255, 2);
+  background-color: rgba(7, 255, 156, 0.519);
+  cursor: pointer;
+}
+.mafia-container  Div.gameCard-character-info:hover {
+  box-shadow: 0 0 5px rgb(255, 2, 2);
+  background-color: rgba(255, 0, 0, 0.494);
+  cursor: pointer;
+}
+@media only screen and (max-width: 1024px){
+  .cards-container{
+    height: 80vh;
+  }
+  .cards-wrapper{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding-left: 30px;
+    align-items: center;
+    width: 100%;
+    height: 60vh;
+  }
+  .detailUI-container {
+    width: 70%;
+    height:800px;
+  }
+  .detailUI-info{
+    display: flex;
+    flex-direction: column;
+    font-size: 20px;
+    width: 50%;
+    height: 350px;
+    margin: auto;
+  }
+.detailUI-info p{
+    color: rgb(21, 0, 255);
+    font-style: italic;
+    padding: 10px;
+    margin:0;
+}
+  .detailUI-info span{
+  color:burlywood;
+  padding: 5px;
+  margin: 0 auto;
+  }
+
+.detailUI-btn {
+    position: absolute;
+    font-size: 15px;
+    font-weight: bold;
+    bottom: 20px; 
+    right: 20px;
+    width: 15%;
+    padding: 5px;
+    background-color: rgb(80, 3, 3);
+    color: antiquewhite;
+}
+}

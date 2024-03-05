@@ -1,6 +1,7 @@
-.profile {
+.profile-page {
   display: flex;
   flex-direction: column;
+  margin-bottom: 50px;
 }
 
 .profile-container {
@@ -58,11 +59,16 @@
   margin-bottom: 5px;
 }
 
-
-@media only screen and (max-width: 768px) {
-  /* Tablets */
+@media only screen and (max-width: 600px) {
+  .profile-page {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: auto;
+  }
   .profile-container {
     width: 360px;
+    height: auto;
     padding: 10px;
   }
 

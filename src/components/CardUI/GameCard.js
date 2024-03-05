@@ -10,7 +10,7 @@ import Matador from './pictures/Matador.png'
 import SaulGoodMan from './pictures/SaulGoodman.png'
 import BodyGuard from './pictures/BodyGuard.png'
 
-function GameCard ({ playerChar, playerName, death }) {
+function GameCard ({ playerChar, playerName, isPlayerActive }) {
   const characters = [
     {
       id: 1,
@@ -85,22 +85,20 @@ function GameCard ({ playerChar, playerName, death }) {
   return (
     <div>
       {character ? (
-        <div className='gameCard-design-container'>
-          <div className={`gameCard-character-info `}>
+        <div className='gameCard-design-container'> 
+          <div className={`gameCard-character-info
+          ${character.id ===isPlayerActive ? 'active-player': ''}`}>
             <p>{playerName}</p>
-            {death && <div className='death-marker'>X</div>}
             <img
               className='gameCard-character-image'
               src={character.image}
               alt={character.name}
             />
-            <p>{playerChar.name}</p>
+            <span>{playerChar.name}</span>
           </div>
         </div>
       ) : (
-        <div className='character-card'>
-          <p className='character-name'>Character not found</p>
-        </div>
+        <p className='character-name'>Character not found</p>
       )}
     </div>
   )

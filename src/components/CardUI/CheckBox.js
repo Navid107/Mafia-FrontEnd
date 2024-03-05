@@ -1,4 +1,4 @@
-function CustomCheckbox ({ character, checked, disabled, onChange }) {
+function CustomCheckbox ({ character, checked, disabled, onChange,}) {
   return (
     <label>
       <input

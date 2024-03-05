@@ -1,4 +1,4 @@
-.container {
+.profile-lobby-container {
   display: flex;
   flex-direction: row;
   color: antiquewhite;
@@ -11,12 +11,12 @@
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
-.container h2 {
+.profile-lobby-container h2 {
   font-size: 17px;
   padding: 0 0 0 10px;
 }
 
-.container > div {
+.profile-lobby-container > div {
   flex: 1;
 }
 
@@ -50,21 +50,24 @@
 .link {
   color: rgba(255, 228, 196, 0.824);
 }
-.Delete-lobby{
+.Delete-lobby {
   background-color: red;
 }
-.border-line:hover{
+.border-line:hover {
   background-color: rgba(72, 9, 190, 0.224);
 }
 @media screen and (max-width: 1024px) {
-  .container {
+  .profile-lobby-container {
     flex-direction: column;
     width: 60%;
+    height: auto;
   }
 }
 
-@media screen and (max-width: 768px) {
-  .container {
+@media screen and (max-width: 600px) {
+  .profile-lobby-container {
+    display: flex;
+    justify-content: center;
     flex-direction: column;
     width: 360px;
   }
@@ -78,7 +81,7 @@
   }
 }
 @media screen and (max-width: 380px) {
-  .container {
+  .profile-lobby-container {
     flex-direction: column;
     width: 90%;
   }

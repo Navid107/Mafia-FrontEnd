@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import '../table/Table.css'
+import './Host.css'
 import GameCard from '../CardUI/GameCard.js'
 import useAxiosPrivate from '../auth/api/useAxiosPrivate'
 import { useNavigate } from 'react-router-dom'
@@ -7,15 +7,16 @@ const NightActions = ({
   characterData,
   hostId,
   gameKey,
-  death,
   nightCount,
   gameOver
 }) => {
   const [selectedAbilities, setSelectedAbilities] = useState([])
+  const [votedOut, setVotedOut] = useState('')
   const [targetId, setTargetId] = useState('')
   const [mafiaShot, setMafiaShot] = useState('')
   const [sniperShot, setSniperShot] = useState('')
   const [saulGoodMan, setSaulGoodMan] = useState('')
+  const [markedTarget, setMarkedTarget] = useState('')
   const axiosPrivate = useAxiosPrivate()
   const navigate = useNavigate()
   // Sorting character data based on character ID
@@ -24,43 +25,69 @@ const NightActions = ({
   // Determine the winning team
   const winningTeam = gameOver // Assigning the gameOver state to winningTeam
 
-    /* "handleCheckboxChange" This is the night action checkBox,
+  /* "handleCheckboxChange" This is the night action checkBox,
       first GOD wakes up the player with ability player picks the target
       'GOD will pick that target by clicking on its character card'
       Then GOD checks the checkBox of the player with ability
     */
   const handleCheckboxChange = charId => {
-    // If the selectedAbilities array includes the charId
-    if (selectedAbilities.includes(charId)) {
-      // Undo the voting kill
-      if (charId === 11) {
-        handleUndoVotingKill()
-      }
-      // Remove charId from selectedAbilities and reset targetId
-      setSelectedAbilities(selectedAbilities.filter(id => id !== charId))
-      setTargetId(null)
+    if (!selectedAbilities.includes(charId) && !targetId) {
+      alert('please Select The Target First')
     } else {
-      // If charId is 3, set SaulGoodMan to targetId
-      if (charId === 3) {
-        setSaulGoodMan(targetId)
+      // Remove charId from selectedAbilities and reset targetId
+      if (selectedAbilities.includes(charId)) {
+        if (charId === 3) {
+          setSaulGoodMan(null)
+        }
+        if (charId === 6) {
+          setSniperShot(null)
+        }
+        // Undo the voting kill
+        if (charId === 11) {
+          console.log('uncgo', charId)
+          handleUndoVotingKill()
+        }
+        if (charId === 12) {
+          setMafiaShot(null)
+        }
+
+        setSelectedAbilities(selectedAbilities.filter(id => id !== charId))
+        console.log('abilities ', selectedAbilities)
+        setTargetId(null)
+        setMarkedTarget(null)
+      } else {
+        // If charId is 3, set SaulGoodMan to targetId
+        if (charId === 3) {
+          setSaulGoodMan(targetId)
+          console.log('target', targetId)
+          setTargetId(null)
+          setMarkedTarget(null)
+        }
+        // If charId is 6, set SniperShot to targetId
+        else if (charId === 6) {
+          setSniperShot(targetId)
+          setTargetId(null)
+          setMarkedTarget(null)
+        }
+        // If charId is 11, call handleVotingKill function
+        else if (charId === 11) {
+          handleVotingKill()
+        }
+        // If charId is 12, set MafiaShot to targetId
+        else if (charId === 12) {
+          setMafiaShot(targetId)
+          setTargetId(null)
+          setMarkedTarget(null)
+        }
+        // Add charId to selectedAbilities
+        setSelectedAbilities([...selectedAbilities, charId])
       }
-      // If charId is 6, set SniperShot to targetId
-      else if (charId === 6) {
-        setSniperShot(targetId)
-      }
-      // If charId is 11, call handleVotingKill function
-      else if (charId === 11) {
-        handleVotingKill()
-      }
-      // If charId is 12, set MafiaShot to targetId
-      else if (charId === 12) {
-        setMafiaShot(targetId)
-      }
-      // Add charId to selectedAbilities
-      setSelectedAbilities([...selectedAbilities, charId])
     }
   }
-
+  console.log('mafiashot', mafiaShot)
+  console.log('jadid', targetId)
+  console.log('abilities ', selectedAbilities)
+  console.log('mafiashot', mafiaShot)
   // Function to handle voting kill
   const handleVotingKill = () => {
     // Find the character to be voted out based on targetId
@@ -69,26 +96,41 @@ const NightActions = ({
     )
     if (votedOutCharacter) {
       votedOutCharacter.char.death = true
+      setVotedOut(targetId)
     }
+    setTargetId(null)
+    setMarkedTarget(null)
   }
 
   // Function to handle undo voting kill
   const handleUndoVotingKill = () => {
     const votedOutCharacter = characterData.find(
-      character => character.playerId === targetId
+      character => character.playerId === votedOut
     )
     if (votedOutCharacter) {
       votedOutCharacter.char.death = false
+      setVotedOut(null)
     }
     setTargetId(null)
+    setMarkedTarget(null)
   }
 
   // Getting the targeted playerID
-  const handleGetTarget = playerId => {
-    // Set targeted player
-    setTargetId(playerId)
+  const handleGetTarget = e => {
+    const ifTargetAlive = characterData.find(
+      character => character.playerId === e.playerId
+    )
+    //Check if player is alive before setting as target
+    if (ifTargetAlive.char.death === false) {
+      // Set targeted player
+      setTargetId(e.playerId)
+      setMarkedTarget(e.char.id)
+    } else {
+      setTargetId(null)
+      setMarkedTarget(null)
+      alert('Player is not alive')
+    }
   }
-
   // Function to handle night action form
   const handleNightAction = e => {
     // If MafiaShot is present
@@ -118,12 +160,13 @@ const NightActions = ({
         const citizen = characterData.find(
           character => character.playerId === saulGoodMan
         )
+        console.log(citizen)
         // if the targeted player is regular citizen
-        if (citizen && citizen.char.id === 9) {
+        if (citizen && citizen.char.id === 8) {
           //Change the role of the target player to mafia
           citizen.char.ability = false
           citizen.char.death = false
-          citizen.char.id = 10
+          citizen.char.id = 9
           citizen.char.name = 'Regular Mafia'
           citizen.char.side = 'mafia'
         } else {
@@ -163,7 +206,7 @@ const NightActions = ({
         }
       })
       .catch(error => {
-        console.error('Error updating the game:', error)// Log any errors to the console
+        console.error('Error updating the game:', error) // Log any errors to the console
         navigate('/login')
         localStorage.removeItem('accessToken')
         window.location.reload()
@@ -171,8 +214,9 @@ const NightActions = ({
   }
 
   return (
-    <div className={`host-container-card ${death ? 'dead' : ''}`}>
+    <div className={`host-container-card`}>
       <div className={`host-player-card `}>
+        <h1 className='ppl-in-city-h1'>People in the City</h1>
         {gameOver && (
           <p className='winning-message'>
             {winningTeam === 'Mafia'
@@ -181,22 +225,26 @@ const NightActions = ({
           </p>
         )}
         <p className='host-sides-mafia'>MAFIA</p>
-        <div className={`host-character-container${death ? 'dead' : ''}`}>
+        <div className={`host-character-container`}>
           {characterData
             .filter(e => [1, 2, 3, 9].includes(e.char.id))
             .map((e, index) => (
               <div
                 key={index}
                 className={`host-mafia-container ${e.char.death ? 'dead' : ''}`}
-                onClick={() => handleGetTarget(e.playerId)}
+                onClick={() => handleGetTarget(e)}
               >
-                <GameCard playerChar={e.char} playerName={e.playerName} />
+                <GameCard
+                  playerChar={e.char}
+                  playerName={e.playerName}
+                  isPlayerActive={markedTarget}
+                />
               </div>
             ))}
         </div>
 
         <p className='host-sides-citizen'>CITIZEN</p>
-        <div className={`host-character-container ${death ? 'dead' : ''}`}>
+        <div className={`host-character-container`}>
           {characterData
             .filter(e => ![1, 2, 3, 9].includes(e.char.id))
             .map((e, index) => (
@@ -205,54 +253,60 @@ const NightActions = ({
                 className={`host-citizen-container ${
                   e.char.death ? 'dead' : ''
                 }`}
-                onClick={() => handleGetTarget(e.playerId)}
+                onClick={() => handleGetTarget(e)}
               >
-                <GameCard playerChar={e.char} playerName={e.playerName} />
+                <GameCard
+                  playerChar={e.char}
+                  playerName={e.playerName}
+                  isPlayerActive={markedTarget}
+                />
               </div>
             ))}
         </div>
       </div>
-      <div className={`night-actions-container ${death ? 'dead' : ''}`}>
+      <div className={`night-actions-container`}>
         <h1>Night: {nightCount}</h1>
+        <h3>Character Abilities:</h3>
         <form onSubmit={handleNightAction}>
-          <h3>Character Abilities:</h3>
-          <label>
-            Voting
+         
+          <label className='checkBox-label'>
             <input
               type='checkbox'
               checked={selectedAbilities.includes(11)}
               onChange={() => handleCheckboxChange(11)}
             />
+            Voting
           </label>
-          <label>
-            Mafia Shot
+          <label className='checkBox-label'>
             <input
               type='checkbox'
               checked={selectedAbilities.includes(12)}
               onChange={() => handleCheckboxChange(12)}
-            />
+            />{' '}
+            Mafia Shot
           </label>
 
           {characterData
-            .filter(character => character.char.id <= 6)
+            .filter(character => character.char.id <= 7)
             .map((character, index) => (
-              <div key={index}>
-                <label
-                  className={`character-label ${
-                    character.char.death ? 'dead' : ''
-                  }`}
-                >
-                  <input
-                    type='checkbox'
-                    checked={selectedAbilities.includes(character.char.id)}
-                    onChange={() => handleCheckboxChange(character.char.id)}
-                  />
-                  {character.char.name}
-                </label>
-              </div>
+              <label
+                className={`checkBox-label ${
+                  character.char.death ? 'dead' : ''
+                }`}
+                key={index}
+              >
+                <input
+                  type='checkbox'
+                  checked={selectedAbilities.includes(character.char.id)}
+                  disabled={character.char.death === true}
+                  onChange={() => handleCheckboxChange(character.char.id)}
+                />
+                {character.char.name}
+              </label>  
             ))}
-          <button className='submit-form' type='submit'>
-            Submit Night Action
+         
+          <button className='night-action-form-btn' type='submit'>
+            Next Day
           </button>
         </form>
       </div>

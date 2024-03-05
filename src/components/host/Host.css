@@ -1,0 +1,304 @@
+.host-container-card {
+  width: 100%;
+  color: antiquewhite;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.host-player-card {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin:0 auto;
+}
+.ppl-in-city-h1 {
+  scroll-padding-top: 10px;
+  width: 80%;
+  text-shadow: 3px 2px rgba(255, 0, 0, 0.544);
+}
+.host-sides-mafia {
+  font-size: 30px;
+  font-weight: bold;
+  height: auto;
+  padding: 10px;
+  margin:0 auto;
+  color: rgba(255, 0, 0, 0.831);
+}
+
+.host-sides-citizen {
+  font-size: 30px;
+  font-weight: bold;
+  padding: 10px;
+  margin:0 auto;
+  color: rgba(0, 255, 47, 0.75);
+}
+
+.host-character-container {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: center;
+}
+
+.host-mafia-container .gameCard-character-info {
+  box-shadow: 0 0 5px rgb(255, 2, 2);
+}
+.host-citizen-container .gameCard-character-info {
+  box-shadow: 0 0 5px rgb(137, 255, 2);
+}
+.gameCard-character-info:hover {
+  box-shadow: 0 0 5px rgb(137, 255, 2);
+  background-color: rgba(7, 255, 156, 0.519);
+}
+.host-mafia-container .gameCard-character-info:hover {
+  box-shadow: 0 0 5px rgb(255, 2, 2);
+  background-color: rgba(255, 0, 0, 0.494);
+}
+.night-actions-container {
+  width: 25%;
+  padding: 5px;
+  margin: 0 auto;
+  box-sizing: border-box;
+  border-left: 5px solid #16095622;
+  color: #ffffffaf;
+}
+.night-actions-container h1{
+  width: 80%;
+  color: red;
+
+}
+.night-actions-container h3{
+  width: 80%;
+  color: rgba(27, 13, 214, 0.708);
+}
+.dead {
+  filter: grayscale(100%);
+  text-decoration: line-through;
+  opacity: 0.7;
+}
+
+.checkBox-label {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  text-align: center;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 5px;
+  box-shadow: 0 4px 6px rgba(255, 2, 2, 0.486);
+  color: antiquewhite;
+}
+
+.checkBox-label:hover {
+  box-shadow: 0 4px 6px rgb(36, 2, 255);
+}
+
+.night-action-form-btn {
+  display: block;
+  width:88%;
+  text-align: center;
+  border-radius: 5px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgb(36, 2, 255);
+  font-size: 30px;
+  font-weight: bold;
+  color: rgb(255, 187, 0);
+  background-color:transparent;
+}
+
+.night-actions-container.dead {
+  filter: grayscale(100%);
+}
+.winner-container {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  margin: 0 auto;
+}
+.winner-container > h1 {
+  color: rgba(190, 2, 2, 0.689);
+  text-shadow: 3px 2px rgba(227, 172, 172, 0.573);
+}
+.play-again-btn {
+  font-size: 20px;
+  width: 50%;
+  margin: 0 auto;
+  padding: 15px;
+  color: rgb(254, 254, 254);
+  font-weight: bold;
+  text-shadow: 2px 1px rgba(6, 6, 6, 0.802);
+  background-color: #ff00006b;
+  text-decoration: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.winner-team-name {
+  display: flex;
+  width: 100%;
+  margin: auto;
+  align-items: center;
+  justify-content: center;
+  font-size: 2em;
+  color: rgb(8, 8, 219);
+}
+.winner-team-name > p {
+  padding-left: 10px;
+  font-weight: bold;
+  color: rgb(254, 254, 254);
+  text-shadow: 3px 2px rgba(4, 187, 59, 0.802);
+}
+.winner-team-players {
+  display: flex;
+  flex-flow: row wrap;
+}
+@media only screen and (max-width: 1024px) {
+  .host-container-card {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: auto;
+  }
+  .night-actions-container {
+    width: 100%;
+    margin: auto;
+    align-items: center;
+    justify-content: center;
+    height: 63vh;
+    border-left: 0px;
+  }
+  .night-actions-container h1{
+    color: red;
+    width: 100%;
+  }
+  .night-actions-container h3{
+    color: rgba(27, 13, 214, 0.708);
+    width: 100%;
+  }
+  .night-actions-container form{
+    display: grid;
+    grid-template-columns: 50% 50%;
+    place-items: center;
+    width: 100%;
+  }
+  .checkBox-label {
+    width: 95%;
+    padding: 5px;
+    box-shadow: 0 4px 6px rgba(255, 2, 2, 0.486);
+  }
+
+  .night-action-form-btn {
+    width: 100%;
+    padding: 17px;
+    margin-bottom:20px;
+    color: rgb(255, 187, 0);
+    background-color:transparent;
+  }
+  .winner-container {
+    width: 100%;
+    margin: auto;
+  }
+  .winner-container > h1 {
+    font-size: 30px;
+    color: rgba(190, 2, 2, 0.689);
+    text-shadow: 3px 2px rgba(227, 172, 172, 0.573);
+  }
+  .play-again-btn {
+    font-size: 15px;
+    width: 40%;
+    margin: 0 auto;
+    padding: 10px;
+    color: #fff;
+    background-color: #ff00002f;
+    text-decoration: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .winner-team-name {
+    display: flex;
+    width: 30%;
+    margin: auto;
+    align-items: center;
+    font-size: 1em;
+    color: rgb(8, 8, 219);
+  }
+  .winner-team-name > p {
+    color: rgb(254, 254, 254);
+  }
+  .winner-team-players {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    width: 100%;
+    margin: auto;
+  }
+}
+@media only screen and (max-width: 600px) {
+  .host-container-card {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: auto;
+  }
+  .night-actions-container {
+    width: 100%;
+    padding: 5px;
+    height: auto;
+    margin: auto;
+    border-left: 0px;
+  }
+  .night-actions-container form {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    width: 100%;
+  }
+  .checkBox-label {
+    width: 90%;
+    padding: 5px;
+    box-shadow: 0 4px 6px rgba(255, 2, 2, 0.486);
+  }
+
+  .night-action-form-btn {
+    padding: 15px;
+    font-size: 25px;
+    color: rgb(255, 187, 0);
+    background-color:transparent;
+  }
+  .winner-container {
+    width: 100%;
+    margin: auto;
+  }
+  .winner-container > h1 {
+    font-size: 30px;
+    color: rgba(190, 2, 2, 0.689);
+    text-shadow: 3px 2px rgba(227, 172, 172, 0.573);
+  }
+  .play-again-btn {
+    font-size: 15px;
+    width: 40%;
+    margin: 0 auto;
+    padding: 10px;
+    color: #fff;
+    background-color: #ff00002f;
+    text-decoration: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .winner-team-name {
+    display: flex;
+    width: 50%;
+    margin: auto;
+    align-items: center;
+    font-size: 1em;
+    color: rgb(8, 8, 219);
+  }
+  .winner-team-name > p {
+    color: rgb(254, 254, 254);
+  }
+  .winner-team-players {
+    display: flex;
+    flex-flow: row wrap;
+    width: 100%;
+    margin: auto;
+  }
+}

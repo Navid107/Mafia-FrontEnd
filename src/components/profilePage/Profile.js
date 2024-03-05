@@ -14,7 +14,7 @@ const Profile = () => {
     citizenWins: 9
   }
   return (
-    <div className='profile'>
+    <div className='profile-page'>
       <div className='profile-container'>
         <div className='profile-header'>
           <div className='avatar'>

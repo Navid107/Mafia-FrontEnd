@@ -40,7 +40,7 @@ function UserLobbies () {
   }
 
   return (
-    <div className='container'>
+    <div className='profile-lobby-container'>
       <div>
         <h2>Your Lobbies</h2>
         <table className='profile-lobby'>

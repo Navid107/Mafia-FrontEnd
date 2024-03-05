@@ -94,10 +94,10 @@
     font-size: 14px;
   }
   @media only screen and (max-width: 600px) {
-    .form-container {
+    .form-inner {
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 60vh;
+      width: 60%;
     }
   }
