@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useMatch, useResolvedPath } from 'react-router-dom'
 import './NavigationBar.css'
 
 const NavigationBar = ({ loggedIn, handleLogout }) => {
@@ -7,35 +7,46 @@ const NavigationBar = ({ loggedIn, handleLogout }) => {
     <nav className='navbar'>
       <ul className='navbar-list'>
         <li>
-          <Link to='/'>Home</Link>
+          <HandleActiveLink to='/'>Home</HandleActiveLink>
         </li>
         <li>
-          <Link to='/rules'>Rules</Link>
+          <HandleActiveLink to='/rules'>Rules</HandleActiveLink>
         </li>
         <li>
-          <Link to='/character'>Characters</Link>
+          <HandleActiveLink to='/character'>Characters</HandleActiveLink>
         </li>
         <li>
-          <Link to='/gameplay'>Gameplay</Link>
+          <HandleActiveLink to='/gameplay'>Gameplay</HandleActiveLink>
         </li>
         {!loggedIn && (
           <li>
-            <Link to='/login'>Login</Link>
+            <HandleActiveLink to='/login'>Login</HandleActiveLink>
           </li>
         )}
         {loggedIn && (
           <>
             <li>
-              <Link to='/user'>Profile</Link>
+              <HandleActiveLink to='/user'>Profile</HandleActiveLink>
             </li>
             <li>
-              <Link onClick={handleLogout}>Logout</Link>
+              <HandleActiveLink onClick={handleLogout}>Logout</HandleActiveLink>
             </li>
           </>
         )}
       </ul>
     </nav>
   )
-}
 
+function HandleActiveLink({ to, children, ...props }){
+  const resolvedPath = useResolvedPath(to)
+  const isActive = useMatch({path: resolvedPath.pathname })
+  return(
+    <li className={isActive ? 'active' : ''} >
+      <Link to={to} {...props} >
+        {children}
+        </Link>
+    </li>
+  )
+}
+}
 export default NavigationBar

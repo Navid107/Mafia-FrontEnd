@@ -113,7 +113,8 @@ position: relative;
 }
 @media only screen and (max-width: 1024px){
   .cards-container{
-    height: 80vh;
+    height: 40vh;
+    padding-top: 70px; 
   }
   .cards-wrapper{
     flex: 1;
@@ -126,7 +127,7 @@ position: relative;
   }
   .detailUI-container {
     width: 70%;
-    height:800px;
+    height:100%;
   }
   .detailUI-info{
     display: flex;
@@ -156,6 +157,66 @@ position: relative;
     right: 20px;
     width: 15%;
     padding: 5px;
+    background-color: rgb(80, 3, 3);
+    color: antiquewhite;
+}
+}
+@media only screen and (max-width: 600px){
+  .cards-container{
+    height: 80vh;
+  }
+  .cards-wrapper{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding-left: 30px;
+    align-items: center;
+    width: 100%;
+    height: 60vh;
+  }
+  .detailUI-container {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    height:95%;
+  }
+  .char-layout {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 100%;
+    padding: 10px;
+    
+  }
+  .detailUI-info{
+    display: flex;
+    flex-direction: column;
+    font-size: 20px;
+    width: 100%;
+    height: 300px;
+    margin: auto;
+  }
+.detailUI-info p{
+    color: rgb(21, 0, 255);
+    font-style: italic;
+    padding: 5px;
+    margin: 0;
+}
+  .detailUI-info span{
+  color:burlywood;
+  padding: 5px;
+  margin: auto;
+  }
+
+.detailUI-btn {
+    position: absolute;
+    font-size: 15px;
+    font-weight: bold;
+    bottom: 20px; 
+    right: 20px;
+    width: 15%;
+    padding: 5px;
+    margin-bottom: 15px;
     background-color: rgb(80, 3, 3);
     color: antiquewhite;
 }

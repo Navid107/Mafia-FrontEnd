@@ -9,32 +9,8 @@
   margin: auto;
 }
 
-.player-characterCard-container{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  width: 100%;
 
-}
-.your-role{
-  font-size: 30px;
-  color: rgb(13, 245, 121);
-  padding: 20px 0 0;
-  margin: auto;
-}
-.player-characterCard-container div{
-  justify-content: center;
-  max-width: 100%;
-  height: 400px;
-
-}
-.player-characterCard-container img{
-  object-fit:cover;
-  width: 200px;
-  height: auto;
-  margin: auto;
-}
-@media only screen and (max-width: 1024px) {
+/*@media only screen and (max-width: 1024px) {
   .table-container {
     display: flex;
     flex-direction: column;
@@ -45,31 +21,31 @@
   .ppl-in-city-h1 {
     font-size: 30px;
     width: 90%;
-    margin: 0 auto;   
+    margin: 0 auto;
   }
-  .player-characterCard-container{
+  .player-characterCard-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
     margin: auto;
   }
-  .your-role{
+  .your-role {
     font-size: 30px;
     color: rgb(13, 245, 121);
     margin: auto;
   }
-  .player-characterCard-container div{
+  .player-characterCard-container div {
     justify-content: center;
     max-width: 100%;
     height: 400px;
   }
-  .player-characterCard-container img{
-    object-fit:cover;
+  .player-characterCard-container img {
+    object-fit: cover;
     width: 200px;
     height: auto;
   }
 }
-@media only screen and (max-width: 600px) {
+/*@media only screen and (max-width: 600px) {
   .table-container {
     display: flex;
     flex-direction: column;
@@ -80,27 +56,48 @@
   .ppl-in-city-h1 {
     font-size: 30px;
     width: 90%;
-    margin: 0 auto;   
+    margin: 0 auto;
   }
-  .player-characterCard-container{
+
+  .player-characterCard-container {
     display: flex;
+    width: 600px;
+    height: fit-content;
     flex-direction: column;
+    align-items: center;
     justify-content: center;
     margin: auto;
   }
-  .your-role{
+  .your-role {
     font-size: 30px;
     color: rgb(13, 245, 121);
     margin: auto;
   }
-  .player-characterCard-container div{
+  .player-characterCard-container div {
+    height: 450px;
+    align-items: center;
     justify-content: center;
-    max-width: 100%;
-    height: 400px;
+    margin: auto;
   }
-  .player-characterCard-container img{
-    object-fit:cover;
+  .player-characterCard-container img {
+    object-fit: cover;
     width: 200px;
     height: auto;
   }
+  .gameCard-design-container {
+    width: 400px;
+    height: 600px;
+    padding: 20px;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+  }
+  .gameCard-character-info {
+    width: 400px;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    height: 600px;
+  }
 }
+*/

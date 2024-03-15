@@ -47,7 +47,7 @@
 .host-citizen-container .gameCard-character-info {
   box-shadow: 0 0 5px rgb(137, 255, 2);
 }
-.gameCard-character-info:hover {
+.host-citizen-container.gameCard-character-info:hover {
   box-shadow: 0 0 5px rgb(137, 255, 2);
   background-color: rgba(7, 255, 156, 0.519);
 }

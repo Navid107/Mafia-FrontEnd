@@ -1,0 +1,178 @@
+.profile-page {
+  display: flex;
+  flex-direction: column;
+  width: 830px;
+  height: 700px;
+  padding: 20px 15px 20px 15px;
+  border-radius: 5px;
+  margin: auto;
+  box-shadow: 0px 0px 1px rgba(254, 254, 254, 0.195);
+}
+
+.profile-container {
+  width: 800px;
+  background-color: #000000;
+  padding: 10px ;
+  border-radius: 5px;
+  box-shadow: 0px 0px 5px rgba(255, 0, 0, 0.585);
+  text-align: center;
+  margin: auto;
+}
+
+.profile-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+  padding: 10px;
+  margin: auto;
+}
+
+.avatar img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: antiquewhite;
+  object-fit: cover;
+  border: 2px solid #0408f6;
+  box-shadow: 0 2px 4px rgba(182, 20, 20, 0.908);
+}
+
+.user-name {
+  font-family: corleone-Due-Regular;
+  font-weight: normal;
+  width: 50%;
+  font-size: 60px;
+  margin: auto;
+  color:rgb(0, 0, 0);
+  text-shadow: 0px 0px 2px rgb(255, 255, 255);
+}
+
+.profile-stats {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  margin: auto;
+}
+.gameStats{
+  width: 50%;
+  margin: auto;
+  padding: 5px 5px;
+}
+.gameStats li {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  justify-content: center;
+  padding: 10px;
+  background-color: #000000;
+  color: rgb(149, 143, 136);
+  border: 2px solid #010101;
+  border-radius: 5px;
+  box-shadow: 0 0px 4px rgb(77, 73, 213);
+  text-align: left;
+  font-weight: bold;
+}
+
+.stat-mafia > li , .stat-citizen > li{
+  flex-direction: row;
+  align-items: center;
+  justify-content:space-evenly;
+  box-shadow: 0px 1px 4px rgba(148, 148, 148, 0.453);
+}
+.stat-mafia  .total-games{
+  font-family: corleone-Due-Regular;
+  font-size: 35px;
+  font-weight: normal;
+  color: rgb(154, 37, 37);
+}
+.stat-citizen  .total-games{
+  font-family: corleone-Due-Regular;
+  font-size: 35px;
+  font-weight: normal;
+  color: #04aa6d;
+}
+
+.wins{
+  font-family:Georgia, 'Times New Roman', Times, serif;
+  color: #04aa6d;
+}
+.loses{
+  font-family:Georgia, 'Times New Roman', Times, serif;
+  color: rgb(154, 37, 37);
+}
+@media only screen and (max-width: 1024px){
+  .profile-page {
+    width: 90%;
+    height: auto;
+    margin-top: 55px;
+    padding: 15px 0px 25px 0px;
+  }
+  .profile-container {
+    width: 90%;
+    margin-top: 10px;
+  }
+  .total-games {
+    font-size: 15px;
+  }
+
+}
+@media only screen and (max-width: 620px) {
+  .profile-page {
+    width: 95%;
+    margin-bottom: 10px;
+  }
+  .profile-container {
+    width: 90%;
+  }
+
+  .avatar img {
+    width: 60px;
+    height: 60px;
+  }
+
+  .user-name {
+    font-size: 60px;
+  }
+
+  .profile-stats {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .gameStats {
+    width: 100%;
+    font-size: 16px;
+    margin: auto;
+  }
+  .gameStats li{
+    margin: auto;
+    width: 90%;
+  }
+  .total-games {
+    font-size: 20px;
+  }
+}
+
+@media only screen and (max-width: 380px) {
+  .profile-container {
+    max-width: auto;
+    padding: 5px;
+  }
+
+  .avatar img {
+    width: 60px;
+    height: 60px;
+  }
+
+  .user-name {
+    font-size: 14px;
+  }
+
+  .stat {
+    padding: 6px;
+    font-size: 14px;
+  }
+}

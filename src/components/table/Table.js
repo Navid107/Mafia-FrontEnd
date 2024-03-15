@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react'
 import { useParams, useNavigate  } from 'react-router-dom'
 import './Table.css'
 import GameCard from '../CardUI/GameCard.js'
-import Host from '../host/Host.js'
+import Host from '../nightActionForm/Host.js'
+import Player from '../nightActionForm/Player.js'
 import AuthService from '../auth/hooks/AuthService'
 import useAxiosPrivate from '../auth/api/useAxiosPrivate'
 function GameTable () {
@@ -18,6 +19,7 @@ function GameTable () {
   const { gameKey } = useParams()
 
   useEffect(() => {
+    
     const fetchData = async () => {
       try {
         // Send a POST request to fetch lobby data based on the gameKey and userId
@@ -56,30 +58,28 @@ function GameTable () {
         }
     }
   }
+    
     fetchData()
     // eslint-disable-next-line
   }, [gameKey, userId])
 
   return (
-    <div className='table-container'>
-      <div className='container-card'>
-        <div className='player-card'>
+    <div className='table-container'>    
           {hostValidation === true ? (
+            <div className='host-data'>
             <Host
               hostData={hostData}
               nightCount={nightRound}
               gameKey={gameKey}
               hostId={userId}
               gameOver={gameOver}
-            />
-          ) : (
-            <div className='player-characterCard-container'>
-              <h2 className='your-role'>Your  Role is: </h2> 
-              <GameCard playerChar={playerData} />
+            /> 
             </div>
-          )}
-        </div>
-      </div>
+          ) : (
+            <div className="player-data">
+              <Player player={playerData} />
+              </div>  
+          )}  
     </div>
   )
 }

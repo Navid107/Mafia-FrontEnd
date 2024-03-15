@@ -4,16 +4,18 @@
   max-width: 960px;
   margin: auto;
   padding: 60px 0;
+  background-color: #000000;
 }
 
 .navbar-list {
   background-color: transparent;
+  padding: 10px;
 }
 
 .navbar ul {
   border-radius: 10px;
   text-align: center;
-  box-shadow: 0 0 35px rgba(253, 3, 3, 0.689);
+  box-shadow: 0 0 8px rgba(87, 58, 4, 0.689);
 }
 
 .navbar ul li {
@@ -21,23 +23,22 @@
 }
 
 .navbar ul li a {
-  box-shadow: inset 0 0 3px rgba(0, 8, 7, 0.6);
   padding: 18px;
-  font-family: 'Open Sans';
-  font-weight: bold;
-  text-transform: uppercase;
-  color: rgba(253, 253, 254, 0.5);
-  font-size: 18px;
   text-decoration: none;
-  display: block;
-  background-color: black;
+  background: linear-gradient(to bottom, #ffdf9a 27%, #cb9b0a 40%, #3e2a03 78%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: #fff;
+  font-family: corleone-Due-Regular;
+  text-transform: uppercase;
+  font-size: calc(24px + 0.5rem);
+  font-weight: normal;
 }
 
 .navbar ul li a:hover {
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1),
-    inset 0 0 1px rgba(255, 255, 255, 0.6);
-  background: rgba(250, 2, 2, 0.576);
-  color: rgba(5, 217, 250, 0.535);
+  background: linear-gradient(to bottom, #f98080 27%, #f40606 40%, #240101 78%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 @media only screen and (max-width: 1024px) {
@@ -45,6 +46,9 @@
     width: 100%;
     padding: 0px 15px;
     box-sizing: border-box;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
   }
   .navbar-list {
     display: flex;
@@ -69,27 +73,33 @@
 @media only screen and (max-width: 600px) {
   .navbar {
     display: flex;
-    width: 90%;
+    width: 100%;
     padding: 0px 5px;
     box-sizing: border-box;
     justify-content: center;
+    align-items: center;
+    margin: auto;
   }
 
   .navbar-list {
     flex-direction: column;
+    margin: auto;
   }
   .navbar ul {
     width: 100%;
     padding: 0;
+    margin: auto;
   }
 
   .navbar ul li {
     display: block;
     margin-bottom: 10px;
+    margin: auto;
   }
 
   .navbar ul li a {
     padding: 14px;
     font-size: 16px;
+    margin: auto;
   }
 }

@@ -8,6 +8,8 @@
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.4.0",
     "bcryptjs": "^2.4.3",
+    "browserslist": "^4.23.0",
+    "caniuse-lite": "^1.0.30001597",
     "jwt-decode": "^3.1.2",
     "react": "^18.2.0",
     "react-cookie": "^6.1.0",

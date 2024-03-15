@@ -14,11 +14,21 @@ body {
   pointer-events: none;
 }
 
+@font-face {
+  font-family: corleone-Due-Regular;
+  src: url(../public/Corleone-Due-Regular.otf);
+}
+@font-face {
+  font-family: YesevaOne-Regular;
+  src: url(../public/YesevaOne-Regular.ttf);
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
   }
 }
+
 
 .App-header {
   background-color: #282c34;

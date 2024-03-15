@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import './Host.css'
 import GameCard from '../CardUI/GameCard.js'
-import useAxiosPrivate from '../auth/api/useAxiosPrivate'
+import useAxiosPrivate from '../auth/api/useAxiosPrivate.js'
 import { useNavigate } from 'react-router-dom'
 const NightActions = ({
   characterData,
@@ -124,7 +124,7 @@ const NightActions = ({
     if (ifTargetAlive.char.death === false) {
       // Set targeted player
       setTargetId(e.playerId)
-      setMarkedTarget(e.char.id)
+      setMarkedTarget(e.playerName)
     } else {
       setTargetId(null)
       setMarkedTarget(null)
@@ -266,7 +266,7 @@ const NightActions = ({
       </div>
       <div className={`night-actions-container`}>
         <h1>Night: {nightCount}</h1>
-        <h3>Character Abilities:</h3>
+        <h3>Characters Abilities:</h3>
         <form onSubmit={handleNightAction}>
          
           <label className='checkBox-label'>

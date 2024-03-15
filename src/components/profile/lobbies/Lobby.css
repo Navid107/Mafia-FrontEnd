@@ -1,0 +1,126 @@
+.lobby-container {
+  display: flex;
+  flex-direction: row;
+  color: antiquewhite;
+  width: 800px;
+  margin: 10px auto;
+  background-color: #000000;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 0px 5px rgba(255, 2, 2, 0.605);
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+.lobby-box{
+  width: 100%;
+  height: auto;
+  margin: auto;
+  padding: 5px;
+}
+.lobby-box h2{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(to bottom, #f4b93a 27%, #b68901 40%, #3a2c0f 78%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: #fff;
+  font-family: corleone-Due-Regular;
+  text-transform: uppercase;
+  font-size: calc(2vw + 0.5rem);
+  margin: 0;
+  font-weight: normal;
+}
+.lobby-table {
+  width: 100%;
+  box-shadow: 0 1px 4px rgba(78, 73, 213, 0.604);
+  padding: 5px;
+}
+
+.lobby-table  th {
+  min-width: 10%;
+  font-family: YesevaOne-Regular;
+  padding: 5px;
+  text-align: left;
+  border-radius: 0 0 10px 10px;
+  box-shadow: 0 3px rgba(255, 0, 0, 0.652);
+}
+
+.border-line td {
+  text-align: left;
+  padding: 10px;
+  font-family:Georgia, 'Times New Roman', Times, serif;
+}
+
+.border-line {
+  border-bottom: solid rgb(255, 4, 4) 1px;
+  font-size: 20px;
+  background-color: rgba(4, 2, 66, 0.28);
+  box-shadow: 0 0 2px rgb(207, 2, 2);
+  border-radius: 0 0 10px 10px;
+}
+
+.lobby-link {
+  text-decoration: none;
+  font-family:Georgia, 'Times New Roman', Times, serif;
+}
+.Delete-lobby {
+  background-color: red;
+}
+.border-line:hover {
+  background-color: rgba(72, 9, 190, 0.224);
+}
+@media screen and (max-width: 1024px) {
+  .lobby-container {
+    width: 90%;
+    height: auto;
+  }
+  .lobby-box{
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    padding: 5px;
+  }
+}
+
+@media screen and (max-width: 620px) {
+  .lobby-container {
+    flex-direction: column;
+    display: flex;
+    width: 90%;
+    justify-content: center;
+  }
+  .lobby-box{
+    width: 95%;
+    justify-content: center;
+    align-items: center;
+  }
+  .lobby-table {
+    width: 100%;
+  }
+
+  .lobby-table th {
+    width: 50%;
+  }
+}
+@media screen and (max-width: 380px) {
+ .lobby-container {
+    flex-direction: column;
+    width: 90%;
+  }
+  .lobby-box{
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+  }
+
+  .lobby-table {
+    width: 100%;
+  }
+
+  .lobby-table th {
+    width: 100%;
+  }
+  
+}

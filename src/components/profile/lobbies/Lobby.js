@@ -2,13 +2,27 @@ import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import './Lobby.css'
 import useAxiosPrivate from '../../auth/api/useAxiosPrivate'
-import { useNavigate } from 'react-router-dom'
 
-function UserLobbies () {
+function UserLobbies ({ reRenderLobbies }) {
   const [joinedLobbies, setJoinedLobbies] = useState([])
   const [createdLobbies, setCreatedLobbies] = useState([])
+  const [deletedLobby, setDeletedLobbies] = useState(0)
   const axiosPrivate = useAxiosPrivate()
-  const navigate = useNavigate()
+
+  const handleDeleteLobby = (e) => {
+    // Get the value (gameKey) of the lobby to delete
+    const deleteLobby = e.target.value
+    axiosPrivate
+      .delete(`/game/table/${deleteLobby}`).then(
+        (response) => {
+          setDeletedLobbies(createdLobbies.length-1)
+        }
+      )
+      .catch(error => {
+        console.error('Error in deleting lobby:', error)
+      })
+  }
+  
   useEffect(() => {
     // Fetch joined and hosted lobbies data
     axiosPrivate
@@ -19,31 +33,17 @@ function UserLobbies () {
       })
       .catch(error => {
         console.error('Error fetching user lobbies:', error)
-        navigate('/login')
-        localStorage.removeItem('accessToken')
-        window.location.reload()
-        
       })
-  },[axiosPrivate]);
+    //Api will call and reRender lobbies if there are any changes
+  },[reRenderLobbies, deletedLobby]);
 
-  function handleDeleteLobby (e) {
-    // Get the value (gameKey) of the lobby to delete
-    const deleteLobby = e.target.value
-    axiosPrivate
-      .delete(`/game/table/${deleteLobby}`)
-      .then(() => {
-        window.location.reload()
-      })
-      .catch(error => {
-        console.error('Error in deleting lobby:', error)
-      })
-  }
+
 
   return (
-    <div className='profile-lobby-container'>
-      <div>
+    <div className='lobby-container'>
+      <div className='lobby-box'>
         <h2>Your Lobbies</h2>
-        <table className='profile-lobby'>
+        <table className='lobby-table'>
           <thead>
             <tr>
               <th>Name</th>
@@ -62,7 +62,7 @@ function UserLobbies () {
                           ? `/table/${lobby.gameKey}`
                           : `/play/${lobby.gameKey}`
                       }
-                      className='link'
+                      className='lobby-link'
                     >
                       {lobby.lobbyName}
                     </Link>
@@ -81,16 +81,16 @@ function UserLobbies () {
               ))
             ) : (
               <tr>
-                <td>No lobbies found</td>
+                <td>No lobby found</td>
               </tr>
             )}
           </tbody>
         </table>
       </div>
 
-      <div>
+      <div className='lobby-box'>
         <h2>Joined Lobbies</h2>
-        <table className='profile-lobby'>
+        <table className='lobby-table'>
           <thead>
             <tr>
               <th>Name</th>
@@ -108,7 +108,7 @@ function UserLobbies () {
                           ? `/table/${lobby.gameKey}`
                           : `/play/${lobby.gameKey}`
                       }
-                      className='link'
+                      className='lobby-link'
                     >
                       {lobby.lobbyName}
                     </Link>
@@ -118,7 +118,7 @@ function UserLobbies () {
               ))
             ) : (
               <tr>
-                <td>No lobbies found</td>
+                <td>No lobby found</td>
               </tr>
             )}
           </tbody>

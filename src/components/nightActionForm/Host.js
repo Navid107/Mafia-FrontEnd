@@ -1,5 +1,5 @@
 import React from 'react'
-import '../table/Table.css'
+import './Host.css'
 import NightActions from './NightActions'
 import GameOver from './GameOver'
 function Host ({ hostData, hostId, gameKey, nightCount, gameOver }) {
