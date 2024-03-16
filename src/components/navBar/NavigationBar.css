@@ -28,15 +28,19 @@
   background: linear-gradient(to bottom, #ffdf9a 27%, #cb9b0a 40%, #3e2a03 78%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  color: #fff;
   font-family: corleone-Due-Regular;
   text-transform: uppercase;
   font-size: calc(24px + 0.5rem);
   font-weight: normal;
 }
+.navbar ul li.active a{
+  background: linear-gradient(to bottom, #fa0707 27%, #ee0404 40%, #3e2a03 78%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 
+}
 .navbar ul li a:hover {
-  background: linear-gradient(to bottom, #f98080 27%, #f40606 40%, #240101 78%);
+  background: linear-gradient(to bottom, #1a18bc 27%, #2206f4 40%, #240101 78%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }

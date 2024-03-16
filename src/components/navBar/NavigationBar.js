@@ -6,38 +6,30 @@ const NavigationBar = ({ loggedIn, handleLogout }) => {
   return (
     <nav className='navbar'>
       <ul className='navbar-list'>
-        <li>
-          <HandleActiveLink to='/'>Home</HandleActiveLink>
-        </li>
-        <li>
-          <HandleActiveLink to='/rules'>Rules</HandleActiveLink>
-        </li>
-        <li>
-          <HandleActiveLink to='/character'>Characters</HandleActiveLink>
-        </li>
-        <li>
-          <HandleActiveLink to='/gameplay'>Gameplay</HandleActiveLink>
-        </li>
+       
+          <ActiveLink to="/">Home</ActiveLink>
+       
+          <ActiveLink to="/rules">Rules</ActiveLink>
+       
+          <ActiveLink to="/character">Characters</ActiveLink>
+       
+          <ActiveLink to="/gameplay">Gameplay</ActiveLink>
+        
         {!loggedIn && (
-          <li>
-            <HandleActiveLink to='/login'>Login</HandleActiveLink>
-          </li>
+            <ActiveLink to="/login">Login</ActiveLink>
+          
         )}
         {loggedIn && (
           <>
-            <li>
-              <HandleActiveLink to='/user'>Profile</HandleActiveLink>
-            </li>
-            <li>
-              <HandleActiveLink onClick={handleLogout}>Logout</HandleActiveLink>
-            </li>
+              <ActiveLink to="/user">Profile</ActiveLink>
+              <ActiveLink onClick={handleLogout}>Logout</ActiveLink>
           </>
         )}
       </ul>
     </nav>
   )
-
-function HandleActiveLink({ to, children, ...props }){
+}
+function ActiveLink({ to, children, ...props }){
   const resolvedPath = useResolvedPath(to)
   const isActive = useMatch({path: resolvedPath.pathname })
   return(
@@ -48,5 +40,5 @@ function HandleActiveLink({ to, children, ...props }){
     </li>
   )
 }
-}
+
 export default NavigationBar
