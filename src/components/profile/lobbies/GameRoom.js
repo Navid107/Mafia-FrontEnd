@@ -3,7 +3,7 @@ import './GameRoom.css'
 import AuthService from '../../auth/hooks/AuthService'
 import useAxiosPrivate from '../../auth/api/useAxiosPrivate'
 
-function GameRoom({ refreshLobbies }) {
+function GameRoom ({ refreshLobbies }) {
   const [gameKey, setGameKey] = useState('')
   const [lobbyName, setLobbyName] = useState('')
   const userInfo = AuthService.getCurrentUser()

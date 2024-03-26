@@ -1,45 +1,36 @@
-.player-container{
-    display: flex;
-    flex-direction: column;
-    margin: auto;
-    width: 50%;
-    justify-content: center;
-    align-items: center;
+.player-container {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  padding: 10px;
+  justify-content: center;
+  align-items: center;
 }
 .player-container > h2 {
-    font-family:Georgia, 'Times New Roman', Times, serif;
-    text-align:center;
-    color: antiquewhite;
-    padding: 10px;
-    margin: auto;
-    
+  font-family: corleone-Due-Regular;
+  font-size: 40px;
+  font-style: italic;
+  font-weight: lighter;
+  text-align: center;
+  color: antiquewhite;
+  margin: auto;
 }
-.gameCard-design-container.player{
-    width: 90%; 
-    max-width: 250px;
-    height: 450px;
-    background-color: #000;
-    border-radius: 10px;
-    text-align: center;
-    padding: 5px;
-    position: relative;
-    overflow: hidden;
-    cursor: default;
-}
-.player-container div:hover {
-    cursor:default;
+.gameCard-design-container.player .gameCard-character-info > span {
+  font-size: 30px;
 }
 
-@media only screen and (max-width: 1024px){
-    .player-container{
-       padding: 20px;
-       margin: auto;
-    }
+.player-container div:hover {
+  cursor: default;
 }
-@media only screen and (max-width: 600px){
-    .player-container{
-        width: 100%;
-        padding: 30px 0px 30px;
-        margin: auto;
-     }
- }
+
+@media only screen and (max-width: 1024px) {
+  .player-container {
+    margin: auto;
+  }
+}
+@media only screen and (max-width: 600px) {
+  .player-container {
+    width: 100%;
+    margin: auto;
+  }
+}

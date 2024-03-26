@@ -161,7 +161,9 @@ function PreGameLobby () {
         return isAlreadySelected
           ? prevSelectedChars.filter(e => e.id !== character.id)
           : [...prevSelectedChars, character]
+          
       })
+      setFormSubmit(false)
     }
   }
   // Function to start the game with selected characters
@@ -258,7 +260,7 @@ function PreGameLobby () {
               : 'no players available'}
           </div>
           {hostId === userId.userId ? (
-            <Link to={{ pathname: `/table/${gameKey}` }}>
+            <Link to={{ pathname: `/user/table/${gameKey}` }}>
               {formSubmit ? (
                 <button
                   className='btn-start-game'
@@ -294,7 +296,7 @@ function PreGameLobby () {
             </form>
             {hostId === userId.userId ? (
               <button className='btn-checkbox' onClick={handleSubmit}>
-                Submit
+                {formSubmit ? 'Done!' : 'Submit'}
               </button>
             ) : (
               'Please wait for God to start'

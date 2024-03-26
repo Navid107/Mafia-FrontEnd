@@ -1,10 +1,9 @@
-*{
+* {
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  color:bisque;
+  color: bisque;
 }
 .App {
   text-align: center;
-  
 }
 body {
   background-color: black;
@@ -28,7 +27,6 @@ body {
     animation: App-logo-spin infinite 20s linear;
   }
 }
-
 
 .App-header {
   background-color: #282c34;

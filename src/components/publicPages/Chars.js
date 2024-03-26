@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import '../CardUI/DetailsUI.css'
+import './Char.css'
 import GameCard from '../CardUI/GameCard.js'
 import Details from '../CardUI/Details.js'
 import DetailsUI from '../CardUI/DetailsUI.js'
@@ -17,7 +17,7 @@ function Chars () {
     <div className='cards-container'>
       {!selectedChar ? (
         <div className='cards-wrapper'>
-          <p className='host-sides-mafia'>MAFIA</p>
+          <p className='mafia'>All The Mafia Characters </p>
           <div className='character-container'>
             {Details.filter(e => [1, 2, 3, 9].includes(e.id)).map(
               (e, index) => (
@@ -26,12 +26,12 @@ function Chars () {
                   className='mafia-container'
                   onClick={() => openDetail(e)}
                 >
-                  <GameCard playerChar={e} />
+                  <GameCard playerChar={e} isPlayerActive={null} />
                 </div>
               )
             )}
           </div>
-          <p className='host-sides-citizen'>CITIZEN</p>
+          <p className='citizen'>All The Citizen Characters</p>
           <div className='character-container'>
             {Details.filter(e => ![1, 2, 3, 9].includes(e.id)).map(
               (e, index) => (
@@ -40,7 +40,7 @@ function Chars () {
                   className='citizen-container'
                   onClick={() => openDetail(e)}
                 >
-                  <GameCard playerChar={e} />
+                  <GameCard playerChar={e} isPlayerActive={null} />
                 </div>
               )
             )}

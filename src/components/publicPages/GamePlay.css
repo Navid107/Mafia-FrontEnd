@@ -1,46 +1,58 @@
 .gamePlay-container {
-    font-family: 'Arial', sans-serif;
-    max-width: 800px;
-    margin: auto;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 2px 2px 58px 2px rgba(180, 99, 99, 0.1);
-  }
-  .inter-p{
-    width: 45%;
-    margin:0 auto;
-  }
-  .gamePlay-container strong{
-    color: aquamarine;
-  }
-  .header-h1 {
-    text-align: center;
-  }
-  .gamePlay-container >  h2 {
-    margin-top: 20px;
-    margin-bottom: 10px;
-    color: #fa02025f;
-  }
-  
-  .gamePlay-container >  ul, ol {
-    margin-bottom: 15px;
-  }
-  
-  .gamePlay-container > ul, ol {
-    padding-left: 20px;
-    list-style-type: disc;
-  }
-  
-  .gamePlay-container > li {
-    margin-bottom: 8px;
-  }
-  
-  .gamePlay-container >a {
-    color: #007bff;
-    text-decoration: none;
-  }
-  
-  .gamePlay-container > a:hover {
-    text-decoration: underline;
-  }
-  
+  font-family: 'Arial', sans-serif;
+  max-width: 800px;
+  margin: auto;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 2px 2px 58px 2px rgba(180, 99, 99, 0.1);
+}
+.gamePlay-container > .header-h1 {
+  font-family: corleone-Due-Regular;
+  font-weight: 100;
+  font-size: calc(4vw + 0.8rem);
+  text-align: center;
+  margin: auto;
+}
+.inter-p {
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: calc(1vw + 0.6rem);
+  width: 100%;
+  text-align: center;
+  margin: auto;
+}
+.gamePlay-container strong {
+  font-size: calc(0.4vw + 0.8rem);
+  font-weight: 700;
+  color: aquamarine;
+}
+
+.gamePlay-container > h2 {
+  font-size: calc(1.1vw + 0.8rem);
+  margin-top: 20px;
+  margin-bottom: 10px;
+  color: #fa02025f;
+}
+
+.gamePlay-container > ul,
+ol {
+  margin-bottom: 15px;
+}
+
+.gamePlay-container > ul,
+ol {
+  padding-left: 20px;
+  list-style-type: disc;
+}
+
+.gamePlay-container > li {
+  margin-bottom: 8px;
+}
+
+.gamePlay-container > a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.gamePlay-container > a:hover {
+  text-decoration: underline;
+}

@@ -8,10 +8,10 @@ const Login = () => {
   const [password, setPassword] = useState('')
   const [message, setMessage] = useState('')
   const navigate = useNavigate()
-  
+
   const handleSubmit = async e => {
     e.preventDefault()
-    
+
     // Call the login function from the AuthService
     AuthService.login(email, password).then(response => {
       if (response === true) {

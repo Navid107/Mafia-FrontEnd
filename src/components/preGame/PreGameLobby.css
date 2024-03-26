@@ -3,101 +3,124 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 1200px;
+  width: 900px;
   margin: 0 auto;
 }
 
 .title {
+  font-family: corleone-Due-Regular;
   text-align: center;
-  margin: 0 auto;
-  font-size: 24px;
+  margin: auto;
+  font-size: calc(2vw + 0.8rem);
+  font-weight: normal;
 }
 
 .subtitle {
   text-align: center;
-  margin-bottom: 20px;
-  font-size: 13px;
+  font-size: calc(1vw + 0.4rem);
+  font-weight: normal;
+  color: rgb(240, 247, 218);
+  padding: 5px;
+  margin: auto;
 }
 .player-char-container {
   display: flex;
   flex-direction: row;
-  align-items: center;
-  justify-content: center;
   width: 100%;
   height: auto;
   padding: 10px;
   border-radius: 50px;
-  box-shadow: inset 0px 11px 8px -10px #fb0303,
-    inset 0px -11px 8px -10px #fb0303;
 }
 /* Player list styles */
 .players-container {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 60%;
+  width: 70%;
   font-size: 15px;
-  padding: 5px;
+  padding: 15px;
+  gap: 10px;
 }
-
+.players-container > h2 {
+  display: flex;
+  font-family: corleone-Due-Regular;
+  justify-content: flex-start;
+  margin: 0;
+  font-size: calc(2vw + 0.8rem);
+  font-weight: normal;
+  color: rgb(197, 19, 164);
+}
 .player-list {
   display: grid;
   grid-template-columns: repeat(6, max-content);
-  justify-content: left;
-  align-items: center;
-  padding: 15px;
-  gap: 10px;
+  gap: 15px;
   width: 100%;
   border-radius: 50px;
+  margin: auto;
 }
 .user-avatar {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 10px;
+  padding: 5px;
   box-shadow: 0 0 0 1px rgb(255, 0, 162);
+}
+.user-avatar > p {
+  font-family: corleone-Due-Regular;
+  width: fit-content;
+  height: 30px;
+  font-size: 20px;
+  padding-top: 10px;
+  margin: auto;
 }
 /* Player avatar styles */
 .user-avatar img {
-  margin-left: 10px;
   width: 80px;
   height: 80px;
   border-radius: 50%;
   background-color: antiquewhite;
   overflow: hidden;
 }
-
+.players-container a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  margin: 0 auto;
+  width: 250px;
+}
 .btn-start-game {
-  background-color: #ff00006b;
-  color: #fff;
-  margin-left: 300px;
-  padding: 10px 50px;
-  font-size: 20px;
-  border: none;
+  font-family: corleone-Due-Regular;
+  font-size: 30px;
+  background-color: #90054d;
+  color: #ffffff;
+  text-shadow: 1px 1px #000000;
+  height: 50px;
   text-decoration: none;
   border-radius: 5px;
   cursor: pointer;
 }
+
 /* Character checkbox container styles */
 .char-checkbox-container {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  padding: 5px;
   width: 30%;
+  margin-left: 30px;
 }
-.char-checkbox-container h2{
-  margin: auto;
-  color: blue;
+.char-checkbox-container > h2 {
+  display: flex;
+  font-family: corleone-Due-Regular;
+  font-weight: normal;
+  font-size: 30px;
+  justify-content: flex-start;
+  margin: 0;
+  color: rgb(198, 175, 63);
 }
 /* Character checkbox styles */
 .char-checkbox {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  padding: 25px;
-  width: 70%;
+  justify-content: flex-start;
   height: auto;
 }
 
@@ -105,9 +128,12 @@
 .char-checkbox label {
   display: flex;
   align-items: left;
-  font-size: 20px;
-  margin: 10px;
-  color: hsl(214, 99%, 49%);
+  font-size: 25px;
+  font-family: corleone-Due-Regular;
+  font-weight: normal;
+  font-style: italic;
+  margin: 10px auto;
+  color: hsl(60, 35%, 80%);
   cursor: pointer;
 }
 
@@ -120,148 +146,87 @@
 
 /* Submit button styles */
 .btn-checkbox {
-  background-color: #3300ff55;
-  font-weight: bold;
-  padding: 10px 50px;
-  border: none;
+  background-color: rgb(198, 175, 63);
+  color: #000000;
+  font-family: corleone-Due-Regular;
+  font-size: 30px;
+  text-shadow: 1px 1px rgba(255, 0, 0, 0.353);
+  width: 50%;
+  height: 40px;
   border-radius: 5px;
   cursor: pointer;
 }
-@media only screen and (max-width: 1024px){
-  .pre-game-container{
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    margin: auto;
-  }
-  .player-char-container {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    border-radius: 50px;
-    box-shadow: inset 0px 11px 8px -10px #fb0303,
-      inset 0px -11px 8px -10px #fb0303;
+@media only screen and (max-width: 1024px) {
+  .pre-game-container {
+    width: auto;
   }
   .players-container {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    font-size: 15px;
-    padding: 5px
+    padding: 5px;
+    gap: 5px;
+    width: 60%;
   }
-
-  .player-list{
-    display: grid;
-    grid-template-columns: repeat(4, max-content);
+  .player-list {
+    display: flex;
+    flex-wrap: wrap;
     justify-content: center;
-    padding: 15px;
-    gap: 15px;
-    width: 100%;
     border-radius: 50px;
   }
   .user-avatar img {
     margin-left: 1px;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background-color: antiquewhite;
-    overflow: hidden;
-  }
-  .btn-start-game {
-    width: 100%;
-    height: 100%;
-    font-size: 15px;
-    border-radius: 5px;
-    border: none;
-    text-decoration: none;
-    margin: auto;
-    padding: 10px;
-    cursor: pointer;
-    color: #fff;
-    background-color: #ff00006b;
+    width: 60px;
+    height: 60px;
   }
   .char-checkbox-container {
-    align-items: center;
-    width: 60%;
-    height: 90%;
-  }
-  .char-checkbox {
-    align-items: center;
-    padding: 5px;
-    width: 70%;
+    display: flex;
+    justify-content: flex-start;
+    margin: 0;
+    width: 40%;
+    padding: 10px;
   }
   .checkBox-form {
-    display: grid;
-    grid-template-columns: repeat(2, max-content);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
     width: 100%;
-    padding-top: 25px;
-    padding-right: 50px;
+    margin: 0 auto;
+  }
+  .checkBox-form label {
+    font-size: 20px;
   }
   .char-checkbox input[type='checkbox'] {
     margin-right: 5px;
     width: 20px;
     cursor: pointer;
   }
-  .btn-checkbox {
-    background-color: #3300ff55;
-    font-weight: bold;
-    padding: 10px 50px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
 }
-@media only screen and (max-width: 600px){
-  .pre-game-container{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+@media only screen and (max-width: 600px) {
+  .pre-game-container {
     width: 100%;
-    margin: 0 auto;
+    margin: 0;
   }
   .player-char-container {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
     width: 100%;
-    height: auto;
-    padding: 10px;
-    border-radius: 50px;
-    box-shadow: inset 0px 11px 8px -10px #fb0303,
-      inset 0px -11px 8px -10px #fb0303;
   }
-  .player-list{
-    display: grid;
-    grid-template-columns: repeat(4, max-content);
-    padding: 10px;
+  .players-container > h2 {
+    padding-left: 20px;
+  }
+  .players-container {
+    width: auto;
+    padding: 0;
     gap: 5px;
-    width: 100%;
-    height: 50%;
-    border-radius: 50px;
+  }
+  .player-list {
+    gap: 5px;
   }
   .user-avatar img {
     margin-left: 1px;
-    width: 40px;
-    height: 40px;
+    width: 60px;
+    height: 60px;
     border-radius: 50%;
     background-color: antiquewhite;
     overflow: hidden;
-  }
-  .btn-start-game {
-    width: 100%;
-    height: 100%;
-    font-size: 17px;
-    border-radius: 5px;
-    border: none;
-    margin: 0 auto;
-    padding: 10px;
-    cursor: pointer;
-    color: #fff;
-    background-color: #ff00006b;
   }
   .char-checkbox-container {
     display: flex;
@@ -276,7 +241,7 @@
   }
   .checkBox-form {
     display: grid;
-    grid-template-columns: repeat(2, max-content);
+    grid-template-columns: repeat(3, max-content);
     align-items: center;
     width: 100%;
   }

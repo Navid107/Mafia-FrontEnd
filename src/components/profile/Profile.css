@@ -5,14 +5,14 @@
   height: 700px;
   padding: 20px 15px 20px 15px;
   border-radius: 5px;
-  margin: auto;
+  margin: 0 auto;
   box-shadow: 0px 0px 1px rgba(254, 254, 254, 0.195);
 }
 
 .profile-container {
   width: 800px;
   background-color: #000000;
-  padding: 10px ;
+  padding: 10px;
   border-radius: 5px;
   box-shadow: 0px 0px 5px rgba(255, 0, 0, 0.585);
   text-align: center;
@@ -45,7 +45,7 @@
   width: 50%;
   font-size: 60px;
   margin: auto;
-  color:rgb(0, 0, 0);
+  color: rgb(0, 0, 0);
   text-shadow: 0px 0px 2px rgb(255, 255, 255);
 }
 
@@ -55,68 +55,63 @@
   width: 100%;
   margin: auto;
 }
-.gameStats{
+.gameStats {
   width: 50%;
   margin: auto;
   padding: 5px 5px;
 }
 .gameStats li {
   display: flex;
-  flex-direction: column;
-  flex: 1;
-  justify-content: center;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
   padding: 10px;
   background-color: #000000;
-  color: rgb(149, 143, 136);
+  color: rgb(212, 149, 77);
   border: 2px solid #010101;
   border-radius: 5px;
   box-shadow: 0 0px 4px rgb(77, 73, 213);
   text-align: left;
   font-weight: bold;
 }
-
-.stat-mafia > li , .stat-citizen > li{
-  flex-direction: row;
-  align-items: center;
-  justify-content:space-evenly;
-  box-shadow: 0px 1px 4px rgba(148, 148, 148, 0.453);
-}
-.stat-mafia  .total-games{
+.gameStats .mafia-total-games {
   font-family: corleone-Due-Regular;
-  font-size: 35px;
+  font-size: calc(2vw + 0.5rem);
   font-weight: normal;
   color: rgb(154, 37, 37);
+  margin: auto;
 }
-.stat-citizen  .total-games{
+.gameStats .citizen-total-games {
   font-family: corleone-Due-Regular;
-  font-size: 35px;
+  font-size: calc(2vw + 0.5rem);
   font-weight: normal;
   color: #04aa6d;
+  margin: auto;
 }
 
-.wins{
-  font-family:Georgia, 'Times New Roman', Times, serif;
+.wins {
+  font-family: Georgia, 'Times New Roman', Times, serif;
   color: #04aa6d;
 }
-.loses{
-  font-family:Georgia, 'Times New Roman', Times, serif;
+.loses {
+  font-family: Georgia, 'Times New Roman', Times, serif;
   color: rgb(154, 37, 37);
 }
-@media only screen and (max-width: 1024px){
+@media only screen and (max-width: 1024px) {
   .profile-page {
     width: 90%;
     height: auto;
-    margin-top: 55px;
+    margin-top: 0px;
     padding: 15px 0px 25px 0px;
   }
   .profile-container {
     width: 90%;
     margin-top: 10px;
   }
-  .total-games {
-    font-size: 15px;
+  .gameStats .mafia-total-games,
+  .gameStats .citizen-total-games {
+    font-size: calc(3vw + 0.5rem);
   }
-
 }
 @media only screen and (max-width: 620px) {
   .profile-page {
@@ -147,16 +142,17 @@
     font-size: 16px;
     margin: auto;
   }
-  .gameStats li{
+  .gameStats li {
     margin: auto;
     width: 90%;
   }
-  .total-games {
-    font-size: 20px;
+  .gameStats .mafia-total-games,
+  .gameStats .citizen-total-games {
+    font-size: calc(4vw + 0.5rem);
   }
 }
 
-@media only screen and (max-width: 380px) {
+@media only screen and (max-width: 400px) {
   .profile-container {
     max-width: auto;
     padding: 5px;
@@ -174,5 +170,9 @@
   .stat {
     padding: 6px;
     font-size: 14px;
+  }
+  .gameStats .mafia-total-games,
+  .gameStats .citizen-total-games {
+    font-size: calc(5vw + 0.5rem);
   }
 }

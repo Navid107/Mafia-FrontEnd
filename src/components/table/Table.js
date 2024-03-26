@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import { useParams, useNavigate  } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import './Table.css'
-import GameCard from '../CardUI/GameCard.js'
 import Host from '../nightActionForm/Host.js'
 import Player from '../nightActionForm/Player.js'
 import AuthService from '../auth/hooks/AuthService'
@@ -12,14 +11,12 @@ function GameTable () {
   const [nightRound, setNightRound] = useState(0)
   const [playerData, setPlayerData] = useState([])
   const [gameOver, setGameOver] = useState('')
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(true)
   const axiosPrivate = useAxiosPrivate()
   const userId = AuthService.getCurrentUser().userId
-  const navigate = useNavigate()
   const { gameKey } = useParams()
 
   useEffect(() => {
-    
     const fetchData = async () => {
       try {
         // Send a POST request to fetch lobby data based on the gameKey and userId
@@ -30,6 +27,7 @@ function GameTable () {
         // Check if the userId matches the lobby's hostId
         if (userId === response.data.host) {
           setHostValidation(true)
+          setLoading(false)
           // Set component state with the received API data
           const nightCount = response.data.nights.length - 1
           setNightRound(nightCount)
@@ -43,43 +41,40 @@ function GameTable () {
         } else {
           // If userId does not match hostId, set playerData
           setPlayerData(response.data[0].char)
+          setLoading(false)
         }
       } catch (error) {
-        // Handle errors and reload the page if not already loading
-        if(error.status(403)) {
-          navigate('./login')
+        console.error('Error', error)
+        setLoading(true)
       }
-       else if (loading !== true) {
-          setLoading(true)
-          window.location.reload()
-        }
-        else{
-          console.error('Error', error)
-        }
     }
-  }
-    
     fetchData()
     // eslint-disable-next-line
-  }, [gameKey, userId])
+  }, [gameKey, loading])
 
   return (
-    <div className='table-container'>    
+    <div className='table-container'>
+      {loading ? (
+        'loading...'
+      ) : (
+        <>
           {hostValidation === true ? (
             <div className='host-data'>
-            <Host
-              hostData={hostData}
-              nightCount={nightRound}
-              gameKey={gameKey}
-              hostId={userId}
-              gameOver={gameOver}
-            /> 
+              <Host
+                hostData={hostData}
+                nightCount={nightRound}
+                gameKey={gameKey}
+                hostId={userId}
+                gameOver={gameOver}
+              />
             </div>
           ) : (
-            <div className="player-data">
+            <div className='player-data'>
               <Player player={playerData} />
-              </div>  
-          )}  
+            </div>
+          )}
+        </>
+      )}
     </div>
   )
 }

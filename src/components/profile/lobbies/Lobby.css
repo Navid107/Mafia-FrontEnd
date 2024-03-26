@@ -10,17 +10,16 @@
   box-shadow: 0 0px 5px rgba(255, 2, 2, 0.605);
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
-.lobby-box{
+.lobby-box {
   width: 100%;
-  height: auto;
   margin: auto;
   padding: 5px;
 }
-.lobby-box h2{
+.lobby-box h2 {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(to bottom, #f4b93a 27%, #b68901 40%, #3a2c0f 78%);
+  background: linear-gradient(to bottom, #fcce6b 27%, #c79e25 40%, #3a2c0f 78%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   color: #fff;
@@ -36,19 +35,21 @@
   padding: 5px;
 }
 
-.lobby-table  th {
-  min-width: 10%;
+.lobby-table th {
+  min-width: 50%;
   font-family: YesevaOne-Regular;
+  font-size: 15px;
   padding: 5px;
   text-align: left;
   border-radius: 0 0 10px 10px;
-  box-shadow: 0 3px rgba(255, 0, 0, 0.652);
+  box-shadow: 0 3px rgba(251, 6, 6, 0.407);
 }
 
 .border-line td {
   text-align: left;
+  font-size: 20px;
   padding: 10px;
-  font-family:Georgia, 'Times New Roman', Times, serif;
+  font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
 .border-line {
@@ -61,7 +62,7 @@
 
 .lobby-link {
   text-decoration: none;
-  font-family:Georgia, 'Times New Roman', Times, serif;
+  font-family: Georgia, 'Times New Roman', Times, serif;
 }
 .Delete-lobby {
   background-color: red;
@@ -74,12 +75,21 @@
     width: 90%;
     height: auto;
   }
-  .lobby-box{
+  .lobby-box {
     width: 100%;
     justify-content: center;
     align-items: center;
     margin: auto;
     padding: 5px;
+  }
+  .lobby-box h2 {
+    font-size: calc(3vw + 0.5rem);
+  }
+  .lobby-table th {
+    font-size: calc(0.7vw + 0.5rem);
+  }
+  .border-line td {
+    font-size: calc(0.7vw + 0.5rem);
   }
 }
 
@@ -90,37 +100,44 @@
     width: 90%;
     justify-content: center;
   }
-  .lobby-box{
+  .lobby-box {
     width: 95%;
     justify-content: center;
     align-items: center;
+  }
+  .lobby-box h2 {
+    font-size: calc(4vw + 0.5rem);
   }
   .lobby-table {
     width: 100%;
   }
 
   .lobby-table th {
-    width: 50%;
+    font-size: calc(1vw + 0.5rem);
+  }
+  .border-line td {
+    font-size: calc(1vw + 0.5rem);
   }
 }
-@media screen and (max-width: 380px) {
- .lobby-container {
+@media screen and (max-width: 420px) {
+  .lobby-container {
     flex-direction: column;
     width: 90%;
   }
-  .lobby-box{
+  .lobby-box {
     width: 100%;
     justify-content: center;
     align-items: center;
     margin: auto;
   }
-
+  .lobby-box h2 {
+    font-size: calc(5vw + 0.5rem);
+  }
   .lobby-table {
     width: 100%;
   }
 
   .lobby-table th {
-    width: 100%;
+    font-size: calc(1vw + 0.5rem);
   }
-  
 }

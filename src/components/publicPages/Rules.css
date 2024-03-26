@@ -1,42 +1,57 @@
 .mafia-rules-container {
-    font-family: 'Arial', sans-serif;
-    max-width: 800px;
-    margin: auto;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 2px 2px 58px 2px rgba(180, 99, 99, 0.1);
-  }
-  .mafia-rules-container strong{
-    color: aquamarine;
-  }
-  .header-h1 {
-    text-align: center;
-  }
-  .mafia-rules-container >  h2 {
-    margin-top: 20px;
-    margin-bottom: 10px;
-    color: #fa02025f;
-  }
-  
-  .mafia-rules-container > p, ul, ol {
-    margin-bottom: 15px;
-  }
-  
-  .mafia-rules-container > ul, ol {
-    padding-left: 20px;
-    list-style-type: disc;
-  }
-  
-  .mafia-rules-container > li {
-    margin-bottom: 8px;
-  }
-  
-  .mafia-rules-container >a {
-    color: #007bff;
-    text-decoration: none;
-  }
-  
-  .mafia-rules-container > a:hover {
-    text-decoration: underline;
-  }
-  
+  font-family: 'Arial', sans-serif;
+  max-width: 800px;
+  margin: auto;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 2px 2px 58px 2px rgba(180, 99, 99, 0.1);
+}
+.mafia-rules-container strong {
+  font-size: calc(0.4vw + 0.8rem);
+  font-weight: 700;
+  color: aquamarine;
+}
+.header-h1 {
+  font-family: corleone-Due-Regular;
+  font-weight: 100;
+  font-size: calc(4vw + 0.8rem);
+  text-align: center;
+  margin: auto;
+}
+.mafia-rules-container h2 {
+  font-size: calc(1.1vw + 0.8rem);
+  margin-top: 30px;
+  margin-bottom: 0px;
+  color: #c40d0dce;
+}
+.mafia-rules-container > h2 > ul > li {
+  margin-top: 10px;
+}
+.mafia-rules-container > p,
+ul,
+ol {
+  margin-bottom: 20px;
+}
+.mafia-rules-container > ol > li {
+  font-size: calc(0.5vw + 0.8rem);
+  margin: 5px auto;
+}
+.mafia-rules-container > ul,
+ol {
+  padding-left: 20px;
+  list-style-type: disc;
+}
+
+.mafia-rules-container > ul > li {
+  font-size: calc(0.5vw + 0.8rem);
+  margin: auto;
+}
+
+.mafia-rules-container > a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.mafia-rules-container > a:hover {
+  text-decoration: underline;
+}

@@ -15,7 +15,7 @@ const details = [
     side: 'Mafia',
     image: GodFather,
     description:
-      "The Godfather, a key role in the game, keeps their identity hidden from detectives and possesses a armor vest against sniper, requiring players to employ deduction and strategy to reveal their true identity despite their added protection ."
+      'The Godfather, a key role in the game, keeps their identity hidden from detectives and possesses a armor vest against sniper, requiring players to employ deduction and strategy to reveal their true identity despite their added protection .'
   },
   {
     id: 2,
@@ -47,7 +47,7 @@ const details = [
     side: 'Citizen',
     image: Dr,
     description:
-      "Dr. Watson, a citizen role, has the ability to protect themselves once during the game, while being able to protect other players unlimited times, adding a strategic dynamic to gameplay as they balance self-preservation with aiding fellow participants."
+      'Dr. Watson, a citizen role, has the ability to protect themselves once during the game, while being able to protect other players unlimited times, adding a strategic dynamic to gameplay as they balance self-preservation with aiding fellow participants.'
   },
   {
     id: 5,
@@ -63,7 +63,7 @@ const details = [
     side: 'Citizen',
     image: Sniper,
     description:
-      "The Sniper, able to shoot nightly, faces a dilemma: killing a citizen results in their own demise, while targeting Mafia members, excluding the Godfather who withstands two shots, eliminates them, introducing a strategic risk-reward dynamic into gameplay."
+      'The Sniper, able to shoot nightly, faces a dilemma: killing a citizen results in their own demise, while targeting Mafia members, excluding the Godfather who withstands two shots, eliminates them, introducing a strategic risk-reward dynamic into gameplay.'
   },
   {
     id: 7,
@@ -71,7 +71,7 @@ const details = [
     side: 'Citizen',
     image: BodyGuard,
     description:
-      "The Bodyguard, with nightly protection ability, selects a player to safeguard; upon Mafia elimination, the Bodyguard receives notification from GOD regarding the assailant, adding intrigue and strategic depth to gameplay dynamics."
+      'The Bodyguard, with nightly protection ability, selects a player to safeguard; upon Mafia elimination, the Bodyguard receives notification from GOD regarding the assailant, adding intrigue and strategic depth to gameplay dynamics.'
   },
   {
     id: 8,

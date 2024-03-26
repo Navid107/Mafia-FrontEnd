@@ -9,20 +9,19 @@ function UserLobbies ({ reRenderLobbies }) {
   const [deletedLobby, setDeletedLobbies] = useState(0)
   const axiosPrivate = useAxiosPrivate()
 
-  const handleDeleteLobby = (e) => {
+  const handleDeleteLobby = e => {
     // Get the value (gameKey) of the lobby to delete
     const deleteLobby = e.target.value
     axiosPrivate
-      .delete(`/game/table/${deleteLobby}`).then(
-        (response) => {
-          setDeletedLobbies(createdLobbies.length-1)
-        }
-      )
+      .delete(`/game/table/${deleteLobby}`)
+      .then(response => {
+        setDeletedLobbies(createdLobbies.length - 1)
+      })
       .catch(error => {
         console.error('Error in deleting lobby:', error)
       })
   }
-  
+
   useEffect(() => {
     // Fetch joined and hosted lobbies data
     axiosPrivate
@@ -35,9 +34,7 @@ function UserLobbies ({ reRenderLobbies }) {
         console.error('Error fetching user lobbies:', error)
       })
     //Api will call and reRender lobbies if there are any changes
-  },[reRenderLobbies, deletedLobby]);
-
-
+  }, [reRenderLobbies, deletedLobby, axiosPrivate])
 
   return (
     <div className='lobby-container'>
@@ -59,8 +56,8 @@ function UserLobbies ({ reRenderLobbies }) {
                     <Link
                       to={
                         lobby.gameState !== 'false'
-                          ? `/table/${lobby.gameKey}`
-                          : `/play/${lobby.gameKey}`
+                          ? `/user/table/${lobby.gameKey}`
+                          : `/user/play/${lobby.gameKey}`
                       }
                       className='lobby-link'
                     >
@@ -105,8 +102,8 @@ function UserLobbies ({ reRenderLobbies }) {
                     <Link
                       to={
                         lobby.gameState === 'true'
-                          ? `/table/${lobby.gameKey}`
-                          : `/play/${lobby.gameKey}`
+                          ? `/user/table/${lobby.gameKey}`
+                          : `/user/play/${lobby.gameKey}`
                       }
                       className='lobby-link'
                     >

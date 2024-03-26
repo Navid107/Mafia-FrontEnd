@@ -1,5 +1,5 @@
 import React from 'react'
-import './HomePage.css'
+import './Home.css'
 
 const Home = () => {
   return (
@@ -30,7 +30,7 @@ const Home = () => {
 
       <section className='features-section'>
         <h2>Features:</h2>
-        <ul>
+        <ul className='feature-list'>
           <li>Effortless Game Management</li>
           <li>Customizable Settings</li>
           <li>User-Friendly Interface</li>

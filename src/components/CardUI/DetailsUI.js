@@ -1,7 +1,6 @@
 import React from 'react'
 import './DetailsUI.css'
 const DetailUI = ({ char, onClose }) => {
-  console.log('charrrr', char)
   return (
     <div
       className={`detailUI-container ${char.side === 'Mafia' ? 'mafia' : ''}`}

@@ -85,10 +85,11 @@ function GameCard ({ playerChar, playerName, isPlayerActive, style }) {
   return (
     <div>
       {character ? (
-        <div className={`gameCard-design-container ${style ? 'player':
-        '' }`}> 
-          <div className={`gameCard-character-info
-          ${playerName === isPlayerActive ? 'active-player': ''}`}>
+        <div className={`gameCard-design-container ${style ? 'player' : ''}`}>
+          <div
+            className={`gameCard-character-info
+          ${!style && playerName === isPlayerActive ? 'active-player' : ''}`}
+          >
             <p>{playerName}</p>
             <img
               className={`gameCard-character-image `}

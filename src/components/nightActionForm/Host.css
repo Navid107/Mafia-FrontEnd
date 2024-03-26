@@ -10,27 +10,26 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin:0 auto;
+  margin-top: 30px;
 }
 .ppl-in-city-h1 {
-  scroll-padding-top: 10px;
-  width: 80%;
+  font-family: YesevaOne-Regular;
+  font-size: calc(3vw + 0.5rem);
   text-shadow: 3px 2px rgba(255, 0, 0, 0.544);
+  margin: 0 auto;
 }
 .host-sides-mafia {
-  font-size: 30px;
-  font-weight: bold;
-  height: auto;
-  padding: 10px;
-  margin:0 auto;
-  color: rgba(255, 0, 0, 0.831);
+  font-family: corleone-Due-Regular;
+  font-size: calc(3vw + 0.5rem);
+  padding-top: 15px;
+  margin: 0 auto;
+  color: rgba(255, 0, 0, 0.543);
 }
 
 .host-sides-citizen {
-  font-size: 30px;
-  font-weight: bold;
-  padding: 10px;
-  margin:0 auto;
+  font-family: corleone-Due-Regular;
+  font-size: calc(3vw + 0.5rem);
+  margin: 0 auto;
   color: rgba(0, 255, 47, 0.75);
 }
 
@@ -39,6 +38,7 @@
   flex-wrap: wrap;
   flex-direction: row;
   align-items: center;
+  justify-content: center;
 }
 
 .host-mafia-container .gameCard-character-info {
@@ -47,7 +47,7 @@
 .host-citizen-container .gameCard-character-info {
   box-shadow: 0 0 5px rgb(137, 255, 2);
 }
-.host-citizen-container.gameCard-character-info:hover {
+.host-citizen-container .gameCard-character-info:hover {
   box-shadow: 0 0 5px rgb(137, 255, 2);
   background-color: rgba(7, 255, 156, 0.519);
 }
@@ -56,21 +56,26 @@
   background-color: rgba(255, 0, 0, 0.494);
 }
 .night-actions-container {
-  width: 25%;
-  padding: 5px;
-  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
   box-sizing: border-box;
   border-left: 5px solid #16095622;
   color: #ffffffaf;
 }
-.night-actions-container h1{
-  width: 80%;
-  color: red;
-
+.night-actions-container h1 {
+  font-family: YesevaOne-Regular;
+  text-align: left;
+  margin: 0;
+  padding-top: 20px;
+  font-size: calc(3vw + 0.5rem);
+  text-shadow: 3px 2px rgba(255, 0, 0, 0.544);
 }
-.night-actions-container h3{
-  width: 80%;
-  color: rgba(27, 13, 214, 0.708);
+.night-actions-container h3 {
+  font-family: YesevaOne-Regular;
+  font-size: 25px;
+  color: rgb(146, 145, 142);
+  margin: 20px auto;
 }
 .dead {
   filter: grayscale(100%);
@@ -82,53 +87,78 @@
   display: flex;
   flex-direction: column;
   width: 80%;
+  font-family: corleone-Due-Regular;
+  font-style: italic;
+  font-weight: lighter;
+  font-size: 30px;
   text-align: center;
+  color: antiquewhite;
   border-radius: 5px;
   padding: 10px;
   margin-bottom: 5px;
   box-shadow: 0 4px 6px rgba(255, 2, 2, 0.486);
-  color: antiquewhite;
 }
 
 .checkBox-label:hover {
-  box-shadow: 0 4px 6px rgb(36, 2, 255);
+  box-shadow: 0 4px 6px rgb(255, 2, 2);
 }
 
+.checkBox-label.disabled,
+input[type='checkbox'][disabled] {
+  cursor: not-allowed;
+  filter: grayscale(90%);
+  opacity: 0.7;
+}
+.checkBox-label.disabled:hover {
+  box-shadow: 0 4px 6px rgb(248, 245, 245);
+}
 .night-action-form-btn {
   display: block;
-  width:88%;
+  font-family: YesevaOne-Regular;
+  width: 88%;
   text-align: center;
   border-radius: 5px;
   padding: 20px;
   box-shadow: 0 2px 4px rgb(36, 2, 255);
   font-size: 30px;
   font-weight: bold;
-  color: rgb(255, 187, 0);
-  background-color:transparent;
+  color: rgb(146, 145, 142);
+  background-color: transparent;
 }
-
+.night-action-form-btn:hover {
+  background-color: #8b0303a8;
+  color: antiquewhite;
+  font-family: corleone-Due-Regular;
+  font-style: italic;
+  font-size: 50px;
+  padding: 8px;
+}
 .night-actions-container.dead {
   filter: grayscale(100%);
 }
-.winner-container {
+.gameOver-container {
   display: flex;
   flex-direction: column;
   width: 50%;
   margin: 0 auto;
 }
-.winner-container > h1 {
-  color: rgba(190, 2, 2, 0.689);
-  text-shadow: 3px 2px rgba(227, 172, 172, 0.573);
+.gameOver-container > h1 {
+  font-family: corleone-Due-Regular;
+  font-weight: normal;
+  font-size: calc(4vw + 1rem);
+  color: rgb(255, 0, 0);
+  text-shadow: 1px 1px #f602da;
 }
 .play-again-btn {
-  font-size: 20px;
-  width: 50%;
+  font-size: calc(1.8vw + 0.5rem);
+  width: 40%;
+  height: 50px;
   margin: 0 auto;
-  padding: 15px;
-  color: rgb(254, 254, 254);
+  color: antiquewhite;
+  font-family: YesevaOne-Regular;
   font-weight: bold;
-  text-shadow: 2px 1px rgba(6, 6, 6, 0.802);
-  background-color: #ff00006b;
+  text-shadow: 0px 0px 2px rgb(4, 4, 4);
+  background-color: #2938a44e;
   text-decoration: none;
   border-radius: 5px;
   cursor: pointer;
@@ -139,43 +169,49 @@
   margin: auto;
   align-items: center;
   justify-content: center;
-  font-size: 2em;
-  color: rgb(8, 8, 219);
+  font-size: calc(2vw + 1rem);
+  font-family: corleone-Due-Regular;
+  color: rgb(180, 250, 195);
 }
 .winner-team-name > p {
   padding-left: 10px;
-  font-weight: bold;
-  color: rgb(254, 254, 254);
-  text-shadow: 3px 2px rgba(4, 187, 59, 0.802);
+  font-size: calc(2vw + 1rem);
+  font-family: corleone-Due-Regular;
+  color: rgb(188, 2, 255);
 }
 .winner-team-players {
   display: flex;
   flex-flow: row wrap;
 }
-@media only screen and (max-width: 1024px) {
+@media only screen and (max-width: 800px) {
   .host-container-card {
     display: flex;
     flex-direction: column;
     width: 100%;
     margin: auto;
   }
+  .host-player-card {
+    margin: 0;
+  }
+  .host-sides-citizen,
+  .host-sides-mafia {
+    padding-top: 20px;
+    font-size: calc(3vw + 0.7rem);
+  }
   .night-actions-container {
     width: 100%;
     margin: auto;
     align-items: center;
     justify-content: center;
-    height: 63vh;
+    height: 60vh;
     border-left: 0px;
   }
-  .night-actions-container h1{
-    color: red;
-    width: 100%;
+  .night-actions-container h1 {
+    padding-top: 10px;
+    font-size: calc(4vw + 0.5rem);
   }
-  .night-actions-container h3{
-    color: rgba(27, 13, 214, 0.708);
-    width: 100%;
-  }
-  .night-actions-container form{
+
+  .night-actions-container form {
     display: grid;
     grid-template-columns: 50% 50%;
     place-items: center;
@@ -189,41 +225,17 @@
 
   .night-action-form-btn {
     width: 100%;
-    padding: 17px;
-    margin-bottom:20px;
-    color: rgb(255, 187, 0);
-    background-color:transparent;
+    padding: 13px;
   }
-  .winner-container {
+  .night-action-form-btn:hover {
+    padding: 1px;
+  }
+  .gameOver-container {
     width: 100%;
     margin: auto;
   }
-  .winner-container > h1 {
-    font-size: 30px;
-    color: rgba(190, 2, 2, 0.689);
-    text-shadow: 3px 2px rgba(227, 172, 172, 0.573);
-  }
   .play-again-btn {
-    font-size: 15px;
-    width: 40%;
-    margin: 0 auto;
-    padding: 10px;
-    color: #fff;
-    background-color: #ff00002f;
-    text-decoration: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  .winner-team-name {
-    display: flex;
     width: 30%;
-    margin: auto;
-    align-items: center;
-    font-size: 1em;
-    color: rgb(8, 8, 219);
-  }
-  .winner-team-name > p {
-    color: rgb(254, 254, 254);
   }
   .winner-team-players {
     display: flex;
@@ -247,22 +259,27 @@
     margin: auto;
     border-left: 0px;
   }
+  .night-actions-container h1 {
+    font-size: calc(5vw + 0.5rem);
+  }
   .night-actions-container form {
     display: grid;
     grid-template-columns: 50% 50%;
     width: 100%;
   }
   .checkBox-label {
-    width: 90%;
-    padding: 5px;
+    width: 95%;
+    padding: 4px;
     box-shadow: 0 4px 6px rgba(255, 2, 2, 0.486);
   }
 
   .night-action-form-btn {
-    padding: 15px;
+    margin: auto;
+    padding: 14px 0px 15px;
     font-size: 25px;
-    color: rgb(255, 187, 0);
-    background-color:transparent;
+  }
+  .night-action-form-btn:hover {
+    padding: 1px;
   }
   .winner-container {
     width: 100%;
@@ -274,31 +291,28 @@
     text-shadow: 3px 2px rgba(227, 172, 172, 0.573);
   }
   .play-again-btn {
-    font-size: 15px;
-    width: 40%;
-    margin: 0 auto;
-    padding: 10px;
-    color: #fff;
-    background-color: #ff00002f;
-    text-decoration: none;
-    border-radius: 5px;
-    cursor: pointer;
+    width: 30%;
   }
-  .winner-team-name {
-    display: flex;
-    width: 50%;
+}
+@media only screen and (max-width: 400px) {
+  .night-action-form-btn {
     margin: auto;
-    align-items: center;
-    font-size: 1em;
-    color: rgb(8, 8, 219);
+    font-size: 25px;
+    padding: 16px;
   }
-  .winner-team-name > p {
-    color: rgb(254, 254, 254);
+  .night-action-form-btn:hover {
+    padding: 2px;
   }
-  .winner-team-players {
-    display: flex;
-    flex-flow: row wrap;
-    width: 100%;
-    margin: auto;
+  .night-actions-container h1 {
+    font-size: calc(7vw + 0.5rem);
+  }
+  .ppl-in-city-h1 {
+    font-size: calc(5vw + 0.5rem);
+  }
+  .host-sides-mafia {
+    font-size: calc(5vw + 0.5rem);
+  }
+  .host-sides-citizen {
+    font-size: calc(5vw + 0.5rem);
   }
 }

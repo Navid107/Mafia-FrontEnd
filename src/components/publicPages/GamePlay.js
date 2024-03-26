@@ -44,11 +44,11 @@ const GamePlay = () => {
           <li>
             <strong>Quick Stand: </strong>
             Before each player takes their turn to speak, they can offer a
-            "Quick Stand" opportunity, allowing one other player to speak
-            before them, with the choice of who receives this
-            opportunity lying solely with the player whose turn it is
-            "NOTE:"
-            Quick Stand time is half of the regular time and every player can get one Quick Stand every round.
+            "Quick Stand" opportunity, allowing one other player to speak before
+            them, with the choice of who receives this opportunity lying solely
+            with the player whose turn it is "NOTE:" Quick Stand time is half of
+            the regular time and every player can get one Quick Stand every
+            round.
           </li>
           <li>
             No one can reveal their identity during the talk phase or they will
@@ -94,7 +94,9 @@ const GamePlay = () => {
           </li>
           <li>
             <strong>Next Day: </strong>
-            After everyone uses the ability. GOD can click the Next Day button and the game will be updated accordingly to Night Actions Form. This will repeat until one team wins.
+            After everyone uses the ability. GOD can click the Next Day button
+            and the game will be updated accordingly to Night Actions Form. This
+            will repeat until one team wins.
           </li>
         </ul>
       </ol>

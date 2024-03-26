@@ -23,7 +23,7 @@ const App = () => {
 
   return (
     <Router>
-      <Navbar loggedIn={user} handleLogout={(e) => AuthService.logout()} />
+      <Navbar loggedIn={user} handleLogout={e => AuthService.logout()} />
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/rules' element={<Rules />} />
@@ -34,9 +34,9 @@ const App = () => {
 
         <Route element={<PrivateRoute props={user} />}>
           <Route path='/user' element={<Profile />} />
-          <Route path='/lobby' element={<Lobby />} />
-          <Route path='/play/:gameKey' element={<PreGameLobby />} />
-          <Route path='/table/:gameKey' element={<Table />} />
+          <Route path='/user/lobby' element={<Lobby />} />
+          <Route path='/user/play/:gameKey' element={<PreGameLobby />} />
+          <Route path='/user/table/:gameKey' element={<Table />} />
         </Route>
       </Routes>
     </Router>
