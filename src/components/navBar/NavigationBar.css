@@ -2,7 +2,6 @@
 
 .navbar {
   display: flex;
-  max-width: 960px;
   margin: auto;
   padding-bottom: 20px;
   background-color: #000000;
@@ -10,7 +9,7 @@
 
 .navbar-list {
   background-color: transparent;
-  width: 80%;
+  width: 60%;
   height: 40px;
   margin: auto;
   gap: 40px;
@@ -66,7 +65,6 @@
   }
   .navbar-list {
     justify-content: center;
-    width: 80%;
     margin: 0 auto;
   }
   .navbar ul {
@@ -81,7 +79,7 @@
   }
 }
 
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: 600px) {
   .navbar {
     width: 100%;
     margin: auto;
