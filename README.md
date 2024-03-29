@@ -35,18 +35,18 @@ This project is open-source and available under the [MIT License](LICENSE).
 
 <img src="screenshots/1signup.png" alt="Screenshot 1" width="400" height="300">
 <img src="screenshots/2profile.png" alt="Screenshot 2" width="400" height="300">
-<img src="screenshots/3createLobby.png" alt="Screenshot 2" width="400" height="300">
-<img src="screenshots/4preGameLobby.png" alt="Screenshot 2" width="400" height="300">
-<img src="screenshots/7submitForm.png" alt="Screenshot 2" width="400" height="300">
-<img src="screenshots/firstDay.png" alt="Screenshot 2" width="400" height="300">
-<img src="screenshots/firstDay2.png" alt="Screenshot 2" width="400" height="300">
-<img src="screenshots/votingTarget.png" alt="Screenshot 2" width="400" height="300">
-<img src="screenshots/votingDead.png" alt="Screenshot 2" width="400" height="300">
-<img src="screenshots/mafiaTarget.png" alt="Screenshot 2" width="400" height="300">
-<img src="screenshots/mafiaShot.png" alt="Screenshot 2" width="400" height="300">
-<img src="screenshots/nextDay.png" alt="Screenshot 2" width="400" height="300">
-<img src="screenshots/secondDay.png" alt="Screenshot 2" width="400" height="300">
-<img src="screenshots/winner.png" alt="Screenshot 2" width="400" height="300">
+<img src="screenshots/3createLobby.png" alt="Screenshot 3" width="400" height="300">
+<img src="screenshots/4preGameLobby.png" alt="Screenshot 4" width="400" height="300">
+<img src="screenshots/7submitForm.png" alt="Screenshot 5" width="400" height="300">
+<img src="screenshots/firstDay.png" alt="Screenshot 6" width="400" height="300">
+<img src="screenshots/firstDay2.png" alt="Screenshot 7" width="400" height="300">
+<img src="screenshots/votingTarget.png" alt="Screenshot 8" width="400" height="300">
+<img src="screenshots/votingDead.png" alt="Screenshot 9" width="400" height="300">
+<img src="screenshots/mafiaTarget.png" alt="Screenshot 10" width="400" height="300">
+<img src="screenshots/mafiaShot.png" alt="Screenshot 11" width="400" height="300">
+<img src="screenshots/nextDay.png" alt="Screenshot 12" width="400" height="300">
+<img src="screenshots/secondDay.png" alt="Screenshot 13" width="400" height="300">
+<img src="screenshots/winner.png" alt="Screenshot 14" width="400" height="300">
 
 For more information about the Mafia party game, visit [Wikipedia](https://en.wikipedia.org/wiki/Mafia_(party_game)).
 - For further assistance or inquiries, contact [here](mailto:me@Navidr.com).
