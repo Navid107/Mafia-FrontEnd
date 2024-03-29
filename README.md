@@ -25,10 +25,6 @@ No installation is required as Mafia Board Game is a web-based application. Simp
 
 Contributions to Mafia Board Game are welcome! Please reach out via email [here](mailto:me@Navidr.com) to discuss any suggestions or ideas before making contributions.
 
-## License
-
-This project is open-source and available under the [MIT License](LICENSE).
-
 ## Additional Information
 
 - To get started, see the screenshots provided in the [screenshots](screenshots/) directory.
@@ -47,6 +43,6 @@ This project is open-source and available under the [MIT License](LICENSE).
 <img src="screenshots/winner.png" alt="Screenshot 14" width="400" height="300">
 
 For more information about the Mafia party game, visit [Wikipedia](https://en.wikipedia.org/wiki/Mafia_(party_game)).
-- For further assistance or inquiries, contact [here](mailto:me@Navidr.com).
+For further assistance or inquiries, contact [here](mailto:me@Navidr.com).
 
 
