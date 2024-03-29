@@ -42,7 +42,7 @@ Contributions to Mafia Board Game are welcome! Please reach out via email [here]
 <img src="screenshots/nextDay.png" alt="Screenshot 12" width="400" height="300">
 <img src="screenshots/winner.png" alt="Screenshot 14" width="400" height="300">
 
-For more information about the Mafia party game, visit [Wikipedia](https://en.wikipedia.org/wiki/Mafia_(party_game)).
-For further assistance or inquiries, contact [here](mailto:me@Navidr.com).
+- For more information about the Mafia party game, visit [Wikipedia](https://en.wikipedia.org/wiki/Mafia_(party_game)).
+- For further assistance or inquiries, contact [here](mailto:me@Navidr.com).
 
 
