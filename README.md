@@ -26,9 +26,7 @@ No installation is required as Mafia Board Game is a web-based application. Simp
 Contributions to Mafia Board Game are welcome! Please reach out via email [here](mailto:me@Navidr.com) to discuss any suggestions or ideas before making contributions.
 
 ## Additional Information
-
-- To get started, see the screenshots provided in the [screenshots](screenshots/) directory.
-
+- Screenshots
 <img src="screenshots/1signup.png" alt="Screenshot 1" width="400" height="300">
 <img src="screenshots/2profile.png" alt="Screenshot 2" width="400" height="300">
 <img src="screenshots/3createLobby.png" alt="Screenshot 3" width="400" height="300">

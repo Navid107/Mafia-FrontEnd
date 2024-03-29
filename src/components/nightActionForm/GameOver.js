@@ -3,7 +3,7 @@ import './Host.css'
 import { useNavigate } from 'react-router-dom'
 import GameCard from '../CardUI/GameCard'
 import useAxiosPrivate from '../auth/api/useAxiosPrivate'
-function GameOver ({ winningTeam, winningPlayers }) {
+function GameOver ({ winningTeam, winningPlayers, gameKey }) {
   const axiosPrivate = useAxiosPrivate()
   const navigate = useNavigate()
   const capitalizeFirstLetter = str => {
@@ -14,8 +14,7 @@ function GameOver ({ winningTeam, winningPlayers }) {
   const playAgain = () => {
     //DELETE request for the table
     axiosPrivate
-      .delete(`/game/table/`)
-      //${gameKey}
+      .delete(`/game/table/${gameKey}`)
       //If the request is successful,
       .then(response => {
         if (response) {
