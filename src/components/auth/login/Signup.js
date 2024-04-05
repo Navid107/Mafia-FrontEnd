@@ -5,6 +5,7 @@ const SignUp = () => {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [confirmPassword, setConfirmPassword] = useState('')
   const [message, setMessage] = useState('')
 
   const navigate = useNavigate()
@@ -12,6 +13,23 @@ const SignUp = () => {
   const handleSubmit = async e => {
     e.preventDefault()
     setMessage('')
+
+    if(name.length > 9 || name.length < 3) {
+      setMessage("Username must be between 9-3 letter")
+      return 
+    }
+    // Email validation
+    if (!isValidEmail(email)) {
+      setMessage('Please enter a valid email address')
+      return
+    }
+
+    // Password confirmation
+    if (password !== confirmPassword) {
+      setMessage('Passwords do not match')
+      return
+    }
+
     // Create an object to send as the request body
     AuthService.register(name, email, password).then(
       () => {
@@ -22,6 +40,12 @@ const SignUp = () => {
         setMessage('Please Check Your Inputs')
       }
     )
+  }
+
+  // Function to validate email format
+  const isValidEmail = email => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    return emailRegex.test(email)
   }
 
   return (
@@ -56,7 +80,12 @@ const SignUp = () => {
             />
           </div>
           <div className='field'>
-            <input type='password' placeholder='Confirm password' required />
+            <input
+             type='password'
+              placeholder='Confirm password'
+              value={confirmPassword}
+              onChange={e => setConfirmPassword(e.target.value)}
+              required />
           </div>
 
           <button className='field-btn' type='submit' value='Signup'>

@@ -13,7 +13,7 @@ function UserLobbies ({ reRenderLobbies }) {
     // Get the value (gameKey) of the lobby to delete
     const deleteLobby = e.target.value
     axiosPrivate
-      .delete(`/game/table/${deleteLobby}`)
+      .delete(`game/table/${deleteLobby}`)
       .then(response => {
         setDeletedLobbies(createdLobbies.length - 1)
       })
@@ -25,7 +25,7 @@ function UserLobbies ({ reRenderLobbies }) {
   useEffect(() => {
     // Fetch joined and hosted lobbies data
     axiosPrivate
-      .post('/game/lobbies')
+      .post('game/lobbies')
       .then(response => {
         setJoinedLobbies(response.data.joined)
         setCreatedLobbies(response.data.hosted)

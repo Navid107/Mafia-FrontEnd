@@ -9,13 +9,10 @@ const Profile = () => {
   const [updateLobbies, setUpdateLobbies] = useState(0)
   const userStats = AuthService.getCurrentUser()
 
-  console.log(userStats)
-
   //If lobby gets created or joining game happens,lobbies will get
   const apiCallback = e => {
     setUpdateLobbies(updateLobbies + e)
   }
-  console.log(updateLobbies)
   return (
     <div className='profile-page'>
       <div className='profile-container'>

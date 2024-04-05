@@ -242,7 +242,7 @@ const NightActions = ({
     sniperAction(sniperShot)
     // Send a request update the game table with the Night Action Form
     axiosPrivate
-      .post(`/game/table-update`, {
+      .post(`game/table-update`, {
         gameKey,
         hostId: hostId,
         players: characterData

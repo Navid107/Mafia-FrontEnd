@@ -3,16 +3,13 @@ import './Host.css'
 import NightActions from './NightActions'
 import GameOver from './GameOver'
 function Host ({ hostData, hostId, gameKey, nightCount, gameOver }) {
-  const winingTeamPlayers = hostData.filter(
-    character => character.char.death === false
-  )
 
   return (
     <div className='host-container-card'>
       {gameOver ? (
         <GameOver
           winningTeam={gameOver}
-          winningPlayers={winingTeamPlayers}
+          winningPlayers={hostData}
           gameKey={gameKey}
         />
       ) : (

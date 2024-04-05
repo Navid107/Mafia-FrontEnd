@@ -1,7 +1,9 @@
 import axios from 'axios'
 import jwtDecode from 'jwt-decode'
-const API_URL = 'http://localhost:3500/api/'
-//https://mafia-backend-q34z.onrender.com
+const API_URL = 'https://mafia-backend-q34z.onrender.com/api/';
+//'http://localhost:3500/api/'
+// 'https://mafia-backend-q34z.onrender.com/api/';
+
 // Function to register a new user
 const register = (name, email, password) => {
   return axios.post(API_URL + 'auth/signup', {

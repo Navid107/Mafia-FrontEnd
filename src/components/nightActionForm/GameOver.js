@@ -14,7 +14,7 @@ function GameOver ({ winningTeam, winningPlayers, gameKey }) {
   const playAgain = () => {
     //DELETE request for the table
     axiosPrivate
-      .delete(`/game/table/${gameKey}`)
+      .delete(`game/table/${gameKey}`)
       //If the request is successful,
       .then(response => {
         if (response) {

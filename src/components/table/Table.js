@@ -20,7 +20,7 @@ function GameTable () {
     const fetchData = async () => {
       try {
         // Send a POST request to fetch lobby data based on the gameKey and userId
-        const response = await axiosPrivate.post(`/game/table`, {
+        const response = await axiosPrivate.post(`game/table`, {
           gameKey: gameKey,
           userId: userId
         })

@@ -16,7 +16,7 @@ function GameRoom ({ refreshLobbies }) {
         return 'Lobby name was not provided'
       }
       // request to create a new game and receive a game key
-      await axiosPrivate.post(`/game/host`, { lobbyName }).then(respond => {
+      await axiosPrivate.post(`game/host`, { lobbyName }).then(respond => {
         if (respond.status === 201) {
           apiCallback()
         }
@@ -31,7 +31,7 @@ function GameRoom ({ refreshLobbies }) {
     try {
       // request to join a game using the game key and player name
       await axiosPrivate
-        .post(`/game/join`, {
+        .post(`game/join`, {
           gameKey: gameKey,
           name: userInfo.user
         })

@@ -1,6 +1,7 @@
 import axios from 'axios'
-const API_URL = 'http://localhost:3500/api'
-//https://mafia-backend-q34z.onrender.com
+const API_URL = 'https://mafia-backend-q34z.onrender.com/api/'
+//'http://localhost:3500/api/'
+//https://mafia-backend-q34z.onrender.com/api/
 // Create an Axios instance with default settings for making HTTP requests.
 export default axios.create({
   baseURL: API_URL // Base URL for API requests

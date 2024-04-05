@@ -62,7 +62,7 @@ function PreGameLobby () {
   useEffect(() => {
     // Fetch lobby data based on gameKey
     axiosPrivate
-      .post(`/game/lobby`, { gameKey })
+      .post(`game/lobby`, { gameKey })
       .then(response => {
         if (response.data && response.data[0]) {
           // Set players and hostId based on response data
@@ -260,7 +260,7 @@ function PreGameLobby () {
               : 'no players available'}
           </div>
           {hostId === userId.userId ? (
-            <Link to={{ pathname: `/user/table/${gameKey}` }}>
+            <Link to={{ pathname: `user/table/${gameKey}` }}>
               {formSubmit ? (
                 <button
                   className='btn-start-game'
