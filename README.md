@@ -10,7 +10,8 @@ Mafia Board Game is a website designed to replace traditional paper cards for th
 
 ## Installation
 
-No installation is required as Mafia Board Game is a web-based application. Simply visit [Website URL] to access the platform.
+No installation is required as Mafia Board Game is a web-based application.
+### [Live Demo](https://mafiaboard.netlify.app/)
 
 ## Usage
 
