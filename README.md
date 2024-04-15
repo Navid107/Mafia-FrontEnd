@@ -8,7 +8,9 @@ Mafia Board Game is a website designed to replace traditional paper cards for th
 - **Express.js**: Web application framework for backend server logic.
 - **React.js**: JavaScript library for building dynamic user interfaces.
 - **Node.js**: Runtime environment for executing server-side JavaScript.
-![Diagram](screenshots/chart.png)
+
+<img src="screenshots/chart.png" alt="Screenshot 1" width="400" height="300">
+
 #### [Live Demo](https://mafiaboard.netlify.app/)
 
 ## Features
