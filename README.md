@@ -2,6 +2,15 @@
 
 Mafia Board Game is a website designed to replace traditional paper cards for the popular party game Mafia. This online platform focuses on simplifying the moderator's tasks during the game's night phase. Moderators can input game data into a form, submit it, and receive updated data back. The backend then analyzes the data using an algorithm and sends the updated information to the frontend.
 
+## Programs Used
+
+- **MongoDB**: NoSQL database for storing application data.
+- **Express.js**: Web application framework for backend server logic.
+- **React.js**: JavaScript library for building dynamic user interfaces.
+- **Node.js**: Runtime environment for executing server-side JavaScript.
+![Diagram](screenshots/chart.png)
+#### [Live Demo](https://mafiaboard.netlify.app/)
+
 ## Features
 
 - Avatar selection for users
@@ -11,7 +20,6 @@ Mafia Board Game is a website designed to replace traditional paper cards for th
 ## Installation
 
 No installation is required as Mafia Board Game is a web-based application.
-### [Live Demo](https://mafiaboard.netlify.app/)
 
 ## Usage
 
