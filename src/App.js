@@ -24,25 +24,24 @@ const App = () => {
 
   return (
     <Router>
-  <Navbar loggedIn={user} handleLogout={e => AuthService.logout()} />
-  <Routes>
-    <Route path='/' element={<Home />} />
-    <Route path='/rules' element={<Rules />} />
-    <Route path='/character' element={<Character />} />
-    <Route path='/gameplay' element={<Gameplay />} />
-    <Route path='/login' element={<Login />} />
-    <Route path='/signup' element={<SignUp />} />
+      <Navbar loggedIn={user} handleLogout={e => AuthService.logout()} />
+      <Routes>
+        <Route path='/' element={<Home />} />
+        <Route path='/rules' element={<Rules />} />
+        <Route path='/character' element={<Character />} />
+        <Route path='/gameplay' element={<Gameplay />} />
+        <Route path='/login' element={<Login />} />
+        <Route path='/signup' element={<SignUp />} />
 
-    <Route element={<PrivateRoute props={user} />}>
-      <Route path='/user' element={<Profile />} />
-      <Route path='/user/lobby' element={<Lobby />} />
-      <Route path='/user/play/:gameKey' element={<PreGameLobby />} />
-      <Route path='/user/table/:gameKey' element={<Table />} />
-    </Route>
-    <Route path="*" element={<NotFoundPage />} /> 
-  </Routes>
-</Router>
-
+        <Route element={<PrivateRoute props={user} />}>
+          <Route path='/user' element={<Profile />} />
+          <Route path='/user/lobby' element={<Lobby />} />
+          <Route path='/user/play/:gameKey' element={<PreGameLobby />} />
+          <Route path='/user/table/:gameKey' element={<Table />} />
+        </Route>
+        <Route path='*' element={<NotFoundPage />} />
+      </Routes>
+    </Router>
   )
 }
 
