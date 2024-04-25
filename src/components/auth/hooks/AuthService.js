@@ -1,6 +1,6 @@
 import axios from 'axios'
 import jwtDecode from 'jwt-decode'
-const API_URL = process.env.REACT_APP_API_ONLINE;
+const API_URL = process.env.REACT_APP_API_ONLINE
 
 // Function to register a new user
 const register = (name, email, password) => {

@@ -3,6 +3,7 @@ import { useParams, Link } from 'react-router-dom'
 import './PreGameLobby.css'
 import Checkbox from '../CardUI/CheckBox'
 import Avatar from '../CardUI/pictures/avatar.png'
+import { preSelectedChars, availableChars } from './CharData'
 import AuthService from '../auth/hooks/AuthService'
 import useAxiosPrivate from '../auth/api/useAxiosPrivate'
 import { useNavigate } from 'react-router-dom'
@@ -14,50 +15,7 @@ function PreGameLobby () {
   const userId = AuthService.getCurrentUser()
   const axiosPrivate = useAxiosPrivate()
   const navigate = useNavigate()
-  const [selectedChars, setSelectedChars] = useState([
-    {
-      id: 1,
-      name: 'GodFather',
-      side: 'mafia',
-      ability: true,
-      death: false
-    },
-    {
-      id: 2,
-      name: 'El Matador',
-      side: 'mafia',
-      ability: true,
-      death: false
-    },
-    {
-      id: 4,
-      name: 'Dr.Watson',
-      side: 'citizen',
-      ability: true,
-      death: false
-    },
-    {
-      id: 5,
-      name: 'Detective',
-      side: 'citizen',
-      ability: true,
-      death: false
-    },
-    {
-      id: 6,
-      name: 'Sniper',
-      side: 'citizen',
-      ability: true,
-      death: false
-    },
-    {
-      id: 8,
-      name: 'Regular Citizen',
-      side: 'citizen',
-      ability: false,
-      death: false
-    }
-  ])
+  const [selectedChars, setSelectedChars] = useState(preSelectedChars)
 
   useEffect(() => {
     // Fetch lobby data based on gameKey
@@ -77,74 +35,6 @@ function PreGameLobby () {
     // eslint-disable-next-line
   }, [gameKey])
 
-  // Array of available characters with their properties
-  const availableChars = [
-    {
-      id: 1,
-      name: 'GodFather',
-      side: 'mafia',
-      ability: true,
-      death: false
-    },
-    {
-      id: 2,
-      name: 'El Matador',
-      side: 'mafia',
-      ability: true,
-      death: false
-    },
-    {
-      id: 3,
-      name: 'Saul Goodman',
-      side: 'mafia',
-      ability: true,
-      death: false
-    },
-    {
-      id: 4,
-      name: 'Dr.Watson',
-      side: 'citizen',
-      ability: true,
-      death: false
-    },
-    {
-      id: 5,
-      name: 'Detective',
-      side: 'citizen',
-      ability: true,
-      death: false
-    },
-    {
-      id: 6,
-      name: 'Sniper',
-      side: 'citizen',
-      ability: true,
-      death: false
-    },
-
-    {
-      id: 7,
-      name: 'BodyGuard',
-      side: 'citizen',
-      ability: false,
-      death: false
-    },
-    {
-      id: 8,
-      name: 'Regular Citizen',
-      side: 'citizen',
-      ability: false,
-      death: false
-    },
-    {
-      id: 9,
-      name: 'Regular Mafia',
-      side: 'mafia',
-      ability: false,
-      death: false
-    }
-  ]
-
   // Function to handle checkbox change for character selection
   const handleCheckboxChange = character => {
     //These are the base characters which unchangeable
@@ -161,7 +51,6 @@ function PreGameLobby () {
         return isAlreadySelected
           ? prevSelectedChars.filter(e => e.id !== character.id)
           : [...prevSelectedChars, character]
-          
       })
       setFormSubmit(false)
     }
@@ -176,55 +65,9 @@ function PreGameLobby () {
       })
     } catch (error) {
       console.error('Error starting the game:', error)
-      //navigate('/login')
-      //localStorage.removeItem('accessToken')
-      //window.location.reload()
     }
     // default characters
-    setSelectedChars([
-      {
-        id: 1,
-        name: 'GodFather',
-        side: 'mafia',
-        ability: true,
-        death: false
-      },
-      {
-        id: 2,
-        name: 'El Matador',
-        side: 'mafia',
-        ability: true,
-        death: false
-      },
-      {
-        id: 4,
-        name: 'Dr.Watson',
-        side: 'citizen',
-        ability: true,
-        death: false
-      },
-      {
-        id: 5,
-        name: 'Detective',
-        side: 'citizen',
-        ability: true,
-        death: false
-      },
-      {
-        id: 6,
-        name: 'Sniper',
-        side: 'citizen',
-        ability: true,
-        death: false
-      },
-      {
-        id: 8,
-        name: 'Regular Citizen',
-        side: 'citizen',
-        ability: false,
-        death: false
-      }
-    ])
+    setSelectedChars(preSelectedChars)
   }
   const formValidation = e => {
     e.preventDefault()

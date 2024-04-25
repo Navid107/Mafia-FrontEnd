@@ -14,32 +14,32 @@ const SignUp = () => {
     e.preventDefault()
     setMessage('')
 
-    if(name.length > 9 || name.length < 3) {
-      setMessage("Username must be between 9-3 letter")
-      return 
+    // Validate username length
+    if (name.length < 3 || name.length > 9) {
+      setMessage('Username must be between 3 and 9 characters')
+      return
     }
-    // Email validation
+
+    // Validate email format
     if (!isValidEmail(email)) {
       setMessage('Please enter a valid email address')
       return
     }
 
-    // Password confirmation
+    // Validate password confirmation
     if (password !== confirmPassword) {
       setMessage('Passwords do not match')
       return
     }
 
-    // Create an object to send as the request body
-    AuthService.register(name, email, password).then(
-      () => {
-        navigate('/login')
-        window.location.reload()
-      },
-      error => {
-        setMessage('Please Check Your Inputs')
-      }
-    )
+    try {
+      // Register user
+      await AuthService.register(name, email, password)
+      navigate('/login')
+      window.location.reload() // Refresh page after registration
+    } catch (error) {
+      setMessage('An error occurred. Please check your inputs and try again.')
+    }
   }
 
   // Function to validate email format
@@ -81,11 +81,12 @@ const SignUp = () => {
           </div>
           <div className='field'>
             <input
-             type='password'
+              type='password'
               placeholder='Confirm password'
               value={confirmPassword}
               onChange={e => setConfirmPassword(e.target.value)}
-              required />
+              required
+            />
           </div>
 
           <button className='field-btn' type='submit' value='Signup'>

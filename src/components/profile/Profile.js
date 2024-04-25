@@ -31,7 +31,10 @@ const Profile = () => {
               </span>
             </li>
             <li>
-              <span className='wins'> Wins: {userStats?.stats?.mafia_wins}</span>
+              <span className='wins'>
+                {' '}
+                Wins: {userStats?.stats?.mafia_wins}
+              </span>
               <span className='loses'>
                 Loses: {userStats?.stats?.mafia_loses}
               </span>
